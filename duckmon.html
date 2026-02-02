@@ -56,11 +56,16 @@
             overflow: hidden;
             margin: 40px auto;
             border-radius: 10px;
+            cursor: pointer;
         }
 
         .carousel-track {
             display: flex;
             animation: slide 42s infinite linear;
+        }
+
+        .carousel-track.paused {
+            animation-play-state: paused;
         }
 
         .carousel-track img {
@@ -259,6 +264,14 @@
     </footer>
 
 </div>
+
+<!-- CLICK TO PAUSE / RESUME SCRIPT -->
+<script>
+    document.querySelector('.carousel').addEventListener('click', function () {
+        const track = document.querySelector('.carousel-track');
+        track.classList.toggle('paused');
+    });
+</script>
 
 </body>
 </html>
