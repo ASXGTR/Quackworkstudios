@@ -1078,4 +1078,38 @@ video {
   .contact-grid {
     grid-template-columns: 1fr;
   }
+
+  /* FORCE CONTACT FORM TEXT TO WHITE */
+.contact-section label,
+.contact-section input,
+.contact-section textarea,
+.contact-section select,
+.contact-section button,
+.contact-section p,
+.contact-section span,
+.contact-section .contact-info,
+.contact-section .contact-meta {
+    color: #fff !important;
+}
+
+/* Input + textarea backgrounds */
+.contact-section input,
+.contact-section textarea,
+.contact-section select {
+    background: #111 !important;
+    border: 1px solid #444 !important;
+    color: #fff !important;
+}
+
+/* Placeholder text */
+.contact-section input::placeholder,
+.contact-section textarea::placeholder {
+    color: #bbb !important;
+}
+
+/* Footer-style info inside contact section */
+.contact-section a {
+    color: #fff !important;
+}
+
 }
