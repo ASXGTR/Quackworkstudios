@@ -1078,8 +1078,9 @@ video {
   .contact-grid {
     grid-template-columns: 1fr;
   }
+}
 
-  /* FORCE CONTACT FORM TEXT TO WHITE */
+/* ⭐ WHITE TEXT FIX — APPLIES TO ALL SCREEN SIZES */
 .contact-section label,
 .contact-section input,
 .contact-section textarea,
@@ -1092,7 +1093,6 @@ video {
     color: #fff !important;
 }
 
-/* Input + textarea backgrounds */
 .contact-section input,
 .contact-section textarea,
 .contact-section select {
@@ -1101,15 +1101,11 @@ video {
     color: #fff !important;
 }
 
-/* Placeholder text */
 .contact-section input::placeholder,
 .contact-section textarea::placeholder {
     color: #bbb !important;
 }
 
-/* Footer-style info inside contact section */
 .contact-section a {
     color: #fff !important;
-}
-
 }
