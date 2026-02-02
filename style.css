@@ -237,6 +237,7 @@ video {
 [hidden] {
   display: none;
 }
+
 .cls-55z7fq {
   font-family: Inter;
   -webkit-font-smoothing: antialiased;
@@ -333,7 +334,6 @@ video {
   text-decoration-line: underline;
   color: #fff;
 }
-
 /* HERO SECTION */
 .hero-section {
   border-top-width: 1px;
@@ -506,6 +506,7 @@ video {
   border-radius: 0.125rem;
   background-color: rgb(255 79 216 / 1);
 }
+
 /* ABOUT SECTION */
 .about-section {
   max-width: 72rem;
@@ -649,7 +650,7 @@ video {
   object-fit: cover;
 }
 
-/* CTA BUTTON (BIG HOMEPAGE BUTTON) */
+/* CTA BUTTON */
 .cta-button-wrapper {
   margin: 40px auto;
   text-align: center;
@@ -745,7 +746,7 @@ video {
   color: rgb(184 191 202 / 1);
 }
 
-/* BLOG BUTTON (INSIDE BLOG CARD) */
+/* BLOG BUTTON */
 .blog-button {
   display: block;
   width: 100%;
