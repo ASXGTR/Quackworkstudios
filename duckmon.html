@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Duckmon: Collectable Card Multiverse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .top-link, .bottom-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .top-link a, .bottom-link a {
+            color: #00d9ff;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .title-image {
+            display: block;
+            margin: 0 auto 30px auto;
+            max-width: 600px;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: #00d9ff;
+        }
+
+        p {
+            max-width: 900px;
+            margin: 0 auto 20px auto;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* Carousel */
+        .carousel {
+            width: 100%;
+            overflow: hidden;
+            margin: 40px auto;
+            border-radius: 10px;
+        }
+
+        .carousel-track {
+            display: flex;
+            animation: slide 30s infinite linear;
+        }
+
+        .carousel-track img {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-800%); }
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .image-grid img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .large-image {
+            display: block;
+            margin: 40px auto;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Factions */
+        .faction-block {
+            margin: 60px 0;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+        }
+
+        .faction-main {
+            display: block;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        /* Discord Button */
+        .discord-button {
+            display: block;
+            width: 260px;
+            margin: 40px auto;
+            padding: 15px;
+            background: #5865F2;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 20px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Back to Homepage -->
+    <div class="top-link">
+        <a href="/">← Back to Homepage</a>
+    </div>
+
+    <!-- Title Image -->
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/TitleTextUpscale.png" 
+     alt="Duckmon Title" 
+     class="title-image">
+
+
+    <h1>Welcome to Duckmon: Collectable Card Multiverse</h1>
+
+    <p>
+        Duckmon began as a small minigame inside my TextZ Ombie project, but it quickly grew into 
+        something much bigger. Inspired by Triple Triad (Final Fantasy VIII) and classic collectable, Pokémon style 
+        card collecting, Duckmon blends strategic grid based battles with a multiverse of unique duck 
+        factions, lore, and rarity systems.
+    </p>
+
+    <!-- Carousel -->
+    <div class="carousel">
+        <div class="carousel-track">
+            <img src="carousel1.png">
+            <img src="carousel2.png">
+            <img src="carousel3.png">
+            <img src="carousel4.png">
+            <img src="carousel5.png">
+            <img src="carousel6.png">
+            <img src="carousel7.png">
+            <img src="carousel8.png">
+        </div>
+    </div>
+
+    <!-- ABOUT THE GAME -->
+    <h2>About the Game</h2>
+
+    <p>
+        Duckmon is a feature-rich collectible card game built around strategic grid-based battles, 
+        deck construction, and long-term progression. The core systems are fully implemented, including 
+        deck building, card packs, achievements, rewards, player profiles, and persistent cloud data. 
+        Current development is focused on PvE AI, balance tuning, UI refinement, and playtesting.
+    </p>
+
+    <h2>Core Features</h2>
+
+    <p>
+        • Multi-deck builder with save/load persistence<br>
+        • Pack opening animations with validated RNG tables<br>
+        • Achievement system with reward triggers<br>
+        • Player profiles, avatars, and unlockables<br>
+        • Full card binder integrated with deck building<br>
+        • Market and economy systems<br>
+        • Daily login rewards and progression<br>
+        • Backend persistence powered by Supabase
+    </p>
+
+    <p>
+        Duckmon includes 310 fully illustrated cards, each with unique stats, lore, and rarity. 
+        The 10 main factions are: Electric, Fire, Holy, Ice, Nature, Physical, Technology, 
+        Toxic, Undead, and Wind. The 11th faction, Mythic, contains 10 dual-faction cards that blend 
+        elemental traits with Mythic power.
+    </p>
+
+    <!-- Image Grid (10 images) -->
+    <div class="image-grid">
+        <img src="grid1.png">
+        <img src="grid2.png">
+        <img src="grid3.png">
+        <img src="grid4.png">
+        <img src="grid5.png">
+        <img src="grid6.png">
+        <img src="grid7.png">
+        <img src="grid8.png">
+        <img src="grid9.png">
+        <img src="grid10.png">
+    </div>
+
+    <!-- GAMEPLAY -->
+    <h2>Gameplay</h2>
+
+    <p>
+        Battles take place on a 5×4 grid in turn-based strategic combat. Each player builds a 
+        10-card deck and uses positioning, faction bonuses, and card abilities to outplay their 
+        opponent. Duckmon includes both PvE and PvP modes, with ranked leaderboards and seasonal rewards.
+    </p>
+
+    <img src="battle.png" class="large-image">
+
+    <!-- PROGRESSION -->
+    <h2>Progression & Rewards</h2>
+
+    <p>
+        Cards are obtained through packs, in-game currency, events, and special promotions. Players 
+        level up, earn experience, unlock rewards, and receive daily login bonuses. Achievements and 
+        leaderboards give long-term goals and bragging rights.
+    </p>
+
+    <!-- Image Grid (6 images) -->
+    <div class="image-grid">
+        <img src="reward1.png">
+        <img src="reward2.png">
+        <img src="reward3.png">
+        <img src="reward4.png">
+        <img src="reward5.png">
+        <img src="reward6.png">
+    </div>
+
+    <!-- FACTIONS -->
+    <h2>Factions</h2>
+
+    <!-- Repeat this block for each faction -->
+    <div class="faction-block">
+        <h3>Electric Faction</h3>
+        <img src="electric-main.png" class="faction-main">
+        <p>
+            Electric faction lore goes here...
+        </p>
+        <div class="image-grid">
+            <img src="electric1.png">
+            <img src="electric2.png">
+            <img src="electric3.png">
+            <img src="electric4.png">
+            <img src="electric5.png">
+        </div>
+    </div>
+
+    <!-- Add 10 more faction blocks here -->
+
+    <!-- FOLLOW THE JOURNEY -->
+    <h2>Follow the Journey</h2>
+
+    <p>
+        Duckmon is still in active development. Join the Discord community to follow progress, 
+        see behind-the-scenes updates, and get early access to demos.
+    </p>
+
+    <a href="YOUR_DISCORD_LINK" class="discord-button">Join the Discord</a>
+
+    <!-- Bottom link -->
+    <div class="bottom-link">
+        <a href="/">← Back to Homepage</a>
+    </div>
+
+    <footer>
+        © Quackwork Studios — All Rights Reserved
+    </footer>
+
+</div>
+
+</body>
+</html>
+
