@@ -70,7 +70,7 @@
 
         @keyframes slide {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
         }
 
         /* Image Grid */
@@ -145,7 +145,6 @@
      alt="Duckmon Title" 
      class="title-image">
 
-
     <h1>Welcome to Duckmon: Collectable Card Multiverse</h1>
 
     <p>
@@ -158,14 +157,15 @@
     <!-- Carousel -->
     <div class="carousel">
         <div class="carousel-track">
-            <img src="carousel1.png">
-            <img src="carousel2.png">
-            <img src="carousel3.png">
-            <img src="carousel4.png">
-            <img src="carousel5.png">
-            <img src="carousel6.png">
-            <img src="carousel7.png">
-            <img src="carousel8.png">
+            <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20114119.png">
+            <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20114346.png">
+            <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20115024.png">
+            <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20115225.png">
+            <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20115244.png">
+            <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20115529.png">
+            <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20120038.png">
+            <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20120145.png">
+            <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20120159.png">
         </div>
     </div>
 
@@ -173,53 +173,57 @@
     <h2>About the Game</h2>
 
     <p>
-        Duckmon is a feature-rich collectible card game built around strategic grid-based battles, 
-        deck construction, and long-term progression. The core systems are fully implemented, including 
+        Duckmon is a feature rich collectible card game built around strategic grid based battles, 
+        deck construction, and long-term progression. The core systems are mostly fully implemented, including 
         deck building, card packs, achievements, rewards, player profiles, and persistent cloud data. 
-        Current development is focused on PvE AI, balance tuning, UI refinement, and playtesting.
+        Current development is focused on some minor adjustment and polishing, PvE AI, balance tuning, UI refinement, and playtesting.
     </p>
 
     <h2>Core Features</h2>
 
     <p>
-        • Multi-deck builder with save/load persistence<br>
-        • Pack opening animations with validated RNG tables<br>
-        • Achievement system with reward triggers<br>
+        • Multi deck selection and builder with save/load persistence<br>
+        • Pack opening animations with validated RNG tables (tested in 100k simulation batches for accuracy)<br>
+        • Achievement system with unlock and reward triggers<br>
         • Player profiles, avatars, and unlockables<br>
         • Full card binder integrated with deck building<br>
         • Market and economy systems<br>
         • Daily login rewards and progression<br>
-        • Backend persistence powered by Supabase
+        • Unique faction themes and soundtracks<br>
+        • Backend persistence powered by Supabase.
     </p>
 
     <p>
         Duckmon includes 310 fully illustrated cards, each with unique stats, lore, and rarity. 
         The 10 main factions are: Electric, Fire, Holy, Ice, Nature, Physical, Technology, 
-        Toxic, Undead, and Wind. The 11th faction, Mythic, contains 10 dual-faction cards that blend 
-        elemental traits with Mythic power.
+        Toxic, Undead, and Wind. The 11th faction, Mythic, contains 10 dual faction cards that blend 
+        elemental traits with Mythic power for the rarest ultimate power cards.
     </p>
 
-    <!-- Image Grid (10 images) -->
-    <div class="image-grid">
-        <img src="grid1.png">
-        <img src="grid2.png">
-        <img src="grid3.png">
-        <img src="grid4.png">
-        <img src="grid5.png">
-        <img src="grid6.png">
-        <img src="grid7.png">
-        <img src="grid8.png">
-        <img src="grid9.png">
-        <img src="grid10.png">
-    </div>
+<!-- Card Grid Header -->
+<h2>Selected Examples of Cards</h2>
+
+<!-- Image Grid (10 images) -->
+<div class="image-grid">
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123522.png">
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123620.png">
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123658.png">
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123730.png">
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123806.png">
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123827.png">
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123858.png">
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123922.png">
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20124001.png">
+    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20124028.png">
+</div>
 
     <!-- GAMEPLAY -->
     <h2>Gameplay</h2>
 
     <p>
         Battles take place on a 5×4 grid in turn-based strategic combat. Each player builds a 
-        10-card deck and uses positioning, faction bonuses, and card abilities to outplay their 
-        opponent. Duckmon includes both PvE and PvP modes, with ranked leaderboards and seasonal rewards.
+        10 card deck from cards they have unlocked and uses positioning, faction bonuses, and card abilities to outplay their 
+        opponent. Duckmon includes both PvE and PvP modes, battle rewards, with ranked leaderboards and potentially seasonal rewards.
     </p>
 
     <img src="battle.png" class="large-image">
@@ -228,41 +232,10 @@
     <h2>Progression & Rewards</h2>
 
     <p>
-        Cards are obtained through packs, in-game currency, events, and special promotions. Players 
+        Cards are obtained through packs, in game currency, events, and special promotions. Players 
         level up, earn experience, unlock rewards, and receive daily login bonuses. Achievements and 
-        leaderboards give long-term goals and bragging rights.
+        leaderboards give long term goals and bragging rights. With unlockable factions, avatars, quotes and achievements.
     </p>
-
-    <!-- Image Grid (6 images) -->
-    <div class="image-grid">
-        <img src="reward1.png">
-        <img src="reward2.png">
-        <img src="reward3.png">
-        <img src="reward4.png">
-        <img src="reward5.png">
-        <img src="reward6.png">
-    </div>
-
-    <!-- FACTIONS -->
-    <h2>Factions</h2>
-
-    <!-- Repeat this block for each faction -->
-    <div class="faction-block">
-        <h3>Electric Faction</h3>
-        <img src="electric-main.png" class="faction-main">
-        <p>
-            Electric faction lore goes here...
-        </p>
-        <div class="image-grid">
-            <img src="electric1.png">
-            <img src="electric2.png">
-            <img src="electric3.png">
-            <img src="electric4.png">
-            <img src="electric5.png">
-        </div>
-    </div>
-
-    <!-- Add 10 more faction blocks here -->
 
     <!-- FOLLOW THE JOURNEY -->
     <h2>Follow the Journey</h2>
@@ -272,7 +245,10 @@
         see behind-the-scenes updates, and get early access to demos.
     </p>
 
-    <a href="YOUR_DISCORD_LINK" class="discord-button">Join the Discord</a>
+<a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="discord-button">
+    Join the Discord
+</a>
+
 
     <!-- Bottom link -->
     <div class="bottom-link">
