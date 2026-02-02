@@ -628,6 +628,32 @@ video {
   flex-direction: column;
   gap: 1rem;
 }
+.cta-button-wrapper {
+  margin: 40px auto;
+  text-align: center;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 18px 40px;
+  background: #00d9ff;
+  color: #000;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 3px solid #00d9ff;
+  box-shadow: 0 0 15px #00d9ff;
+  transition: 0.25s ease;
+}
+
+.cta-button:hover {
+  background: #000;
+  color: #00d9ff;
+  box-shadow: 0 0 25px #00d9ff;
+  transform: scale(1.05);
+}
+
 
 .about-text {
   color: rgb(184 191 202 / 1);
