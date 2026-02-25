@@ -50,7 +50,6 @@
             font-size: 18px;
         }
 
-        /* Carousel */
         .carousel {
             width: 100%;
             overflow: hidden;
@@ -78,7 +77,6 @@
             100% { transform: translateX(-900%); }
         }
 
-        /* Image Grid */
         .image-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -98,20 +96,6 @@
             border-radius: 10px;
         }
 
-        /* Factions */
-        .faction-block {
-            margin: 60px 0;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #333;
-        }
-
-        .faction-main {
-            display: block;
-            margin: 20px auto;
-            max-width: 400px;
-        }
-
-        /* Discord Button */
         .discord-button {
             display: block;
             width: 260px;
@@ -140,12 +124,10 @@
 
 <div class="container">
 
-    <!-- Back to Homepage -->
     <div class="top-link">
         <a href="/">← Back to Homepage</a>
     </div>
 
-    <!-- Title Image -->
     <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/TitleTextUpscale.png" 
      alt="Duckmon Title" 
      class="title-image">
@@ -159,7 +141,6 @@
         factions, lore, and rarity systems.
     </p>
 
-    <!-- Carousel -->
     <div class="carousel">
         <div class="carousel-track">
             <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20114119.png">
@@ -174,7 +155,6 @@
         </div>
     </div>
 
-    <!-- ABOUT THE GAME -->
     <h2>About the Game</h2>
 
     <p>
@@ -188,7 +168,7 @@
 
     <p>
         • Multi deck selection and builder with save/load persistence<br>
-        • Pack opening animations with validated RNG tables (tested in 100k simulation batches for accuracy)<br>
+        • Pack opening animations with validated RNG tables<br>
         • Achievement system with unlock and reward triggers<br>
         • Player profiles, avatars, and unlockables<br>
         • Full card binder integrated with deck building<br>
@@ -201,14 +181,11 @@
     <p>
         Duckmon includes 310 fully illustrated cards, each with unique stats, lore, and rarity. 
         The 10 main factions are: Electric, Fire, Holy, Ice, Nature, Physical, Technology, 
-        Toxic, Undead, and Wind. The 11th faction, Mythic, contains 10 dual faction cards that blend 
-        elemental traits with Mythic power for the rarest ultimate power cards.
+        Toxic, Undead, and Wind. The 11th faction, Mythic, contains 10 dual faction cards.
     </p>
 
-<!-- Card Grid Header -->
 <h2>Selected Examples of Cards</h2>
 
-<!-- Image Grid (10 images) -->
 <div class="image-grid">
     <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123522.png">
     <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123620.png">
@@ -222,28 +199,22 @@
     <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20124028.png">
 </div>
 
-    <!-- GAMEPLAY -->
     <h2>Gameplay</h2>
 
     <p>
         Battles take place on a 5×4 grid in turn-based strategic combat. Each player builds a 
-        10 card deck from cards they have unlocked and uses positioning, faction bonuses, and card abilities to outplay their 
-        opponent. Duckmon includes both PvE and PvP modes, battle rewards, with ranked leaderboards and potentially seasonal rewards.
+        10 card deck and uses positioning, faction bonuses, and card abilities to outplay their opponent.
     </p>
 
     <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20131059.png" class="large-image">
 
-
-    <!-- PROGRESSION -->
     <h2>Progression & Rewards</h2>
 
     <p>
-        Cards are obtained through packs, in game currency, events, and special promotions. Players 
-        level up, earn experience, unlock rewards, and receive daily login bonuses. Achievements and 
-        leaderboards give long term goals and bragging rights. With unlockable factions, avatars, quotes and achievements.
+        Cards are obtained through packs, currency, events, and promotions. Players level up, earn rewards, 
+        unlock achievements, and climb leaderboards.
     </p>
 
-    <!-- FOLLOW THE JOURNEY -->
     <h2>Follow the Journey</h2>
 
     <p>
@@ -251,7 +222,7 @@
         see behind the scenes updates, and get early access to demos.
     </p>
 
-    <!-- FIRST LOOK GAMEPLAY (NEW SECTION) -->
+    <!-- FIRST LOOK GAMEPLAY (UPDATED WITH GITHUB VIDEO) -->
     <h2>First Look Gameplay</h2>
 
     <p>
@@ -260,15 +231,13 @@
     </p>
 
     <video width="100%" controls style="margin: 30px 0; border-radius: 10px;">
-        <source src="https://drive.google.com/uc?export=download&id=1aavbOpZwGzUMclT1SMS0_mtDp1j1fQIS" type="video/mp4">
-        Your browser does not support the video tag.
+        <source src="/Gameplay%20Demo%20First%20Look.mp4" type="video/mp4">
     </video>
 
 <a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="discord-button">
     Join the Discord
 </a>
 
-    <!-- Bottom link -->
     <div class="bottom-link">
         <a href="/">← Back to Homepage</a>
     </div>
@@ -279,7 +248,6 @@
 
 </div>
 
-<!-- CLICK TO PAUSE / RESUME SCRIPT -->
 <script>
     document.querySelector('.carousel').addEventListener('click', function () {
         const track = document.querySelector('.carousel-track');
