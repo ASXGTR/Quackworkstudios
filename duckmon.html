@@ -114,6 +114,58 @@
             text-decoration: none;
         }
 
+        /* Credits Section Styling */
+        .credits-section {
+            background: #111;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 80px;
+            border: 1px solid #222;
+        }
+
+        .credits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .credits-column h4 {
+            color: #00d9ff;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .credits-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .credits-column li {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .credits-column li strong {
+            color: #fff;
+        }
+
+        .special-thanks {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-style: italic;
+            color: #888;
+        }
+
         /* Footer Styling */
         footer {
             margin-top: 60px;
@@ -188,143 +240,81 @@
 
     <p>
     Duckmon is a multiverse‑driven collectible card battler built around fast, tactical, grid‑based combat. 
-    What began as a tiny minigame inside an old prototype has evolved into a full standalone game with deep 
-    strategy, unique factions, and an expanding universe of Duckmon variants. Every card represents a creature, 
-    anomaly, or corrupted form pulled from a fractured reality — each with its own stats, abilities, and identity.
-    <br><br>
-    Duckmon now includes a full <strong>Story Mode</strong> spanning <strong>30 stories across 10 chapters</strong>, 
-    each with unique art, choices, branching routes, and multiple endings. The upcoming demo features 
-    <strong>one complete story from Chapter 1</strong>, including <strong>10 endings</strong>, hidden paths, 
-    and many wonderfully avoidable death scenes.
-    <br><br>
-    The game is being built openly, iteratively, and with a lot of stubborn solo‑dev energy. The multiverse 
-    expands one card, one faction, and one story at a time.
-</p>
-
+    The game features a full <strong>Story Mode</strong> spanning <strong>30 stories across 10 chapters</strong>, 
+    each with unique art, choices, branching routes, and multiple endings.
+    </p>
 
     <h2>Core Features</h2>
 
    <p style="text-align:center; max-width:900px; margin:0 auto 20px auto; font-size:18px;">
-
     <strong>• Tactical 5×4 Grid Battles</strong><br>
-    Solo skirmish mode with three difficulties — Easy, Normal, and Hard — built around clean, strategic card placement and tile control.
-    <br><br>
-
-    <strong>• 30-Story, 10-Chapter Story Mode (In Development)</strong><br>
-    A full narrative campaign exploring the Duckmon multiverse. The demo includes one complete Chapter 1 story with 10 endings and multiple death scenes.
-    <br><br>
-
     <strong>• 310 Fully Illustrated Cards</strong><br>
-    Each card has unique stats, rarity, and faction identity across 10 main factions and the rare Mythic hybrids.
-    <br><br>
-
     <strong>• Full Deckbuilder & Binder</strong><br>
-    Build, save, and load multiple decks. Browse your full collection with filters, rarity sorting, and faction views.
-    <br><br>
-
-    <strong>• Progression & Rewards</strong><br>
-    Packs, currency, achievements, login rewards, player profiles, and persistent cloud saves powered by Supabase.
-    <br><br>
-
-    <strong>• Clean, Fair Collection System</strong><br>
-    No gacha, no pay-to-win. Cards are earned through gameplay, story mode, and progression.
-    <br><br>
-
-    <strong>• Built in Unity by a Solo Developer</strong><br>
-    Duckmon grows one card, one faction, and one story at a time.
-</p>
-
-
-<h2>Selected Examples of Cards</h2>
-
-<div class="image-grid">
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123522.png">
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123620.png">
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123658.png">
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123730.png">
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123806.png">
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123827.png">
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123858.png">
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123922.png">
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20124001.png">
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20124028.png">
-</div>
-
-    <h2>Gameplay</h2>
-
-    <p>
-        Battles take place on a 5×4 grid in turn-based strategic combat. Each player builds a 
-        10 card deck and uses positioning, faction bonuses, and card abilities to outplay their opponent.
+    <strong>• Progression & Rewards</strong> (Powered by Supabase)
     </p>
 
-    <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20131059.png" class="large-image">
-
-    <h2>Progression & Rewards</h2>
-
-    <p>
-        Cards are obtained through packs, currency, events, and promotions. Players level up, earn rewards, 
-        unlock achievements, and climb leaderboards.
-    </p>
-
-    <h2>Roadmap</h2>
-
-<p style="max-width:900px; margin:0 auto 30px auto; text-align:center; font-size:18px;">
-    Duckmon is being built openly and iteratively. This roadmap outlines the current development focus, 
-    upcoming demo plans, and long-term goals.
-</p>
-
-<h3 style="color:#00d9ff; text-align:center;">Stage 1 — Active Development (Current)</h3>
-
-<p style="max-width:900px; margin:0 auto 20px auto; text-align:center; font-size:18px;">
-    • Finalizing story art for Chapter 1<br>
-    • Implementing the first demo story block (10 endings + death scenes)<br>
-    • Rewriting and formatting backend code for server-authoritative structure<br>
-    • Playtesting skirmish mode across Easy / Normal / Hard difficulties
-</p>
-
-<h3 style="color:#00d9ff; text-align:center;">Stage 2 — Demo v1.0 Release (Coming Soon)</h3>
-
-<p style="max-width:900px; margin:0 auto 20px auto; text-align:center; font-size:18px;">
-    • Preparing the first public demo for itch.io<br>
-    • Estimated release window: <strong>~1 month</strong><br>
-    • Demo includes: 1 full story, 10 endings, unique art, and skirmish mode
-</p>
-
-<h3 style="color:#00d9ff; text-align:center;">Stage 3 — Post-Demo Content Expansion</h3>
-
-<p style="max-width:900px; margin:0 auto 20px auto; text-align:center; font-size:18px;">
-    • Continuing story art production for Chapters 2–10<br>
-    • Creating a Story Art Gallery for unlocked illustrations<br>
-    • Listening to player feedback and adjusting systems accordingly
-</p>
-
-
-    <h2>Follow the Journey</h2>
-
-    <p>
-        Duckmon is still in active development. Join the Discord community to follow progress, 
-        see behind the scenes updates, and get early access to demos.
-    </p>
-
-    <h2>First Look Gameplay</h2>
+    <h2>Media & Gameplay</h2>
     <video width="100%" controls style="margin: 30px 0; border-radius: 10px;">
         <source src="/Gameplay%20Demo%20First%20Look.mp4" type="video/mp4">
     </video>
 
-    <h2>Card Pack Opening</h2>
-    <video width="100%" controls style="margin: 30px 0; border-radius: 10px;">
-        <source src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Card%20Pack%20Opening.mp4" type="video/mp4">
-    </video>
+    <div class="image-grid">
+        <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123522.png">
+        <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123620.png">
+        <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123658.png">
+        <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123730.png">
+    </div>
 
-    <h2>Card Binder Showcase</h2>
-    <video width="100%" controls style="margin: 30px 0; border-radius: 10px;">
-        <source src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Binder%20Example%20Video.mp4" type="video/mp4">
-    </video>
+    <a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="discord-button">
+        Join the Discord
+    </a>
 
-<a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="discord-button">
-    Join the Discord
-</a>
+    <div class="credits-section">
+        <h2>Duckmon Project Credits</h2>
+        
+        <div class="credits-grid">
+            <div class="credits-column">
+                <h4>Music & Audio</h4>
+                <ul>
+                    <li><strong>Warm Duck Shuffle</strong> — arnebhus</li>
+                    <li><strong>Swing Machine</strong> — Kevin MacLeod</li>
+                    <li><strong>Inspiring</strong> — Wavecont</li>
+                    <li><strong>8 Bit Love</strong> — müxa</li>
+                    <li><strong>Neon Reverie</strong> — BR</li>
+                    <li><strong>Additional Artists:</strong> Nonak, Kike Gutz, Off Beat, MudiG, HitsLab, Milbela</li>
+                    <li><strong>SFX:</strong> Pixabay, Freesound Community, Universfield</li>
+                </ul>
+            </div>
 
+            <div class="credits-column">
+                <h4>Visuals & Art</h4>
+                <ul>
+                    <li><strong>Card Illustrations:</strong> Gemini (DeepMind) AI</li>
+                    <li><strong>Editing:</strong> MS Paint, LunaPic, ImageLabs</li>
+                    <li><strong>Typography:</strong> CoolText Styles</li>
+                    <li><strong>Visual Flow:</strong> Whimsical</li>
+                </ul>
+            </div>
+
+            <div class="credits-column">
+                <h4>Development & Tools</h4>
+                <ul>
+                    <li><strong>Game Engine:</strong> Unity</li>
+                    <li><strong>Backend & Database:</strong> Supabase</li>
+                    <li><strong>Coding Support:</strong> Microsoft Copilot AI</li>
+                    <li><strong>Web Presence:</strong> GitHub, IONOS, Cloudflare</li>
+                    <li><strong>Web Starter Template:</strong> GrapesJS Studio</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="special-thanks">
+            "Special thanks to my wife for her endless patience and belief in this project. <br>
+            A subtle nod to the platform whose bans fueled the fire to build this game my own way."
+            <br><br>
+            <strong>Made with passion, caffeine, and determination.</strong>
+        </div>
+    </div>
     <div class="bottom-link">
         <a href="/">← Back to Homepage</a>
     </div>
