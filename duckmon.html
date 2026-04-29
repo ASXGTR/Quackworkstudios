@@ -30,6 +30,11 @@
             color: #00d9ff;
             font-size: 20px;
             text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .top-link a:hover, .bottom-link a:hover {
+            text-shadow: 0 0 10px #00d9ff;
         }
 
         .title-image {
@@ -109,13 +114,37 @@
             text-decoration: none;
         }
 
+        /* Footer Styling */
         footer {
             margin-top: 60px;
-            padding: 20px 0;
+            padding: 40px 0;
             text-align: center;
             border-top: 1px solid #333;
             color: #777;
             font-size: 14px;
+        }
+
+        .footer-policies {
+            margin-top: 15px;
+        }
+
+        .policy-link {
+            color: #00d9ff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .policy-link:hover {
+            text-decoration: underline;
+        }
+
+        .divider-dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background: #444;
+            border-radius: 50%;
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -241,7 +270,7 @@
 
 <p style="max-width:900px; margin:0 auto 30px auto; text-align:center; font-size:18px;">
     Duckmon is being built openly and iteratively. This roadmap outlines the current development focus, 
-    upcoming demo plans, and long-term goals for expanding the game’s systems, story mode, and future game modes.
+    upcoming demo plans, and long-term goals.
 </p>
 
 <h3 style="color:#00d9ff; text-align:center;">Stage 1 — Active Development (Current)</h3>
@@ -249,20 +278,14 @@
 <p style="max-width:900px; margin:0 auto 20px auto; text-align:center; font-size:18px;">
     • Finalizing story art for Chapter 1<br>
     • Implementing the first demo story block (10 endings + death scenes)<br>
-    • Debugging active systems and refining core gameplay<br>
     • Rewriting and formatting backend code for server-authoritative structure<br>
-    • QA testing across skirmish mode and story mode<br>
-    • Audio adjustments and soundtrack balancing<br>
-    • Finalizing pack creation, rarity tables, and card data<br>
     • Playtesting skirmish mode across Easy / Normal / Hard difficulties
 </p>
 
 <h3 style="color:#00d9ff; text-align:center;">Stage 2 — Demo v1.0 Release (Coming Soon)</h3>
 
 <p style="max-width:900px; margin:0 auto 20px auto; text-align:center; font-size:18px;">
-    • Preparing the first public demo for itch.io (Windows ZIP build)<br>
-    • Final polish pass for UI, UX, and story presentation<br>
-    • Packaging the demo for distribution<br>
+    • Preparing the first public demo for itch.io<br>
     • Estimated release window: <strong>~1 month</strong><br>
     • Demo includes: 1 full story, 10 endings, unique art, and skirmish mode
 </p>
@@ -271,48 +294,8 @@
 
 <p style="max-width:900px; margin:0 auto 20px auto; text-align:center; font-size:18px;">
     • Continuing story art production for Chapters 2–10<br>
-    • Writing and implementing new stories and branching paths<br>
-    • Expanding rewards and progression systems<br>
     • Creating a Story Art Gallery for unlocked illustrations<br>
-    • Adding an in-game Audio Player for soundtrack unlocks<br>
     • Listening to player feedback and adjusting systems accordingly
-</p>
-
-<h3 style="color:#00d9ff; text-align:center;">Stage 4 — Gameplay Expansion & Systems Upgrade</h3>
-
-<p style="max-width:900px; margin:0 auto 20px auto; text-align:center; font-size:18px;">
-    • Implementing faction-specific battle grids with unique bonuses<br>
-    • Adding buffs, debuffs, tile effects, and chain reaction mechanics<br>
-    • Expanding solo game modes with new challenges and variants<br>
-    • Continued QA testing, debugging, and performance improvements<br>
-    • Integrating community feedback into balance and design
-</p>
-
-<h3 style="color:#00d9ff; text-align:center;">Stage 5 — Demo v2.0 Release</h3>
-
-<p style="max-width:900px; margin:0 auto 20px auto; text-align:center; font-size:18px;">
-    • Releasing Demo v2.0 with expanded features and new content<br>
-    • Updated story chapters, new cards, and improved UI/UX<br>
-    • Gathering player feedback for the next development cycle
-</p>
-
-<h3 style="color:#00d9ff; text-align:center;">Stage 6 — Future Game Modes (Exploration)</h3>
-
-<p style="max-width:900px; margin:0 auto 20px auto; text-align:center; font-size:18px;">
-    • <strong>Team Battles (10v10)</strong> — Pokémon-style team combat with abilities and movesets<br>
-    • <strong>Tower Defense Mode</strong> — Linear-path defense using cards as towers<br>
-    • Adding simple ability effects, animations, and combat systems<br>
-    • Expanding faction identity through unique mechanics
-</p>
-
-<h3 style="color:#00d9ff; text-align:center;">Stage 7 — Online Features & Steam Preparation</h3>
-
-<p style="max-width:900px; margin:0 auto 20px auto; text-align:center; font-size:18px;">
-    • Leaderboards and competitive ranking<br>
-    • PvP prototype and backend networking<br>
-    • Friends system (Steam integration planned)<br>
-    • Preparing Demo v3.0 for Steam release<br>
-    • Final polish, bug fixing, and long-term support planning
 </p>
 
 
@@ -323,38 +306,17 @@
         see behind the scenes updates, and get early access to demos.
     </p>
 
-    <!-- FIRST LOOK GAMEPLAY -->
     <h2>First Look Gameplay</h2>
-
-    <p>
-        Here is the first view of my end‑to‑end gameplay skirmish battle (Player vs AI),
-        showing my development progress from deck building to full battle flow.
-    </p>
-
     <video width="100%" controls style="margin: 30px 0; border-radius: 10px;">
         <source src="/Gameplay%20Demo%20First%20Look.mp4" type="video/mp4">
     </video>
 
-    <!-- CARD PACK OPENING VIDEO -->
     <h2>Card Pack Opening</h2>
-
-    <p>
-        Here is a look at how card packs open in Duckmon, including the animation,
-        rarity reveals, and the overall pack flow.
-    </p>
-
     <video width="100%" controls style="margin: 30px 0; border-radius: 10px;">
         <source src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Card%20Pack%20Opening.mp4" type="video/mp4">
     </video>
 
-    <!-- BINDER SHOWCASE VIDEO (NEW SECTION) -->
     <h2>Card Binder Showcase</h2>
-
-    <p>
-        This video shows the full card binder system in Duckmon, including faction sorting,
-        rarity filtering, and how the binder integrates with the deckbuilder.
-    </p>
-
     <video width="100%" controls style="margin: 30px 0; border-radius: 10px;">
         <source src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Binder%20Example%20Video.mp4" type="video/mp4">
     </video>
@@ -368,7 +330,12 @@
     </div>
 
     <footer>
-        © Quackwork Studios — All Rights Reserved
+        <p>© 2026 Quackwork Studios — Real & Raw Game Development • Solo Built</p>
+        <div class="footer-policies">
+            <a href="/terms.html" class="policy-link">Terms of Use</a>
+            <span class="divider-dot"></span>
+            <a href="/privacy.html" class="policy-link">Privacy Policy</a>
+        </div>
     </footer>
 
 </div>
