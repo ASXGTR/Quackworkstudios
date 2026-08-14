@@ -204,7 +204,6 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Leaderboard Styling */
     .leaderboard-table {
       width: 100%;
       border-collapse: collapse;
@@ -236,7 +235,6 @@
       text-align: right;
     }
 
-    /* Privacy Card Notice */
     .privacy-notice-box {
       margin-top: 30px;
       background: #0d121c;
@@ -249,7 +247,6 @@
       line-height: 1.5;
     }
 
-    /* Modal Setup */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -329,7 +326,6 @@
       </div>
 
       <div class="game-layout">
-        <!-- Main Game Box -->
         <div class="game-box">
           <div class="status-bar">
             <div class="prompt-container">
@@ -349,20 +345,16 @@
             </div>
           </div>
 
-          <!-- Canvas Frame -->
           <div class="canvas-container">
             <canvas id="drawCanvas" width="480" height="480"></canvas>
 
-            <!-- Result / Error Overlay -->
             <div id="overlay" class="overlay">
-              <!-- Loading -->
               <div id="loadingState" style="display: none; flex-direction: column; align-items: center; gap: 12px;">
                 <div class="spinner"></div>
                 <p style="font-family: 'Press Start 2P', monospace; font-size: 0.75rem; color: #f59e0b;">AI JUDGE SNIFFING...</p>
-                <p style="font-size: 0.8rem; color: #94a3b8;">Gemini Flash Vision is counting your Dog Treats</p>
+                <p style="font-size: 0.8rem; color: #94a3b8;" id="loadingSubtext">Connecting to Gemini...</p>
               </div>
 
-              <!-- Success Result -->
               <div id="resultState" style="display: none; flex-direction: column; align-items: center; gap: 10px;">
                 <div id="resultEmoji" style="font-size: 2.8rem;">🐕</div>
                 <h2 id="resultTitle" style="font-family: 'Press Start 2P', monospace; font-size: 0.95rem; color: #fcd34d;">GOOD DOGGO!</h2>
@@ -375,7 +367,6 @@
                 </button>
               </div>
 
-              <!-- Error State (API Key / Network Issues) -->
               <div id="errorState" style="display: none; flex-direction: column; align-items: center; gap: 10px; max-width: 380px;">
                 <div style="font-size: 2.5rem;">⚠️</div>
                 <h2 style="font-family: 'Press Start 2P', monospace; font-size: 0.85rem; color: #ef4444;">SNIFF ERROR!</h2>
@@ -389,9 +380,7 @@
             </div>
           </div>
 
-          <!-- Drawing & Color Controls -->
           <div class="tools-bar">
-            <!-- Expanded 14 Color Palette -->
             <div class="color-swatches">
               <button class="color-btn active" style="background: #000000;" data-color="#000000" title="Black"></button>
               <button class="color-btn" style="background: #5c2c16;" data-color="#5c2c16" title="Dark Brown"></button>
@@ -409,7 +398,6 @@
               <button class="color-btn" style="background: #ffffff; color: #000; font-size: 10px;" data-color="#ffffff" title="Eraser">🧽</button>
             </div>
 
-            <!-- Action Buttons -->
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
               <div style="display: flex; gap: 6px;">
                 <button id="skipBtn" class="btn-pixel btn-secondary">🎲 Skip</button>
@@ -420,7 +408,6 @@
           </div>
         </div>
 
-        <!-- Leaderboard Box -->
         <div class="leaderboard-box">
           <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #232d3f; padding-bottom: 10px;">
             <h3 style="font-family: 'Press Start 2P', monospace; font-size: 0.85rem; color: #f59e0b; margin: 0;">🏆 Top Dogs</h3>
@@ -435,9 +422,7 @@
                 <th style="text-align: right;">Treats</th>
               </tr>
             </thead>
-            <tbody id="leaderboardBody">
-              <!-- Dynamically populated -->
-            </tbody>
+            <tbody id="leaderboardBody"></tbody>
           </table>
 
           <div style="margin-top: 16px; background: #0a0e17; padding: 12px; border-radius: 8px; border: 1px dashed #232d3f; text-align: center;">
@@ -446,11 +431,10 @@
         </div>
       </div>
 
-      <!-- Privacy & API Key Transparency Box -->
       <div class="privacy-notice-box">
         <h4 style="color: #38bdf8; margin: 0 0 6px 0; font-size: 0.85rem;">🔒 100% Client-Side Privacy Notice:</h4>
         <p style="margin: 0;">
-          A free <strong>Google AI Studio Key</strong> is required so your browser can connect directly to Google's Gemini 1.5 Flash Vision model. 
+          A free <strong>Google AI Studio Key</strong> is required so your browser can connect directly to Google's Gemini Vision models. 
           <strong>Quackwork Studios does not collect, transmit, or store your API keys on any database or server.</strong> 
           Your key is saved exclusively in your personal browser's local memory (<code style="color: #fcd34d;">localStorage</code>) and communicates solely between your device and Google's official endpoints.
         </p>
@@ -458,7 +442,6 @@
     </section>
   </main>
 
-  <!-- Player & Key Setup Modal -->
   <div id="setupModal" class="modal-backdrop">
     <div class="modal-card">
       <h2 style="font-family: 'Press Start 2P', monospace; font-size: 0.95rem; color: #f59e0b; margin-top: 0;">⚙️ Player & API Setup</h2>
@@ -490,7 +473,7 @@
     <div class="footer-container">
       <div class="footer-bottom">
         <p class="footer-copyright">
-          © 2026 Quackwork Studios • Powered by Google AI Studio (Gemini 1.5 Flash)
+          © 2026 Quackwork Studios • Powered by Google AI Studio (Gemini Vision)
         </p>
       </div>
     </div>
@@ -520,7 +503,6 @@
     let currentColor = "#000000";
     let brushSize = 5;
 
-    // 90 Seconds Timer
     let timeLeft = 90;
     let timerInterval = null;
     let isRoundActive = false;
@@ -541,6 +523,7 @@
     const leaderboardBody = document.getElementById("leaderboardBody");
     const overlay = document.getElementById("overlay");
     const loadingState = document.getElementById("loadingState");
+    const loadingSubtext = document.getElementById("loadingSubtext");
     const resultState = document.getElementById("resultState");
     const errorState = document.getElementById("errorState");
     const errorMessage = document.getElementById("errorMessage");
@@ -733,10 +716,34 @@
 
       overlay.style.display = "flex";
       loadingState.style.display = "flex";
+      loadingSubtext.textContent = "Detecting active Gemini model...";
       resultState.style.display = "none";
       errorState.style.display = "none";
 
       try {
+        // Step 1: Dynamic Model Discovery
+        const listResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+        const listData = await listResp.json();
+
+        if (listData.error) {
+          throw new Error(listData.error.message || "Invalid API Key.");
+        }
+
+        if (!listData.models || listData.models.length === 0) {
+          throw new Error("No Gemini models available for this key. Please check your Google AI Studio account.");
+        }
+
+        // Find the best available vision model for this key
+        const validModels = listData.models.filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes("generateContent"));
+        const selectedModel = validModels.find(m => m.name.includes("flash")) || validModels.find(m => m.name.includes("gemini")) || validModels[0];
+
+        if (!selectedModel) {
+          throw new Error("No supported content generation model found.");
+        }
+
+        loadingSubtext.textContent = `Judging with ${selectedModel.displayName || selectedModel.name.replace("models/", "")}...`;
+
+        // Step 2: Send Drawing to the Discovered Model
         const base64Image = canvas.toDataURL("image/png").split(",")[1];
 
         const promptText = `You are a humorous canine art critic in an indie dog game.
@@ -749,7 +756,7 @@ Inspect this sketch and respond ONLY in valid JSON matching this schema:
   "critique": "<A witty 1-2 sentence comment from a dog's perspective>"
 }`;
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        const generateResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/${selectedModel.name}:generateContent?key=${apiKey}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -766,11 +773,10 @@ Inspect this sketch and respond ONLY in valid JSON matching this schema:
           })
         });
 
-        const data = await response.json();
+        const data = await generateResp.json();
 
-        // Robust Error Checks for Gemini API
         if (data.error) {
-          throw new Error(data.error.message || "Invalid API key or quota exceeded.");
+          throw new Error(data.error.message);
         }
 
         if (!data.candidates || !data.candidates[0] || !data.candidates[0].content || !data.candidates[0].content.parts) {
