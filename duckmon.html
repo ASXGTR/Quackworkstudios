@@ -82,6 +82,106 @@
             100% { transform: translateX(-900%); }
         }
 
+        /* Feature Cards Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: #0d1117;
+            border: 1px solid #1f2937;
+            border-top: 3px solid #00d9ff;
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: #00d9ff;
+            box-shadow: 0 8px 25px rgba(0, 217, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card h3 {
+            text-align: left;
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #00d9ff;
+        }
+
+        .feature-card p {
+            text-align: left;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            margin: 0;
+        }
+
+        /* Roadmap Section Styling */
+        .roadmap-section {
+            background: #0b0f17;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 40px 30px;
+            margin: 60px 0;
+        }
+
+        .roadmap-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .roadmap-item {
+            background: #111827;
+            border-left: 4px solid #00d9ff;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .roadmap-content h4 {
+            margin: 0 0 6px 0;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .roadmap-content p {
+            text-align: left;
+            font-size: 0.95rem;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 999px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .badge-done { background: #065f46; color: #34d399; }
+        .badge-wiring { background: #1e3a8a; color: #60a5fa; }
+        .badge-progress { background: #854d0e; color: #facc15; }
+
         .image-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -92,13 +192,6 @@
         .image-grid img {
             width: 100%;
             border-radius: 8px;
-        }
-
-        .large-image {
-            display: block;
-            margin: 40px auto;
-            max-width: 100%;
-            border-radius: 10px;
         }
 
         .discord-button {
@@ -112,6 +205,12 @@
             border-radius: 8px;
             font-size: 20px;
             text-decoration: none;
+            font-weight: bold;
+            transition: opacity 0.2s ease;
+        }
+
+        .discord-button:hover {
+            opacity: 0.9;
         }
 
         /* Credits Section Styling */
@@ -217,9 +316,8 @@
 
     <p>
         Duckmon began as a small minigame inside my TextZ Ombie project, but it quickly grew into 
-        something much bigger. Inspired by Triple Triad (Final Fantasy VIII) and classic collectable, Pokémon style 
-        card collecting, Duckmon blends strategic grid based battles with a multiverse of unique duck 
-        factions, lore, and rarity systems.
+        something much bigger. Inspired by Triple Triad (Final Fantasy VIII) and classic Pokémon-style 
+        turn-based mechanics, Duckmon blends strategic grid battles, deep roguelite crawling, and squad RPG combat across an infinite multiverse of unique duck factions, lore, and rarity systems.
     </p>
 
     <div class="carousel">
@@ -239,19 +337,87 @@
     <h2>About the Game</h2>
 
     <p>
-    Duckmon is a multiverse‑driven collectible card battler built around fast, tactical, grid‑based combat. 
+    Duckmon is a multiverse‑driven collectible card battler built around fast, tactical, grid‑based combat and rich RPG systems. 
     The game features a full <strong>Story Mode</strong> spanning <strong>30 stories across 10 chapters</strong>, 
     each with unique art, choices, branching routes, and multiple endings.
     </p>
 
-    <h2>Core Features</h2>
+    <!-- Expanded Game Features -->
+    <h2>Game Modes & Core Features</h2>
 
-   <p style="text-align:center; max-width:900px; margin:0 auto 20px auto; font-size:18px;">
-    <strong>• Tactical 5×4 Grid Battles</strong><br>
-    <strong>• 310 Fully Illustrated Cards</strong><br>
-    <strong>• Full Deckbuilder & Binder</strong><br>
-    <strong>• Progression & Rewards</strong> (Powered by Supabase)
-    </p>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">⚔️</div>
+            <h3>5v5 Squad Battle (RPG Draft)</h3>
+            <p>
+                A turn-based RPG draft combat mode inspired by classic Pokémon battles. Build a 5-card squad where each card possesses <strong>4 unique tactical skills</strong> for deep elemental and strategic counterplay.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🎲</div>
+            <h3>RNG Spinner Roguelite Dungeon</h3>
+            <p>
+                A standalone spinner-driven dungeon crawler with <strong>45+ procedural floors</strong>. Pick 1 of 310 starter cards and spin through random encounters, shops, bosses, portals, mystery events, and rare loot.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🎧</div>
+            <h3>Music Theater & Visualizer</h3>
+            <p>
+                A dedicated in-game Music Theater featuring a dynamic audio visualizer and full soundtrack playlist to enjoy all original and featured multiverse themes.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🃏</div>
+            <h3>310 Cards & Tactical 5×4 Grid</h3>
+            <p>
+                310 fully illustrated collectible cards spanning multiversal factions, backed by full Deckbuilder & Binder collection systems and Supabase cloud progression.
+            </p>
+        </div>
+    </div>
+
+    <!-- Live Development Roadmap Section -->
+    <div class="roadmap-section">
+        <h2>Live Development Roadmap</h2>
+        <p style="font-size: 15px; color: #94a3b8;">Current development progress and system milestones.</p>
+
+        <div class="roadmap-list">
+            <div class="roadmap-item">
+                <div class="roadmap-content">
+                    <h4>🌀 RNG Spinner Dungeon Crawler (45+ Floors)</h4>
+                    <p>Core spinner mechanic, starter selector (1 of 310), shops, portals, bosses, encounters, and all underlying scripts completed. Currently in the final stages of wiring systems together.</p>
+                </div>
+                <span class="badge badge-wiring">Wiring Systems</span>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-content">
+                    <h4>⚔️ 5v5 Squad Battle (Draft & 4-Skill RPG System)</h4>
+                    <p>Draft interface and battle UI fully designed and completed. Card ability data, stat balancing, and skill architecture are over 50% finished.</p>
+                </div>
+                <span class="badge badge-progress">50%+ Data Built</span>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-content">
+                    <h4>🎶 Music Theater & Visualizer Suite</h4>
+                    <p>Interactive jukebox player, audio visualizer canvas, and multiversal track listing integration.</p>
+                </div>
+                <span class="badge badge-done">Completed</span>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-content">
+                    <h4>📖 Story Mode (10 Chapters / 30 Stories)</h4>
+                    <p>Full branching narrative, dialogue systems, choice matrices, and ending logic.</p>
+                </div>
+                <span class="badge badge-done">Core Complete</span>
+            </div>
+        </div>
+    </div>
 
     <h2>Media & Gameplay</h2>
     <video width="100%" controls style="margin: 30px 0; border-radius: 10px;">
@@ -289,7 +455,7 @@
             <div class="credits-column">
                 <h4>Visuals & Art</h4>
                 <ul>
-                    <li><strong>Card Illustrations:</strong> Gemini (DeepMind) AI</li>
+                    <li><strong>Card Illustrations:</strong> Google Gemini (DeepMind) AI</li>
                     <li><strong>Editing:</strong> MS Paint, LunaPic, ImageLabs</li>
                     <li><strong>Typography:</strong> CoolText Styles</li>
                     <li><strong>Visual Flow:</strong> Whimsical</li>
@@ -299,9 +465,9 @@
             <div class="credits-column">
                 <h4>Development & Tools</h4>
                 <ul>
-                    <li><strong>Game Engine:</strong> Unity</li>
+                    <li><strong>Game Engine:</strong> Unity (C#)</li>
+                    <li><strong>AI Amplifiers:</strong> Google AI Studio (Gemini), Microsoft Copilot</li>
                     <li><strong>Backend & Database:</strong> Supabase</li>
-                    <li><strong>Coding Support:</strong> Microsoft Copilot AI</li>
                     <li><strong>Web Presence:</strong> GitHub, IONOS, Cloudflare</li>
                     <li><strong>Web Starter Template:</strong> GrapesJS Studio</li>
                 </ul>
@@ -315,6 +481,7 @@
             <strong>Made with passion, caffeine, and determination.</strong>
         </div>
     </div>
+
     <div class="bottom-link">
         <a href="/">← Back to Homepage</a>
     </div>
