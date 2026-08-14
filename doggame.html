@@ -12,7 +12,7 @@
   <style>
     .game-section {
       padding: 30px 16px 80px;
-      max-width: 960px;
+      max-width: 1020px;
       margin: 0 auto;
     }
     .pixel-title {
@@ -29,7 +29,7 @@
     }
     @media (min-width: 860px) {
       .game-layout {
-        grid-template-columns: 1.25fr 0.75fr;
+        grid-template-columns: 1.3fr 0.7fr;
       }
     }
     .game-box, .leaderboard-box {
@@ -117,7 +117,7 @@
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(10, 14, 23, 0.94);
+      background: rgba(10, 14, 23, 0.95);
       backdrop-filter: blur(4px);
       display: none;
       flex-direction: column;
@@ -125,38 +125,38 @@
       justify-content: center;
       padding: 20px;
       text-align: center;
+      z-index: 10;
     }
     .tools-bar {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-direction: column;
+      gap: 12px;
       background: #1a2233;
-      padding: 10px 14px;
+      padding: 12px 14px;
       border-radius: 12px;
       border: 1px solid #2e3a50;
     }
     .color-swatches {
       display: flex;
       align-items: center;
-      gap: 6px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
     .color-btn {
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       border-radius: 6px;
       border: 2px solid transparent;
       cursor: pointer;
       transition: transform 0.15s ease;
     }
     .color-btn:hover {
-      transform: scale(1.1);
+      transform: scale(1.15);
     }
     .color-btn.active {
       border-color: #ffffff;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-      transform: scale(1.15);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+      transform: scale(1.2);
     }
     .btn-pixel {
       font-family: 'Press Start 2P', monospace;
@@ -187,6 +187,10 @@
     }
     .btn-secondary:hover {
       background: #475569;
+    }
+    .btn-danger {
+      background: #dc2626;
+      color: #fff;
     }
     .spinner {
       width: 42px;
@@ -232,7 +236,20 @@
       text-align: right;
     }
 
-    /* Key & Name Setup Modal */
+    /* Privacy Card Notice */
+    .privacy-notice-box {
+      margin-top: 30px;
+      background: #0d121c;
+      border: 1px solid #1e293b;
+      border-left: 4px solid #38bdf8;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    /* Modal Setup */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -248,7 +265,7 @@
       background: #121824;
       border: 2px solid #f59e0b;
       border-radius: 16px;
-      max-width: 500px;
+      max-width: 520px;
       width: 100%;
       padding: 24px;
       color: #e2e8f0;
@@ -308,7 +325,7 @@
     <section class="game-section">
       <div class="section-header" style="margin-bottom: 20px; text-align: center;">
         <h1 class="pixel-title">Doodle Dog: Bark & Sketch</h1>
-        <p class="section-subtitle">Draw the prompt in 60s! Gemini rates your sketch in 🦴 Dog Treats.</p>
+        <p class="section-subtitle">Draw the scenario in 90 seconds! Gemini rates your sketch in 🦴 Dog Treats.</p>
       </div>
 
       <div class="game-layout">
@@ -316,14 +333,14 @@
         <div class="game-box">
           <div class="status-bar">
             <div class="prompt-container">
-              <div class="target-title">Target Challenge:</div>
+              <div class="target-title">Your 90s Challenge:</div>
               <div id="targetBreed" class="target-breed">Loading prompt...</div>
             </div>
             
             <div class="hud-metrics">
               <div style="text-align: center;">
                 <div class="target-title">Time</div>
-                <div id="timerDisplay" class="timer-badge">60s</div>
+                <div id="timerDisplay" class="timer-badge">90s</div>
               </div>
               <div style="text-align: right;">
                 <div class="target-title">Treats</div>
@@ -336,44 +353,69 @@
           <div class="canvas-container">
             <canvas id="drawCanvas" width="480" height="480"></canvas>
 
-            <!-- Result Overlay -->
+            <!-- Result / Error Overlay -->
             <div id="overlay" class="overlay">
+              <!-- Loading -->
               <div id="loadingState" style="display: none; flex-direction: column; align-items: center; gap: 12px;">
                 <div class="spinner"></div>
-                <p style="font-family: 'Press Start 2P', monospace; font-size: 0.8rem; color: #f59e0b;">AI SNIFFING DRAWING...</p>
+                <p style="font-family: 'Press Start 2P', monospace; font-size: 0.75rem; color: #f59e0b;">AI JUDGE SNIFFING...</p>
                 <p style="font-size: 0.8rem; color: #94a3b8;">Gemini Flash Vision is counting your Dog Treats</p>
               </div>
 
+              <!-- Success Result -->
               <div id="resultState" style="display: none; flex-direction: column; align-items: center; gap: 10px;">
                 <div id="resultEmoji" style="font-size: 2.8rem;">🐕</div>
-                <h2 id="resultTitle" style="font-family: 'Press Start 2P', monospace; font-size: 1rem; color: #fcd34d;">GOOD DOGGO!</h2>
+                <h2 id="resultTitle" style="font-family: 'Press Start 2P', monospace; font-size: 0.95rem; color: #fcd34d;">GOOD DOGGO!</h2>
                 <div id="resultGuess" style="font-size: 0.85rem; font-weight: 600; color: #e2e8f0;"></div>
                 <div id="resultComment" style="background: #1e293b; border: 1px solid #334155; padding: 10px 14px; border-radius: 8px; font-style: italic; color: #cbd5e1; font-size: 0.8rem; max-width: 380px;"></div>
-                <div id="roundScore" style="font-family: 'Press Start 2P', monospace; font-size: 1.1rem; color: #10b981;">+85 🦴 Treats!</div>
+                <div id="roundScore" style="font-family: 'Press Start 2P', monospace; font-size: 1rem; color: #10b981;">+85 🦴 Treats!</div>
                 
                 <button id="nextRoundBtn" class="btn-pixel btn-action" style="margin-top: 6px;">
                   Next Round 🦴
                 </button>
               </div>
+
+              <!-- Error State (API Key / Network Issues) -->
+              <div id="errorState" style="display: none; flex-direction: column; align-items: center; gap: 10px; max-width: 380px;">
+                <div style="font-size: 2.5rem;">⚠️</div>
+                <h2 style="font-family: 'Press Start 2P', monospace; font-size: 0.85rem; color: #ef4444;">SNIFF ERROR!</h2>
+                <p id="errorMessage" style="font-size: 0.8rem; color: #cbd5e1; margin: 0;"></p>
+                
+                <div style="display: flex; gap: 8px; margin-top: 10px;">
+                  <button id="fixKeyBtn" class="btn-pixel btn-action">🔑 Fix / Re-enter Key</button>
+                  <button id="retryBtn" class="btn-pixel btn-secondary">Retry 🔄</button>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Controls -->
+          <!-- Drawing & Color Controls -->
           <div class="tools-bar">
+            <!-- Expanded 14 Color Palette -->
             <div class="color-swatches">
-              <button class="color-btn active" style="background: #000000;" data-color="#000000"></button>
-              <button class="color-btn" style="background: #78350f;" data-color="#78350f"></button>
-              <button class="color-btn" style="background: #d97706;" data-color="#d97706"></button>
-              <button class="color-btn" style="background: #fde68a;" data-color="#fde68a"></button>
-              <button class="color-btn" style="background: #ef4444;" data-color="#ef4444"></button>
-              <button class="color-btn" style="background: #3b82f6;" data-color="#3b82f6"></button>
+              <button class="color-btn active" style="background: #000000;" data-color="#000000" title="Black"></button>
+              <button class="color-btn" style="background: #5c2c16;" data-color="#5c2c16" title="Dark Brown"></button>
+              <button class="color-btn" style="background: #b45309;" data-color="#b45309" title="Caramel / Tan"></button>
+              <button class="color-btn" style="background: #f59e0b;" data-color="#f59e0b" title="Golden"></button>
+              <button class="color-btn" style="background: #fef08a;" data-color="#fef08a" title="Cream / Yellow"></button>
+              <button class="color-btn" style="background: #ef4444;" data-color="#ef4444" title="Red"></button>
+              <button class="color-btn" style="background: #f97316;" data-color="#f97316" title="Orange"></button>
+              <button class="color-btn" style="background: #22c55e;" data-color="#22c55e" title="Green"></button>
+              <button class="color-btn" style="background: #38bdf8;" data-color="#38bdf8" title="Sky Blue"></button>
+              <button class="color-btn" style="background: #1d4ed8;" data-color="#1d4ed8" title="Ocean Blue"></button>
+              <button class="color-btn" style="background: #a855f7;" data-color="#a855f7" title="Purple"></button>
+              <button class="color-btn" style="background: #ec4899;" data-color="#ec4899" title="Pink"></button>
+              <button class="color-btn" style="background: #94a3b8;" data-color="#94a3b8" title="Gray"></button>
               <button class="color-btn" style="background: #ffffff; color: #000; font-size: 10px;" data-color="#ffffff" title="Eraser">🧽</button>
             </div>
 
-            <div style="display: flex; gap: 8px;">
-              <button id="skipBtn" class="btn-pixel btn-secondary">🎲 Skip</button>
-              <button id="clearBtn" class="btn-pixel btn-secondary">Clear</button>
-              <button id="submitBtn" class="btn-pixel btn-action">Submit 🐾</button>
+            <!-- Action Buttons -->
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; gap: 6px;">
+                <button id="skipBtn" class="btn-pixel btn-secondary">🎲 Skip</button>
+                <button id="clearBtn" class="btn-pixel btn-secondary">🗑️ Clear</button>
+              </div>
+              <button id="submitBtn" class="btn-pixel btn-action" style="font-size: 0.75rem; padding: 10px 18px;">Submit Sketch 🐾</button>
             </div>
           </div>
         </div>
@@ -398,10 +440,20 @@
             </tbody>
           </table>
 
-          <div style="margin-top: 20px; background: #0a0e17; padding: 12px; border-radius: 8px; border: 1px dashed #232d3f; text-align: center;">
-            <p style="font-size: 0.75rem; color: #94a3b8; margin: 0;">Each round awards <strong>0–100 🦴 Treats</strong> based on accuracy & humor!</p>
+          <div style="margin-top: 16px; background: #0a0e17; padding: 12px; border-radius: 8px; border: 1px dashed #232d3f; text-align: center;">
+            <p style="font-size: 0.75rem; color: #94a3b8; margin: 0;">Scores range from <strong>0–100 🦴 Treats</strong> based on resemblance, details, and humor!</p>
           </div>
         </div>
+      </div>
+
+      <!-- Privacy & API Key Transparency Box -->
+      <div class="privacy-notice-box">
+        <h4 style="color: #38bdf8; margin: 0 0 6px 0; font-size: 0.85rem;">🔒 100% Client-Side Privacy Notice:</h4>
+        <p style="margin: 0;">
+          A free <strong>Google AI Studio Key</strong> is required so your browser can connect directly to Google's Gemini 1.5 Flash Vision model. 
+          <strong>Quackwork Studios does not collect, transmit, or store your API keys on any database or server.</strong> 
+          Your key is saved exclusively in your personal browser's local memory (<code style="color: #fcd34d;">localStorage</code>) and communicates solely between your device and Google's official endpoints.
+        </p>
       </div>
     </section>
   </main>
@@ -409,20 +461,25 @@
   <!-- Player & Key Setup Modal -->
   <div id="setupModal" class="modal-backdrop">
     <div class="modal-card">
-      <h2 style="font-family: 'Press Start 2P', monospace; font-size: 1rem; color: #f59e0b; margin-top: 0;">⚙️ Player Setup</h2>
+      <h2 style="font-family: 'Press Start 2P', monospace; font-size: 0.95rem; color: #f59e0b; margin-top: 0;">⚙️ Player & API Setup</h2>
       
-      <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4;">
-        1. <strong>Dog Tag (Username):</strong> Pick a 3 to 8 letter arcade name.
+      <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4; margin-bottom: 4px;">
+        1. <strong>Dog Tag (Username):</strong> Enter 3–8 letters.
       </p>
       <input type="text" id="usernameInput" class="modal-input" maxlength="8" placeholder="e.g. BARKUS" />
 
-      <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4;">
-        2. <strong>Google AI Studio Key (Free):</strong> Get a key in 10 seconds at:
-        <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #38bdf8; text-decoration: underline; font-weight: bold;">Google AI Studio ↗</a>
+      <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4; margin-bottom: 4px;">
+        2. <strong>Google AI Studio Key:</strong> Required for vision judging. Get a 100% free key here:
+        <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #38bdf8; text-decoration: underline; font-weight: bold;">Google AI Studio Key ↗</a>
       </p>
-      <input type="password" id="apiKeyInput" class="modal-input" placeholder="Paste AI Studio Key here..." />
+      <input type="password" id="apiKeyInput" class="modal-input" placeholder="AIzaSy..." />
 
-      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+      <div style="background: #0d121c; padding: 10px; border-radius: 6px; font-size: 0.75rem; color: #94a3b8; margin-bottom: 16px;">
+        🛡️ <em>Your key remains securely in your browser's local storage and is never seen by Quackwork Studios.</em>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button id="clearSavedKeyBtn" class="btn-pixel btn-danger" style="margin-right: auto;">Reset Key</button>
         <button id="cancelModalBtn" class="btn-pixel btn-secondary">Close</button>
         <button id="saveModalBtn" class="btn-pixel btn-action">Save & Play 🐾</button>
       </div>
@@ -463,11 +520,11 @@
     let currentColor = "#000000";
     let brushSize = 5;
 
-    let timeLeft = 60;
+    // 90 Seconds Timer
+    let timeLeft = 90;
     let timerInterval = null;
     let isRoundActive = false;
 
-    // Leaderboard state (persisted locally)
     let leaderboard = JSON.parse(localStorage.getItem("doggame_leaderboard")) || [
       { name: "BARKUS", treats: 96, prompt: "Corgi" },
       { name: "ZOOMIE", treats: 89, prompt: "Surfer Dog" },
@@ -475,7 +532,6 @@
       { name: "PUGGY", treats: 75, prompt: "Pizza Dog" }
     ];
 
-    // DOM Elements
     const canvas = document.getElementById("drawCanvas");
     const ctx = canvas.getContext("2d");
     const targetBreedEl = document.getElementById("targetBreed");
@@ -486,6 +542,8 @@
     const overlay = document.getElementById("overlay");
     const loadingState = document.getElementById("loadingState");
     const resultState = document.getElementById("resultState");
+    const errorState = document.getElementById("errorState");
+    const errorMessage = document.getElementById("errorMessage");
     const resultTitle = document.getElementById("resultTitle");
     const resultGuess = document.getElementById("resultGuess");
     const resultComment = document.getElementById("resultComment");
@@ -495,12 +553,14 @@
     const skipBtn = document.getElementById("skipBtn");
     const submitBtn = document.getElementById("submitBtn");
     const nextRoundBtn = document.getElementById("nextRoundBtn");
+    const fixKeyBtn = document.getElementById("fixKeyBtn");
+    const retryBtn = document.getElementById("retryBtn");
 
-    // Modal Elements
     const setupModal = document.getElementById("setupModal");
     const openSetupBtn = document.getElementById("openSetupBtn");
     const saveModalBtn = document.getElementById("saveModalBtn");
     const cancelModalBtn = document.getElementById("cancelModalBtn");
+    const clearSavedKeyBtn = document.getElementById("clearSavedKeyBtn");
     const usernameInput = document.getElementById("usernameInput");
     const apiKeyInput = document.getElementById("apiKeyInput");
 
@@ -526,7 +586,7 @@
 
     function startTimer() {
       clearInterval(timerInterval);
-      timeLeft = 60;
+      timeLeft = 90;
       timerDisplay.textContent = `${timeLeft}s`;
       timerDisplay.classList.remove("warning");
       isRoundActive = true;
@@ -535,7 +595,7 @@
         timeLeft--;
         timerDisplay.textContent = `${timeLeft}s`;
 
-        if (timeLeft <= 10) {
+        if (timeLeft <= 15) {
           timerDisplay.classList.add("warning");
         }
 
@@ -579,7 +639,7 @@
       const { x, y } = getCoords(e);
       ctx.lineTo(x, y);
       ctx.strokeStyle = currentColor;
-      ctx.lineWidth = currentColor === "#ffffff" ? 22 : brushSize;
+      ctx.lineWidth = currentColor === "#ffffff" ? 24 : brushSize;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.stroke();
@@ -608,7 +668,6 @@
 
     clearBtn.addEventListener("click", clearCanvas);
 
-    // Modal Control
     function showModal() {
       usernameInput.value = username;
       apiKeyInput.value = apiKey;
@@ -616,7 +675,15 @@
     }
 
     openSetupBtn.addEventListener("click", showModal);
+    fixKeyBtn.addEventListener("click", showModal);
     cancelModalBtn.addEventListener("click", () => setupModal.style.display = "none");
+
+    clearSavedKeyBtn.addEventListener("click", () => {
+      apiKey = "";
+      apiKeyInput.value = "";
+      localStorage.removeItem("gemini_api_key");
+      alert("Saved key removed.");
+    });
 
     saveModalBtn.addEventListener("click", () => {
       let cleanName = usernameInput.value.trim().toUpperCase().replace(/[^A-Z0-9_]/g, "");
@@ -629,6 +696,10 @@
 
       renderLeaderboard();
       setupModal.style.display = "none";
+
+      if (overlay.style.display === "flex" && errorState.style.display === "flex") {
+        evaluateDrawing();
+      }
     });
 
     function nextRound() {
@@ -636,6 +707,7 @@
       overlay.style.display = "none";
       resultState.style.display = "none";
       loadingState.style.display = "none";
+      errorState.style.display = "none";
       clearCanvas();
 
       currentPrompt = PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
@@ -649,6 +721,8 @@
       startTimer();
     });
 
+    retryBtn.addEventListener("click", () => evaluateDrawing());
+
     async function evaluateDrawing() {
       stopTimer();
 
@@ -660,6 +734,7 @@
       overlay.style.display = "flex";
       loadingState.style.display = "flex";
       resultState.style.display = "none";
+      errorState.style.display = "none";
 
       try {
         const base64Image = canvas.toDataURL("image/png").split(",")[1];
@@ -692,13 +767,23 @@ Inspect this sketch and respond ONLY in valid JSON matching this schema:
         });
 
         const data = await response.json();
-        const jsonText = data.candidates[0].content.parts[0].text;
-        const result = JSON.parse(jsonText);
+
+        // Robust Error Checks for Gemini API
+        if (data.error) {
+          throw new Error(data.error.message || "Invalid API key or quota exceeded.");
+        }
+
+        if (!data.candidates || !data.candidates[0] || !data.candidates[0].content || !data.candidates[0].content.parts) {
+          throw new Error("Gemini returned an empty response. Please try submitting again!");
+        }
+
+        let rawText = data.candidates[0].content.parts[0].text;
+        rawText = rawText.replace(/```json/g, "").replace(/```/g, "").trim();
+        const result = JSON.parse(rawText);
 
         score += result.score;
         totalScoreEl.textContent = `${score} 🦴`;
 
-        // Save to leaderboard
         leaderboard.push({
           name: username.toUpperCase(),
           treats: result.score,
@@ -716,20 +801,22 @@ Inspect this sketch and respond ONLY in valid JSON matching this schema:
         roundScoreEl.textContent = `+${result.score} 🦴 Treats!`;
 
       } catch (err) {
-        console.error(err);
+        console.error("Gemini Error:", err);
         loadingState.style.display = "none";
-        resultState.style.display = "flex";
-        resultTitle.textContent = "SNIFF ERROR!";
-        resultGuess.textContent = "Could not reach Gemini. Check your API key.";
-        resultComment.textContent = err.message;
-        roundScoreEl.textContent = "0 🦴";
+        resultState.style.display = "none";
+        errorState.style.display = "flex";
+
+        if (err.message.includes("API key not valid") || err.message.includes("API_KEY_INVALID")) {
+          errorMessage.textContent = "Your Google API Key is invalid or expired. Click below to re-enter it.";
+        } else {
+          errorMessage.textContent = err.message || "Could not reach Gemini. Please check your connection or key.";
+        }
       }
     }
 
     submitBtn.addEventListener("click", evaluateDrawing);
     nextRoundBtn.addEventListener("click", nextRound);
 
-    // Initial prompt
     nextRound();
   </script>
 </body>
