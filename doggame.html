@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Doodle Dog: AI Canine Critic — Quackwork Studios</title>
+  <title>Bark Gallery: Community Dog Doodles — Quackwork Studios</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index,follow">
@@ -12,27 +12,61 @@
   <style>
     .game-section {
       padding: 30px 16px 80px;
-      max-width: 1020px;
+      max-width: 1100px;
       margin: 0 auto;
     }
     .pixel-title {
       font-family: 'Press Start 2P', monospace;
       color: #f59e0b;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       letter-spacing: -1px;
       margin-bottom: 8px;
+    }
+    .rules-card {
+      background: #0d121c;
+      border: 1px solid #232d3f;
+      border-left: 4px solid #f59e0b;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+    }
+    .rule-num {
+      background: #1a2233;
+      color: #f59e0b;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      flex-shrink: 0;
     }
     .game-layout {
       display: grid;
       grid-template-columns: 1fr;
       gap: 20px;
     }
-    @media (min-width: 860px) {
+    @media (min-width: 880px) {
       .game-layout {
-        grid-template-columns: 1.3fr 0.7fr;
+        grid-template-columns: 1.35fr 0.65fr;
       }
     }
-    .game-box, .leaderboard-box {
+    .game-box, .leaderboard-box, .gallery-section {
       background: #121824;
       border: 2px solid #232d3f;
       border-radius: 16px;
@@ -68,17 +102,12 @@
       margin-top: 4px;
       line-height: 1.4;
     }
-    .hud-metrics {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
     .timer-badge {
       font-family: 'Press Start 2P', monospace;
       font-size: 1rem;
       color: #38bdf8;
       background: #0f172a;
-      padding: 6px 10px;
+      padding: 6px 12px;
       border-radius: 8px;
       border: 1px solid #1e293b;
     }
@@ -90,11 +119,6 @@
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
-    }
-    .score-badge {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.95rem;
-      color: #10b981;
     }
     .canvas-container {
       position: relative;
@@ -188,22 +212,8 @@
     .btn-secondary:hover {
       background: #475569;
     }
-    .btn-danger {
-      background: #dc2626;
-      color: #fff;
-    }
-    .spinner {
-      width: 42px;
-      height: 42px;
-      border: 4px solid #f59e0b;
-      border-top-color: transparent;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
 
+    /* Leaderboard Styling */
     .leaderboard-table {
       width: 100%;
       border-collapse: collapse;
@@ -228,25 +238,99 @@
       font-size: 0.7rem;
       color: #fcd34d;
     }
-    .treats-highlight {
+    .score-highlight {
       font-family: 'Press Start 2P', monospace;
       font-size: 0.75rem;
       color: #10b981;
       text-align: right;
     }
 
-    .privacy-notice-box {
-      margin-top: 30px;
+    /* Community Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+      max-height: 620px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    .gallery-card {
       background: #0d121c;
-      border: 1px solid #1e293b;
-      border-left: 4px solid #38bdf8;
-      border-radius: 8px;
-      padding: 14px 18px;
-      font-size: 0.8rem;
+      border: 1px solid #232d3f;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      border-color: #f59e0b;
+    }
+    .gallery-img-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #ffffff;
+    }
+    .gallery-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .gallery-info {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .gallery-user-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .gallery-user {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      color: #fcd34d;
+    }
+    .gallery-prompt {
+      font-size: 0.75rem;
       color: #94a3b8;
-      line-height: 1.5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .vote-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      padding-top: 8px;
+      border-top: 1px solid #1a2233;
+    }
+    .vote-btn {
+      background: #1a2233;
+      border: 1px solid #2e3a50;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+    }
+    .vote-btn:hover {
+      background: #28364f;
+      transform: scale(1.05);
+    }
+    .vote-btn:active {
+      transform: scale(0.95);
     }
 
+    /* Modal Styling */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -262,11 +346,12 @@
       background: #121824;
       border: 2px solid #f59e0b;
       border-radius: 16px;
-      max-width: 520px;
+      max-width: 440px;
       width: 100%;
       padding: 24px;
       color: #e2e8f0;
       box-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+      text-align: center;
     }
     .modal-input {
       width: 100%;
@@ -275,9 +360,10 @@
       border-radius: 8px;
       padding: 10px 12px;
       color: #fff;
-      font-size: 0.9rem;
-      margin-top: 6px;
-      margin-bottom: 14px;
+      font-size: 1rem;
+      margin: 12px 0 20px 0;
+      text-align: center;
+      font-family: 'Press Start 2P', monospace;
       box-sizing: border-box;
     }
     .modal-input:focus {
@@ -291,10 +377,7 @@
 
   <header class="header-wrapper">
     <div class="top-notice-bar">
-      <span class="notice-text">🐾 DEV Challenge: Google AI Studio Edition</span>
-      <button id="openSetupBtn" style="background: none; border: 1px solid #f59e0b; color: #f59e0b; padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; font-weight: bold;">
-        ⚙️ Player Setup & API Key
-      </button>
+      <span class="notice-text">🐾 DEV Weekend Challenge: Dog Days Edition Live!</span>
     </div>
 
     <nav class="navbar">
@@ -312,7 +395,7 @@
         <ul class="navbar-links">
           <li><a href="/" class="navbar-link">Home</a></li>
           <li><a href="/#games" class="navbar-link">Games</a></li>
-          <li><a href="/doggame.html" class="navbar-link" style="color: #f59e0b;">🐾 Doodle Dog</a></li>
+          <li><a href="/doggame.html" class="navbar-link" style="color: #f59e0b;">🐾 Bark Gallery</a></li>
         </ul>
       </div>
     </nav>
@@ -320,66 +403,70 @@
 
   <main>
     <section class="game-section">
-      <div class="section-header" style="margin-bottom: 20px; text-align: center;">
-        <h1 class="pixel-title">Doodle Dog: Bark & Sketch</h1>
-        <p class="section-subtitle">Draw the scenario in 90 seconds! Gemini rates your sketch in 🦴 Dog Treats.</p>
+      <!-- Title & Header -->
+      <div class="section-header" style="margin-bottom: 16px; text-align: center;">
+        <h1 class="pixel-title">Bark Gallery: Speed Sketch Challenge 🎨🐶</h1>
+        <p class="section-subtitle">A chaotic, community-voted dog doodle showcase built for International Dog Day!</p>
+      </div>
+
+      <!-- How to Play / Rules Bar -->
+      <div class="rules-card">
+        <div style="font-family: 'Press Start 2P', monospace; font-size: 0.75rem; color: #f59e0b; margin-bottom: 8px;">
+          📖 HOW TO PLAY & WIN:
+        </div>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-num">1</span>
+            <span>Get a random canine scenario prompt.</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-num">2</span>
+            <span>You have <strong>90 seconds</strong> to sketch your masterpiece.</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-num">3</span>
+            <span>Sign with a <strong>Dog Tag</strong> & upload to the gallery.</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-num">4</span>
+            <span>Vote below: <strong>❤️ Like (+1 pt)</strong> or <strong>🦴 Treat (+3 pts)</strong> to reach the Top 10!</span>
+          </div>
+        </div>
       </div>
 
       <div class="game-layout">
+        <!-- Drawing Area -->
         <div class="game-box">
           <div class="status-bar">
             <div class="prompt-container">
-              <div class="target-title">Your 90s Challenge:</div>
+              <div class="target-title">Your 90s Prompt:</div>
               <div id="targetBreed" class="target-breed">Loading prompt...</div>
             </div>
             
-            <div class="hud-metrics">
-              <div style="text-align: center;">
-                <div class="target-title">Time</div>
-                <div id="timerDisplay" class="timer-badge">90s</div>
-              </div>
-              <div style="text-align: right;">
-                <div class="target-title">Treats</div>
-                <div id="totalScore" class="score-badge">0 🦴</div>
-              </div>
+            <div>
+              <div class="target-title">Time</div>
+              <div id="timerDisplay" class="timer-badge">90s</div>
             </div>
           </div>
 
+          <!-- Canvas Frame -->
           <div class="canvas-container">
             <canvas id="drawCanvas" width="480" height="480"></canvas>
 
+            <!-- Times Up Overlay -->
             <div id="overlay" class="overlay">
-              <div id="loadingState" style="display: none; flex-direction: column; align-items: center; gap: 12px;">
-                <div class="spinner"></div>
-                <p style="font-family: 'Press Start 2P', monospace; font-size: 0.75rem; color: #f59e0b;">AI JUDGE SNIFFING...</p>
-                <p style="font-size: 0.8rem; color: #94a3b8;" id="loadingSubtext">Connecting to Gemini...</p>
-              </div>
-
-              <div id="resultState" style="display: none; flex-direction: column; align-items: center; gap: 10px;">
-                <div id="resultEmoji" style="font-size: 2.8rem;">🐕</div>
-                <h2 id="resultTitle" style="font-family: 'Press Start 2P', monospace; font-size: 0.95rem; color: #fcd34d;">GOOD DOGGO!</h2>
-                <div id="resultGuess" style="font-size: 0.85rem; font-weight: 600; color: #e2e8f0;"></div>
-                <div id="resultComment" style="background: #1e293b; border: 1px solid #334155; padding: 10px 14px; border-radius: 8px; font-style: italic; color: #cbd5e1; font-size: 0.8rem; max-width: 380px;"></div>
-                <div id="roundScore" style="font-family: 'Press Start 2P', monospace; font-size: 1rem; color: #10b981;">+85 🦴 Treats!</div>
-                
-                <button id="nextRoundBtn" class="btn-pixel btn-action" style="margin-top: 6px;">
-                  Next Round 🦴
-                </button>
-              </div>
-
-              <div id="errorState" style="display: none; flex-direction: column; align-items: center; gap: 10px; max-width: 380px;">
-                <div style="font-size: 2.5rem;">⚠️</div>
-                <h2 style="font-family: 'Press Start 2P', monospace; font-size: 0.85rem; color: #ef4444;">SNIFF ERROR!</h2>
-                <p id="errorMessage" style="font-size: 0.8rem; color: #cbd5e1; margin: 0;"></p>
-                
-                <div style="display: flex; gap: 8px; margin-top: 10px;">
-                  <button id="fixKeyBtn" class="btn-pixel btn-action">🔑 Fix / Re-enter Key</button>
-                  <button id="retryBtn" class="btn-pixel btn-secondary">Retry 🔄</button>
-                </div>
+              <div style="font-size: 3rem; margin-bottom: 10px;">🎨🐾</div>
+              <h2 style="font-family: 'Press Start 2P', monospace; font-size: 1rem; color: #fcd34d; margin-bottom: 8px;">TIME IS UP!</h2>
+              <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 16px;">Ready to publish your artwork to the Bark Gallery?</p>
+              
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button id="overlayRetryBtn" class="btn-pixel btn-secondary">🔄 Redraw</button>
+                <button id="overlayUploadBtn" class="btn-pixel btn-action">📤 Upload Artwork</button>
               </div>
             </div>
           </div>
 
+          <!-- Controls -->
           <div class="tools-bar">
             <div class="color-swatches">
               <button class="color-btn active" style="background: #000000;" data-color="#000000" title="Black"></button>
@@ -403,15 +490,16 @@
                 <button id="skipBtn" class="btn-pixel btn-secondary">🎲 Skip</button>
                 <button id="clearBtn" class="btn-pixel btn-secondary">🗑️ Clear</button>
               </div>
-              <button id="submitBtn" class="btn-pixel btn-action" style="font-size: 0.75rem; padding: 10px 18px;">Submit Sketch 🐾</button>
+              <button id="publishBtn" class="btn-pixel btn-action" style="font-size: 0.75rem; padding: 10px 18px;">Upload to Gallery 📤</button>
             </div>
           </div>
         </div>
 
+        <!-- Top 10 Leaderboard -->
         <div class="leaderboard-box">
-          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #232d3f; padding-bottom: 10px;">
-            <h3 style="font-family: 'Press Start 2P', monospace; font-size: 0.85rem; color: #f59e0b; margin: 0;">🏆 Top Dogs</h3>
-            <span id="playerTagBadge" style="font-size: 0.75rem; background: #1e293b; padding: 4px 8px; border-radius: 6px; color: #38bdf8; font-weight: bold;">TAG: ANON</span>
+          <div style="border-bottom: 1px solid #232d3f; padding-bottom: 10px;">
+            <h3 style="font-family: 'Press Start 2P', monospace; font-size: 0.85rem; color: #f59e0b; margin: 0;">🏆 Top 10 Dogs</h3>
+            <p style="font-size: 0.75rem; color: #8f9ba8; margin: 4px 0 0 0;">❤️ Like (+1 pt) • 🦴 Treat (+3 pts)</p>
           </div>
 
           <table class="leaderboard-table">
@@ -419,52 +507,45 @@
               <tr>
                 <th>#</th>
                 <th>Dog Tag</th>
-                <th style="text-align: right;">Treats</th>
+                <th style="text-align: right;">Points</th>
               </tr>
             </thead>
-            <tbody id="leaderboardBody"></tbody>
+            <tbody id="leaderboardBody">
+              <!-- Dynamically populated -->
+            </tbody>
           </table>
-
-          <div style="margin-top: 16px; background: #0a0e17; padding: 12px; border-radius: 8px; border: 1px dashed #232d3f; text-align: center;">
-            <p style="font-size: 0.75rem; color: #94a3b8; margin: 0;">Scores range from <strong>0–100 🦴 Treats</strong> based on resemblance, details, and humor!</p>
-          </div>
         </div>
       </div>
 
-      <div class="privacy-notice-box">
-        <h4 style="color: #38bdf8; margin: 0 0 6px 0; font-size: 0.85rem;">🔒 100% Client-Side Privacy Notice:</h4>
-        <p style="margin: 0;">
-          A free <strong>Google AI Studio Key</strong> is required so your browser can connect directly to Google's Gemini Vision models. 
-          <strong>Quackwork Studios does not collect, transmit, or store your API keys on any database or server.</strong> 
-          Your key is saved exclusively in your personal browser's local memory (<code style="color: #fcd34d;">localStorage</code>) and communicates solely between your device and Google's official endpoints.
-        </p>
+      <!-- Live Community Gallery -->
+      <div class="gallery-section" style="margin-top: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #232d3f; padding-bottom: 12px;">
+          <div>
+            <h2 style="font-family: 'Press Start 2P', monospace; font-size: 1.1rem; color: #fcd34d; margin: 0;">🖼️ Community Bark Gallery</h2>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin: 4px 0 0 0;">Browse drawings and vote for your favorites!</p>
+          </div>
+          <span id="galleryCount" style="font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #38bdf8;">0 ARTWORKS</span>
+        </div>
+
+        <div id="galleryGrid" class="gallery-grid">
+          <!-- Dynamically populated cards -->
+        </div>
       </div>
     </section>
   </main>
 
-  <div id="setupModal" class="modal-backdrop">
+  <!-- Upload Modal -->
+  <div id="uploadModal" class="modal-backdrop">
     <div class="modal-card">
-      <h2 style="font-family: 'Press Start 2P', monospace; font-size: 0.95rem; color: #f59e0b; margin-top: 0;">⚙️ Player & API Setup</h2>
+      <div style="font-size: 2.5rem; margin-bottom: 8px;">🏷️</div>
+      <h2 style="font-family: 'Press Start 2P', monospace; font-size: 0.95rem; color: #f59e0b; margin-top: 0;">Sign Your Art!</h2>
+      <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0;">Enter your Dog Tag / Username (3–8 letters):</p>
       
-      <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4; margin-bottom: 4px;">
-        1. <strong>Dog Tag (Username):</strong> Enter 3–8 letters.
-      </p>
-      <input type="text" id="usernameInput" class="modal-input" maxlength="8" placeholder="e.g. BARKUS" />
+      <input type="text" id="usernameInput" class="modal-input" maxlength="8" placeholder="BARKUS" />
 
-      <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4; margin-bottom: 4px;">
-        2. <strong>Google AI Studio Key:</strong> Required for vision judging. Get a 100% free key here:
-        <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #38bdf8; text-decoration: underline; font-weight: bold;">Google AI Studio Key ↗</a>
-      </p>
-      <input type="password" id="apiKeyInput" class="modal-input" placeholder="AIzaSy..." />
-
-      <div style="background: #0d121c; padding: 10px; border-radius: 6px; font-size: 0.75rem; color: #94a3b8; margin-bottom: 16px;">
-        🛡️ <em>Your key remains securely in your browser's local storage and is never seen by Quackwork Studios.</em>
-      </div>
-
-      <div style="display: flex; justify-content: flex-end; gap: 10px;">
-        <button id="clearSavedKeyBtn" class="btn-pixel btn-danger" style="margin-right: auto;">Reset Key</button>
-        <button id="cancelModalBtn" class="btn-pixel btn-secondary">Close</button>
-        <button id="saveModalBtn" class="btn-pixel btn-action">Save & Play 🐾</button>
+      <div style="display: flex; justify-content: center; gap: 10px;">
+        <button id="cancelModalBtn" class="btn-pixel btn-secondary">Cancel</button>
+        <button id="confirmUploadBtn" class="btn-pixel btn-action">Post to Gallery 🚀</button>
       </div>
     </div>
   </div>
@@ -473,32 +554,45 @@
     <div class="footer-container">
       <div class="footer-bottom">
         <p class="footer-copyright">
-          © 2026 Quackwork Studios • Powered by Google AI Studio (Gemini Vision)
+          © 2026 Quackwork Studios • DEV Weekend Challenge: Dog Days Edition
         </p>
       </div>
     </div>
   </footer>
 
   <script>
+    // Rich, hilarious, and random prompt collection
     const PROMPTS = [
+      // Fun crossover
+      "A dog and a duck playing on the beach 🏖️🦆",
+      
+      // Professions & Action
+      "A dog doctor checking a heartbeat with a stethoscope 🩺🐕",
+      "A dog driving a fast sports car with sunglasses 🏎️",
+      "A dog camping by a campfire roasting marshmallows 🏕️🔥",
+      "A dog playing cards with a poker face around a table 🃏♠️",
+      "A dog skydiving with a parachute in mid-air 🪂",
+      "A dog chef cooking spaghetti in a chaotic kitchen 🍝👨‍🍳",
+      "A dog detective inspecting clues with a magnifying glass 🔍🕵️",
+      "A dog DJ rocking big headphones at a dance party 🎧🎶",
+      "An astronaut dog floating in outer space 🚀",
+      
+      // Classic Canine Chaos & Holidays
       "A dog wearing a Santa hat at Christmas 🎅",
-      "A dog celebrating its birthday with cake 🎂",
+      "A dog celebrating its birthday with a giant cake 🎂",
       "A dog dressed as a spooky Halloween ghost 👻",
       "A dog surfing a big ocean wave 🏄‍♂️",
-      "An astronaut dog floating in outer space 🚀",
-      "A dog caught stealing a slice of pizza 🍕",
-      "A wrinkly Pug wearing sunglasses 😎",
-      "A fluffy Corgi with stubby legs chasing a ball 🎾",
+      "A dog caught red-handed stealing a slice of pizza 🍕",
+      "A wrinkly Pug wearing retro sunglasses 😎",
+      "A fluffy Corgi with stubby legs chasing a tennis ball 🎾",
       "A long Dachshund (Wiener Dog) wearing a sweater 🌭",
       "A majestic Husky howling at the moon 🌕",
-      "A fancy Poodle with a giant fluffy haircut 🐩",
-      "A dog refusing to take a bath in the tub 🛁"
+      "A fancy Poodle with a stylish fluffy haircut 🐩",
+      "A dog dramatically refusing to take a bath in the tub 🛁",
+      "A puppy having intense mud zoomies in the rain 🌧️"
     ];
 
     let currentPrompt = "";
-    let score = 0;
-    let apiKey = localStorage.getItem("gemini_api_key") || "";
-    let username = localStorage.getItem("doggame_username") || "DOGE";
     let isDrawing = false;
     let currentColor = "#000000";
     let brushSize = 5;
@@ -507,59 +601,78 @@
     let timerInterval = null;
     let isRoundActive = false;
 
-    let leaderboard = JSON.parse(localStorage.getItem("doggame_leaderboard")) || [
-      { name: "BARKUS", treats: 96, prompt: "Corgi" },
-      { name: "ZOOMIE", treats: 89, prompt: "Surfer Dog" },
-      { name: "SIR_WAG", treats: 82, prompt: "Santa Dog" },
-      { name: "PUGGY", treats: 75, prompt: "Pizza Dog" }
+    // 6 Starter Doodles (all initialized with 0 points)
+    const DEFAULT_GALLERY = [
+      {
+        id: "doodle-1",
+        name: "PUGGY",
+        prompt: "A wrinkly Pug wearing retro sunglasses 😎",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><circle cx='240' cy='240' r='100' fill='%23b45309' stroke='%23000' stroke-width='6'/><ellipse cx='240' cy='280' rx='45' ry='30' fill='%23000'/><rect x='170' y='200' width='60' height='35' rx='6' fill='%23000'/><rect x='250' y='200' width='60' height='35' rx='6' fill='%23000'/><line x1='230' y1='215' x2='250' y2='215' stroke='%23000' stroke-width='6'/><polygon points='145,180 130,120 180,160' fill='%235c2c16'/><polygon points='335,180 350,120 300,160' fill='%235c2c16'/></svg>"
+      },
+      {
+        id: "doodle-2",
+        name: "CHOPPER",
+        prompt: "A dog caught red-handed stealing a slice of pizza 🍕",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='200' cy='250' rx='80' ry='50' fill='%23f59e0b' stroke='%23000' stroke-width='6'/><circle cx='140' cy='210' r='40' fill='%23f59e0b' stroke='%23000' stroke-width='6'/><circle cx='130' cy='200' r='6' fill='%23000'/><polygon points='150,220 280,260 270,180' fill='%23fde68a' stroke='%23b45309' stroke-width='6'/><circle cx='210' cy='225' r='8' fill='%23ef4444'/><circle cx='240' cy='235' r='8' fill='%23ef4444'/></svg>"
+      },
+      {
+        id: "doodle-3",
+        name: "BARKY",
+        prompt: "A dog wearing a Santa hat at Christmas 🎅",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='240' cy='270' rx='80' ry='70' fill='%23fef08a' stroke='%23000' stroke-width='6'/><circle cx='210' cy='250' r='8' fill='%23000'/><circle cx='270' cy='250' r='8' fill='%23000'/><ellipse cx='240' cy='290' rx='14' ry='10' fill='%23000'/><polygon points='170,210 240,90 310,210' fill='%23ef4444' stroke='%23000' stroke-width='4'/><rect x='160' y='200' width='160' height='24' rx='12' fill='%23ffffff' stroke='%23000' stroke-width='4'/><circle cx='240' cy='80' r='18' fill='%23ffffff' stroke='%23000' stroke-width='4'/></svg>"
+      },
+      {
+        id: "doodle-4",
+        name: "CAKEDOG",
+        prompt: "A dog celebrating its birthday with a giant cake 🎂",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='170' cy='260' rx='60' ry='50' fill='%2394a3b8' stroke='%23000' stroke-width='6'/><circle cx='150' cy='245' r='6' fill='%23000'/><rect x='260' y='250' width='100' height='60' fill='%23ec4899' stroke='%23000' stroke-width='6'/><rect x='280' y='210' width='60' height='40' fill='%2338bdf8' stroke='%23000' stroke-width='6'/><line x1='310' y1='210' x2='310' y2='180' stroke='%23f59e0b' stroke-width='6'/><circle cx='310' cy='175' r='6' fill='%23ef4444'/></svg>"
+      },
+      {
+        id: "doodle-5",
+        name: "WAVERIDER",
+        prompt: "A dog surfing a big ocean wave 🏄‍♂️",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><path d='M20,380 Q150,220 280,330 T460,370 L460,480 L20,480 Z' fill='%2338bdf8' stroke='%231d4ed8' stroke-width='6'/><ellipse cx='230' cy='310' rx='90' ry='14' fill='%23f59e0b' stroke='%23000' stroke-width='5'/><ellipse cx='230' cy='240' rx='45' ry='35' fill='%235c2c16' stroke='%23000' stroke-width='5'/><circle cx='215' cy='230' r='5' fill='%23fff'/><circle cx='245' cy='230' r='5' fill='%23fff'/></svg>"
+      },
+      {
+        id: "doodle-6",
+        name: "MOONDOG",
+        prompt: "A majestic Husky howling at the moon 🌕",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><circle cx='360' cy='120' r='50' fill='%23fef08a' stroke='%23f59e0b' stroke-width='6'/><path d='M160,360 L200,240 L260,200 L240,260 L260,360 Z' fill='%2394a3b8' stroke='%23000' stroke-width='6'/><polygon points='230,220 250,170 270,220' fill='%235c2c16' stroke='%23000' stroke-width='4'/><circle cx='215' cy='230' r='4' fill='%23000'/></svg>"
+      }
     ];
+
+    let gallery = JSON.parse(localStorage.getItem("doggame_community_gallery")) || DEFAULT_GALLERY;
 
     const canvas = document.getElementById("drawCanvas");
     const ctx = canvas.getContext("2d");
     const targetBreedEl = document.getElementById("targetBreed");
     const timerDisplay = document.getElementById("timerDisplay");
-    const totalScoreEl = document.getElementById("totalScore");
-    const playerTagBadge = document.getElementById("playerTagBadge");
-    const leaderboardBody = document.getElementById("leaderboardBody");
     const overlay = document.getElementById("overlay");
-    const loadingState = document.getElementById("loadingState");
-    const loadingSubtext = document.getElementById("loadingSubtext");
-    const resultState = document.getElementById("resultState");
-    const errorState = document.getElementById("errorState");
-    const errorMessage = document.getElementById("errorMessage");
-    const resultTitle = document.getElementById("resultTitle");
-    const resultGuess = document.getElementById("resultGuess");
-    const resultComment = document.getElementById("resultComment");
-    const roundScoreEl = document.getElementById("roundScore");
-    const resultEmoji = document.getElementById("resultEmoji");
     const clearBtn = document.getElementById("clearBtn");
     const skipBtn = document.getElementById("skipBtn");
-    const submitBtn = document.getElementById("submitBtn");
-    const nextRoundBtn = document.getElementById("nextRoundBtn");
-    const fixKeyBtn = document.getElementById("fixKeyBtn");
-    const retryBtn = document.getElementById("retryBtn");
+    const publishBtn = document.getElementById("publishBtn");
+    const overlayRetryBtn = document.getElementById("overlayRetryBtn");
+    const overlayUploadBtn = document.getElementById("overlayUploadBtn");
+    const galleryGrid = document.getElementById("galleryGrid");
+    const galleryCount = document.getElementById("galleryCount");
+    const leaderboardBody = document.getElementById("leaderboardBody");
 
-    const setupModal = document.getElementById("setupModal");
-    const openSetupBtn = document.getElementById("openSetupBtn");
-    const saveModalBtn = document.getElementById("saveModalBtn");
-    const cancelModalBtn = document.getElementById("cancelModalBtn");
-    const clearSavedKeyBtn = document.getElementById("clearSavedKeyBtn");
+    const uploadModal = document.getElementById("uploadModal");
     const usernameInput = document.getElementById("usernameInput");
-    const apiKeyInput = document.getElementById("apiKeyInput");
-
-    function renderLeaderboard() {
-      playerTagBadge.textContent = `TAG: ${username.toUpperCase()}`;
-      leaderboard.sort((a, b) => b.treats - a.treats);
-      leaderboardBody.innerHTML = leaderboard.slice(0, 7).map((entry, idx) => `
-        <tr>
-          <td style="color: ${idx === 0 ? '#fcd34d' : '#8f9ba8'}; font-weight: bold;">${idx + 1}.</td>
-          <td class="tag-highlight">${entry.name}</td>
-          <td class="treats-highlight">${entry.treats} 🦴</td>
-        </tr>
-      `).join("");
-      localStorage.setItem("doggame_leaderboard", JSON.stringify(leaderboard));
-    }
-    renderLeaderboard();
+    const cancelModalBtn = document.getElementById("cancelModalBtn");
+    const confirmUploadBtn = document.getElementById("confirmUploadBtn");
 
     function clearCanvas() {
       ctx.fillStyle = "#ffffff";
@@ -585,7 +698,7 @@
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
           isRoundActive = false;
-          evaluateDrawing();
+          overlay.style.display = "flex";
         }
       }, 1000);
     }
@@ -651,46 +764,9 @@
 
     clearBtn.addEventListener("click", clearCanvas);
 
-    function showModal() {
-      usernameInput.value = username;
-      apiKeyInput.value = apiKey;
-      setupModal.style.display = "flex";
-    }
-
-    openSetupBtn.addEventListener("click", showModal);
-    fixKeyBtn.addEventListener("click", showModal);
-    cancelModalBtn.addEventListener("click", () => setupModal.style.display = "none");
-
-    clearSavedKeyBtn.addEventListener("click", () => {
-      apiKey = "";
-      apiKeyInput.value = "";
-      localStorage.removeItem("gemini_api_key");
-      alert("Saved key removed.");
-    });
-
-    saveModalBtn.addEventListener("click", () => {
-      let cleanName = usernameInput.value.trim().toUpperCase().replace(/[^A-Z0-9_]/g, "");
-      if (cleanName.length < 3) cleanName = "DOGE";
-      username = cleanName.slice(0, 8);
-      apiKey = apiKeyInput.value.trim();
-
-      localStorage.setItem("doggame_username", username);
-      localStorage.setItem("gemini_api_key", apiKey);
-
-      renderLeaderboard();
-      setupModal.style.display = "none";
-
-      if (overlay.style.display === "flex" && errorState.style.display === "flex") {
-        evaluateDrawing();
-      }
-    });
-
     function nextRound() {
       stopTimer();
       overlay.style.display = "none";
-      resultState.style.display = "none";
-      loadingState.style.display = "none";
-      errorState.style.display = "none";
       clearCanvas();
 
       currentPrompt = PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
@@ -698,131 +774,105 @@
       startTimer();
     }
 
-    skipBtn.addEventListener("click", () => {
-      currentPrompt = PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
-      targetBreedEl.textContent = currentPrompt;
-      startTimer();
-    });
+    skipBtn.addEventListener("click", nextRound);
+    overlayRetryBtn.addEventListener("click", nextRound);
 
-    retryBtn.addEventListener("click", () => evaluateDrawing());
-
-    async function evaluateDrawing() {
+    function openUploadModal() {
       stopTimer();
-
-      if (!apiKey) {
-        showModal();
-        return;
-      }
-
-      overlay.style.display = "flex";
-      loadingState.style.display = "flex";
-      loadingSubtext.textContent = "Detecting active Gemini model...";
-      resultState.style.display = "none";
-      errorState.style.display = "none";
-
-      try {
-        // Step 1: Dynamic Model Discovery
-        const listResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
-        const listData = await listResp.json();
-
-        if (listData.error) {
-          throw new Error(listData.error.message || "Invalid API Key.");
-        }
-
-        if (!listData.models || listData.models.length === 0) {
-          throw new Error("No Gemini models available for this key. Please check your Google AI Studio account.");
-        }
-
-        // Find the best available vision model for this key
-        const validModels = listData.models.filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes("generateContent"));
-        const selectedModel = validModels.find(m => m.name.includes("flash")) || validModels.find(m => m.name.includes("gemini")) || validModels[0];
-
-        if (!selectedModel) {
-          throw new Error("No supported content generation model found.");
-        }
-
-        loadingSubtext.textContent = `Judging with ${selectedModel.displayName || selectedModel.name.replace("models/", "")}...`;
-
-        // Step 2: Send Drawing to the Discovered Model
-        const base64Image = canvas.toDataURL("image/png").split(",")[1];
-
-        const promptText = `You are a humorous canine art critic in an indie dog game.
-The player drew: "${currentPrompt}".
-Inspect this sketch and respond ONLY in valid JSON matching this schema:
-{
-  "guess": "<What this drawing looks like>",
-  "is_match": <true if it recognizably resembles the canine scene, otherwise false>,
-  "score": <Integer from 0 to 100 representing Dog Treats / Bones earned>,
-  "critique": "<A witty 1-2 sentence comment from a dog's perspective>"
-}`;
-
-        const generateResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/${selectedModel.name}:generateContent?key=${apiKey}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{
-              parts: [
-                { text: promptText },
-                { inline_data: { mime_type: "image/png", data: base64Image } }
-              ]
-            }],
-            generationConfig: {
-              response_mime_type: "application/json",
-              temperature: 0.4
-            }
-          })
-        });
-
-        const data = await generateResp.json();
-
-        if (data.error) {
-          throw new Error(data.error.message);
-        }
-
-        if (!data.candidates || !data.candidates[0] || !data.candidates[0].content || !data.candidates[0].content.parts) {
-          throw new Error("Gemini returned an empty response. Please try submitting again!");
-        }
-
-        let rawText = data.candidates[0].content.parts[0].text;
-        rawText = rawText.replace(/```json/g, "").replace(/```/g, "").trim();
-        const result = JSON.parse(rawText);
-
-        score += result.score;
-        totalScoreEl.textContent = `${score} 🦴`;
-
-        leaderboard.push({
-          name: username.toUpperCase(),
-          treats: result.score,
-          prompt: currentPrompt.split(" ")[1] || "Doggo"
-        });
-        renderLeaderboard();
-
-        loadingState.style.display = "none";
-        resultState.style.display = "flex";
-
-        resultEmoji.textContent = result.score >= 75 ? "🏆" : result.score >= 45 ? "🐕" : "🦴";
-        resultTitle.textContent = result.is_match ? "GOOD DOGGO!" : "CREATIVE CHAOS!";
-        resultGuess.innerHTML = `AI Guessed: <span style="color: #fcd34d;">${result.guess}</span>`;
-        resultComment.textContent = `“${result.critique}”`;
-        roundScoreEl.textContent = `+${result.score} 🦴 Treats!`;
-
-      } catch (err) {
-        console.error("Gemini Error:", err);
-        loadingState.style.display = "none";
-        resultState.style.display = "none";
-        errorState.style.display = "flex";
-
-        if (err.message.includes("API key not valid") || err.message.includes("API_KEY_INVALID")) {
-          errorMessage.textContent = "Your Google API Key is invalid or expired. Click below to re-enter it.";
-        } else {
-          errorMessage.textContent = err.message || "Could not reach Gemini. Please check your connection or key.";
-        }
-      }
+      usernameInput.value = localStorage.getItem("doggame_username") || "BARKUS";
+      uploadModal.style.display = "flex";
     }
 
-    submitBtn.addEventListener("click", evaluateDrawing);
-    nextRoundBtn.addEventListener("click", nextRound);
+    publishBtn.addEventListener("click", openUploadModal);
+    overlayUploadBtn.addEventListener("click", () => {
+      overlay.style.display = "none";
+      openUploadModal();
+    });
+    cancelModalBtn.addEventListener("click", () => uploadModal.style.display = "none");
 
+    confirmUploadBtn.addEventListener("click", () => {
+      let cleanName = usernameInput.value.trim().toUpperCase().replace(/[^A-Z0-9_]/g, "");
+      if (cleanName.length < 3) cleanName = "DOGE";
+      cleanName = cleanName.slice(0, 8);
+      localStorage.setItem("doggame_username", cleanName);
+
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+
+      const newArtwork = {
+        id: "art-" + Date.now(),
+        name: cleanName,
+        prompt: currentPrompt,
+        likes: 0,
+        superLikes: 0,
+        img: dataUrl
+      };
+
+      gallery.unshift(newArtwork);
+      localStorage.setItem("doggame_community_gallery", JSON.stringify(gallery));
+
+      uploadModal.style.display = "none";
+      renderGalleryAndLeaderboard();
+      nextRound();
+
+      document.querySelector(".gallery-section").scrollIntoView({ behavior: "smooth" });
+    });
+
+    window.vote = function(id, type) {
+      const item = gallery.find(g => g.id === id);
+      if (!item) return;
+
+      if (type === "like") {
+        item.likes += 1;
+      } else if (type === "super") {
+        item.superLikes += 1;
+      }
+
+      localStorage.setItem("doggame_community_gallery", JSON.stringify(gallery));
+      renderGalleryAndLeaderboard();
+    };
+
+    function calculateScore(item) {
+      return (item.likes * 1) + (item.superLikes * 3);
+    }
+
+    function renderGalleryAndLeaderboard() {
+      galleryCount.textContent = `${gallery.length} ARTWORKS`;
+      galleryGrid.innerHTML = gallery.map(item => `
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="${item.img}" alt="${item.prompt}" />
+          </div>
+          <div class="gallery-info">
+            <div class="gallery-user-row">
+              <span class="gallery-user">${item.name}</span>
+              <span style="font-size: 0.75rem; color: #10b981; font-weight: bold;">${calculateScore(item)} PTS</span>
+            </div>
+            <div class="gallery-prompt" title="${item.prompt}">${item.prompt}</div>
+            <div class="vote-bar">
+              <button class="vote-btn" onclick="vote('${item.id}', 'like')" title="Give a Like (+1 pt)">
+                ❤️ <span>${item.likes}</span>
+              </button>
+              <button class="vote-btn" style="border-color: #f59e0b;" onclick="vote('${item.id}', 'super')" title="Super Like with a Bone! (+3 pts)">
+                🦴 <span>${item.superLikes}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      const sorted = [...gallery].sort((a, b) => calculateScore(b) - calculateScore(a));
+      leaderboardBody.innerHTML = sorted.slice(0, 10).map((item, idx) => `
+        <tr>
+          <td style="color: ${idx === 0 ? '#fcd34d' : idx === 1 ? '#cbd5e1' : idx === 2 ? '#b45309' : '#8f9ba8'}; font-weight: bold;">
+            ${idx + 1}.
+          </td>
+          <td class="tag-highlight">${item.name}</td>
+          <td class="score-highlight">${calculateScore(item)} PTS</td>
+        </tr>
+      `).join("");
+    }
+
+    renderGalleryAndLeaderboard();
     nextRound();
   </script>
 </body>
