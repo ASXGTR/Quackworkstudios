@@ -12,13 +12,13 @@
   <style>
     .game-section {
       padding: 30px 16px 80px;
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
     }
     .pixel-title {
       font-family: 'Press Start 2P', monospace;
       color: #f59e0b;
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       letter-spacing: -1px;
       margin-bottom: 8px;
     }
@@ -160,32 +160,63 @@
       border-radius: 12px;
       border: 1px solid #2e3a50;
     }
-    .color-swatches {
+    .tools-subrow {
       display: flex;
+      justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 8px;
     }
+    .tool-selector, .size-selector {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #0d121c;
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid #232d3f;
+    }
+    .tool-btn, .size-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.15s ease;
+    }
+    .tool-btn.active, .size-btn.active {
+      background: #f59e0b;
+      color: #0f172a;
+    }
+    .color-swatches {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
     .color-btn {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 6px;
       border: 2px solid transparent;
       cursor: pointer;
       transition: transform 0.15s ease;
     }
     .color-btn:hover {
-      transform: scale(1.15);
+      transform: scale(1.2);
     }
     .color-btn.active {
       border-color: #ffffff;
       box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
-      transform: scale(1.2);
+      transform: scale(1.25);
     }
     .btn-pixel {
       font-family: 'Press Start 2P', monospace;
-      font-size: 0.65rem;
-      padding: 8px 12px;
+      font-size: 0.6rem;
+      padding: 8px 10px;
       border-radius: 8px;
       border: none;
       cursor: pointer;
@@ -229,29 +260,29 @@
       border-bottom: 1px solid #232d3f;
     }
     .leaderboard-table td {
-      padding: 10px 4px;
+      padding: 8px 4px;
       border-bottom: 1px solid #1a2233;
       color: #cbd5e1;
     }
     .tag-highlight {
       font-family: 'Press Start 2P', monospace;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: #fcd34d;
     }
     .score-highlight {
       font-family: 'Press Start 2P', monospace;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #10b981;
       text-align: right;
     }
 
-    /* Community Gallery Section */
+    /* Gallery Styling */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 16px;
       margin-top: 20px;
-      max-height: 620px;
+      max-height: 650px;
       overflow-y: auto;
       padding-right: 6px;
     }
@@ -291,7 +322,7 @@
     }
     .gallery-user {
       font-family: 'Press Start 2P', monospace;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: #fcd34d;
     }
     .gallery-prompt {
@@ -313,7 +344,7 @@
       background: #1a2233;
       border: 1px solid #2e3a50;
       color: #fff;
-      padding: 4px 10px;
+      padding: 4px 8px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 0.75rem;
@@ -330,7 +361,7 @@
       transform: scale(0.95);
     }
 
-    /* Modal Styling */
+    /* Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -377,7 +408,7 @@
 
   <header class="header-wrapper">
     <div class="top-notice-bar">
-      <span class="notice-text">🐾 DEV Weekend Challenge: Dog Days Edition Live!</span>
+      <span class="notice-text">🐾 DEV Weekend Challenge: Community Bark Gallery is Live!</span>
     </div>
 
     <nav class="navbar">
@@ -406,13 +437,13 @@
       <!-- Title & Header -->
       <div class="section-header" style="margin-bottom: 16px; text-align: center;">
         <h1 class="pixel-title">Bark Gallery: Speed Sketch Challenge 🎨🐶</h1>
-        <p class="section-subtitle">A chaotic, community-voted dog doodle showcase built for International Dog Day!</p>
+        <p class="section-subtitle">A community-driven dog doodle showcase built for International Dog Day!</p>
       </div>
 
-      <!-- How to Play / Rules Bar -->
+      <!-- Rules Bar -->
       <div class="rules-card">
         <div style="font-family: 'Press Start 2P', monospace; font-size: 0.75rem; color: #f59e0b; margin-bottom: 8px;">
-          📖 HOW TO PLAY & WIN:
+          📖 HOW TO PLAY & COMPETE:
         </div>
         <div class="rules-grid">
           <div class="rule-item">
@@ -421,7 +452,7 @@
           </div>
           <div class="rule-item">
             <span class="rule-num">2</span>
-            <span>You have <strong>90 seconds</strong> to sketch your masterpiece.</span>
+            <span>You have <strong>90s</strong> to sketch using the pen & spray tools.</span>
           </div>
           <div class="rule-item">
             <span class="rule-num">3</span>
@@ -429,7 +460,7 @@
           </div>
           <div class="rule-item">
             <span class="rule-num">4</span>
-            <span>Vote below: <strong>❤️ Like (+1 pt)</strong> or <strong>🦴 Treat (+3 pts)</strong> to reach the Top 10!</span>
+            <span>Vote below: <strong>❤️ Like (+1 pt)</strong> or <strong>🦴 Treat (+3 pts)</strong> to top the leaderboard!</span>
           </div>
         </div>
       </div>
@@ -466,31 +497,57 @@
             </div>
           </div>
 
-          <!-- Controls -->
+          <!-- Controls Bar -->
           <div class="tools-bar">
+            <!-- Tool Type & Brush Size Subrow -->
+            <div class="tools-subrow">
+              <!-- Tool Type -->
+              <div class="tool-selector">
+                <button class="tool-btn active" id="penToolBtn">✏️ Pen</button>
+                <button class="tool-btn" id="sprayToolBtn">💨 Spray</button>
+                <button class="tool-btn" id="eraserToolBtn">🧽 Eraser</button>
+              </div>
+
+              <!-- Brush Sizes -->
+              <div class="size-selector">
+                <button class="size-btn" data-size="3">Thin</button>
+                <button class="size-btn active" data-size="7">Med</button>
+                <button class="size-btn" data-size="16">Thick</button>
+              </div>
+            </div>
+
+            <!-- Expanded 18 Color Swatches -->
             <div class="color-swatches">
               <button class="color-btn active" style="background: #000000;" data-color="#000000" title="Black"></button>
-              <button class="color-btn" style="background: #5c2c16;" data-color="#5c2c16" title="Dark Brown"></button>
+              <button class="color-btn" style="background: #4b5563;" data-color="#4b5563" title="Dark Gray"></button>
+              <button class="color-btn" style="background: #9ca3af;" data-color="#9ca3af" title="Light Gray"></button>
+              <button class="color-btn" style="background: #ffffff; border: 1px solid #94a3b8;" data-color="#ffffff" title="White"></button>
+              <button class="color-btn" style="background: #451a03;" data-color="#451a03" title="Dark Brown"></button>
+              <button class="color-btn" style="background: #78350f;" data-color="#78350f" title="Brown"></button>
               <button class="color-btn" style="background: #b45309;" data-color="#b45309" title="Caramel / Tan"></button>
               <button class="color-btn" style="background: #f59e0b;" data-color="#f59e0b" title="Golden"></button>
               <button class="color-btn" style="background: #fef08a;" data-color="#fef08a" title="Cream / Yellow"></button>
-              <button class="color-btn" style="background: #ef4444;" data-color="#ef4444" title="Red"></button>
+              <button class="color-btn" style="background: #b91c1c;" data-color="#b91c1c" title="Dark Red"></button>
+              <button class="color-btn" style="background: #ef4444;" data-color="#ef4444" title="Bright Red"></button>
               <button class="color-btn" style="background: #f97316;" data-color="#f97316" title="Orange"></button>
+              <button class="color-btn" style="background: #84cc16;" data-color="#84cc16" title="Lime Green"></button>
               <button class="color-btn" style="background: #22c55e;" data-color="#22c55e" title="Green"></button>
+              <button class="color-btn" style="background: #06b6d4;" data-color="#06b6d4" title="Cyan"></button>
               <button class="color-btn" style="background: #38bdf8;" data-color="#38bdf8" title="Sky Blue"></button>
-              <button class="color-btn" style="background: #1d4ed8;" data-color="#1d4ed8" title="Ocean Blue"></button>
+              <button class="color-btn" style="background: #2563eb;" data-color="#2563eb" title="Royal Blue"></button>
               <button class="color-btn" style="background: #a855f7;" data-color="#a855f7" title="Purple"></button>
               <button class="color-btn" style="background: #ec4899;" data-color="#ec4899" title="Pink"></button>
-              <button class="color-btn" style="background: #94a3b8;" data-color="#94a3b8" title="Gray"></button>
-              <button class="color-btn" style="background: #ffffff; color: #000; font-size: 10px;" data-color="#ffffff" title="Eraser">🧽</button>
             </div>
 
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-              <div style="display: flex; gap: 6px;">
-                <button id="skipBtn" class="btn-pixel btn-secondary">🎲 Skip</button>
-                <button id="clearBtn" class="btn-pixel btn-secondary">🗑️ Clear</button>
+            <!-- Action Buttons Row -->
+            <div class="tools-subrow">
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button id="undoBtn" class="btn-pixel btn-secondary" title="Undo last stroke">↩️ Undo</button>
+                <button id="clearBtn" class="btn-pixel btn-secondary" title="Clear canvas">🗑️ Clear</button>
+                <button id="resetTimerBtn" class="btn-pixel btn-secondary" title="Reset timer and clear canvas for this prompt">🔄 Reset</button>
+                <button id="skipBtn" class="btn-pixel btn-secondary" title="Get a new prompt and reset timer">🎲 Skip</button>
               </div>
-              <button id="publishBtn" class="btn-pixel btn-action" style="font-size: 0.75rem; padding: 10px 18px;">Upload to Gallery 📤</button>
+              <button id="publishBtn" class="btn-pixel btn-action" style="padding: 10px 14px;">Upload Art 📤</button>
             </div>
           </div>
         </div>
@@ -511,7 +568,7 @@
               </tr>
             </thead>
             <tbody id="leaderboardBody">
-              <!-- Dynamically populated -->
+              <!-- Dynamically populated 10 items -->
             </tbody>
           </table>
         </div>
@@ -561,12 +618,8 @@
   </footer>
 
   <script>
-    // Rich, hilarious, and random prompt collection
     const PROMPTS = [
-      // Fun crossover
       "A dog and a duck playing on the beach 🏖️🦆",
-      
-      // Professions & Action
       "A dog doctor checking a heartbeat with a stethoscope 🩺🐕",
       "A dog driving a fast sports car with sunglasses 🏎️",
       "A dog camping by a campfire roasting marshmallows 🏕️🔥",
@@ -576,8 +629,6 @@
       "A dog detective inspecting clues with a magnifying glass 🔍🕵️",
       "A dog DJ rocking big headphones at a dance party 🎧🎶",
       "An astronaut dog floating in outer space 🚀",
-      
-      // Classic Canine Chaos & Holidays
       "A dog wearing a Santa hat at Christmas 🎅",
       "A dog celebrating its birthday with a giant cake 🎂",
       "A dog dressed as a spooky Halloween ghost 👻",
@@ -595,13 +646,17 @@
     let currentPrompt = "";
     let isDrawing = false;
     let currentColor = "#000000";
-    let brushSize = 5;
+    let brushSize = 7;
+    let currentTool = "pen"; // "pen", "spray", "eraser"
 
     let timeLeft = 90;
     let timerInterval = null;
     let isRoundActive = false;
 
-    // 6 Starter Doodles (all initialized with 0 points)
+    // Undo Stack (keeps last 15 actions)
+    let undoStack = [];
+
+    // 10 Detailed Starter Dog Doodles (all 0 points)
     const DEFAULT_GALLERY = [
       {
         id: "doodle-1",
@@ -609,15 +664,15 @@
         prompt: "A wrinkly Pug wearing retro sunglasses 😎",
         likes: 0,
         superLikes: 0,
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><circle cx='240' cy='240' r='100' fill='%23b45309' stroke='%23000' stroke-width='6'/><ellipse cx='240' cy='280' rx='45' ry='30' fill='%23000'/><rect x='170' y='200' width='60' height='35' rx='6' fill='%23000'/><rect x='250' y='200' width='60' height='35' rx='6' fill='%23000'/><line x1='230' y1='215' x2='250' y2='215' stroke='%23000' stroke-width='6'/><polygon points='145,180 130,120 180,160' fill='%235c2c16'/><polygon points='335,180 350,120 300,160' fill='%235c2c16'/></svg>"
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><circle cx='240' cy='240' r='105' fill='%23b45309' stroke='%23000' stroke-width='6'/><ellipse cx='240' cy='285' rx='48' ry='32' fill='%23451a03' stroke='%23000' stroke-width='4'/><rect x='165' y='200' width='65' height='38' rx='8' fill='%23000'/><rect x='250' y='200' width='65' height='38' rx='8' fill='%23000'/><line x1='230' y1='216' x2='250' y2='216' stroke='%23000' stroke-width='6'/><polygon points='140,175 125,115 180,155' fill='%2378350f' stroke='%23000' stroke-width='4'/><polygon points='340,175 355,115 300,155' fill='%2378350f' stroke='%23000' stroke-width='4'/></svg>"
       },
       {
         id: "doodle-2",
         name: "CHOPPER",
-        prompt: "A dog caught red-handed stealing a slice of pizza 🍕",
+        prompt: "A dog caught stealing a slice of pizza 🍕",
         likes: 0,
         superLikes: 0,
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='200' cy='250' rx='80' ry='50' fill='%23f59e0b' stroke='%23000' stroke-width='6'/><circle cx='140' cy='210' r='40' fill='%23f59e0b' stroke='%23000' stroke-width='6'/><circle cx='130' cy='200' r='6' fill='%23000'/><polygon points='150,220 280,260 270,180' fill='%23fde68a' stroke='%23b45309' stroke-width='6'/><circle cx='210' cy='225' r='8' fill='%23ef4444'/><circle cx='240' cy='235' r='8' fill='%23ef4444'/></svg>"
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='190' cy='260' rx='85' ry='55' fill='%23f59e0b' stroke='%23000' stroke-width='6'/><circle cx='130' cy='210' r='45' fill='%23f59e0b' stroke='%23000' stroke-width='6'/><circle cx='120' cy='200' r='6' fill='%23000'/><polygon points='145,225 300,265 290,170' fill='%23fef08a' stroke='%23b45309' stroke-width='6'/><circle cx='215' cy='225' r='10' fill='%23ef4444'/><circle cx='255' cy='235' r='10' fill='%23ef4444'/></svg>"
       },
       {
         id: "doodle-3",
@@ -625,7 +680,7 @@
         prompt: "A dog wearing a Santa hat at Christmas 🎅",
         likes: 0,
         superLikes: 0,
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='240' cy='270' rx='80' ry='70' fill='%23fef08a' stroke='%23000' stroke-width='6'/><circle cx='210' cy='250' r='8' fill='%23000'/><circle cx='270' cy='250' r='8' fill='%23000'/><ellipse cx='240' cy='290' rx='14' ry='10' fill='%23000'/><polygon points='170,210 240,90 310,210' fill='%23ef4444' stroke='%23000' stroke-width='4'/><rect x='160' y='200' width='160' height='24' rx='12' fill='%23ffffff' stroke='%23000' stroke-width='4'/><circle cx='240' cy='80' r='18' fill='%23ffffff' stroke='%23000' stroke-width='4'/></svg>"
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='240' cy='275' rx='85' ry='75' fill='%23fef08a' stroke='%23000' stroke-width='6'/><circle cx='210' cy='255' r='8' fill='%23000'/><circle cx='270' cy='255' r='8' fill='%23000'/><ellipse cx='240' cy='295' rx='14' ry='10' fill='%23000'/><polygon points='165,210 240,85 315,210' fill='%23ef4444' stroke='%23000' stroke-width='5'/><rect x='155' y='200' width='170' height='26' rx='13' fill='%23ffffff' stroke='%23000' stroke-width='4'/><circle cx='240' cy='75' r='20' fill='%23ffffff' stroke='%23000' stroke-width='4'/></svg>"
       },
       {
         id: "doodle-4",
@@ -633,7 +688,7 @@
         prompt: "A dog celebrating its birthday with a giant cake 🎂",
         likes: 0,
         superLikes: 0,
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='170' cy='260' rx='60' ry='50' fill='%2394a3b8' stroke='%23000' stroke-width='6'/><circle cx='150' cy='245' r='6' fill='%23000'/><rect x='260' y='250' width='100' height='60' fill='%23ec4899' stroke='%23000' stroke-width='6'/><rect x='280' y='210' width='60' height='40' fill='%2338bdf8' stroke='%23000' stroke-width='6'/><line x1='310' y1='210' x2='310' y2='180' stroke='%23f59e0b' stroke-width='6'/><circle cx='310' cy='175' r='6' fill='%23ef4444'/></svg>"
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='160' cy='260' rx='65' ry='55' fill='%239ca3af' stroke='%23000' stroke-width='6'/><circle cx='140' cy='245' r='6' fill='%23000'/><rect x='250' y='245' width='110' height='65' fill='%23ec4899' stroke='%23000' stroke-width='6'/><rect x='270' y='205' width='70' height='40' fill='%2338bdf8' stroke='%23000' stroke-width='6'/><line x1='305' y1='205' x2='305' y2='175' stroke='%23f59e0b' stroke-width='6'/><circle cx='305' cy='170' r='7' fill='%23ef4444'/></svg>"
       },
       {
         id: "doodle-5",
@@ -641,7 +696,7 @@
         prompt: "A dog surfing a big ocean wave 🏄‍♂️",
         likes: 0,
         superLikes: 0,
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><path d='M20,380 Q150,220 280,330 T460,370 L460,480 L20,480 Z' fill='%2338bdf8' stroke='%231d4ed8' stroke-width='6'/><ellipse cx='230' cy='310' rx='90' ry='14' fill='%23f59e0b' stroke='%23000' stroke-width='5'/><ellipse cx='230' cy='240' rx='45' ry='35' fill='%235c2c16' stroke='%23000' stroke-width='5'/><circle cx='215' cy='230' r='5' fill='%23fff'/><circle cx='245' cy='230' r='5' fill='%23fff'/></svg>"
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><path d='M20,380 Q150,220 280,330 T460,370 L460,480 L20,480 Z' fill='%2338bdf8' stroke='%232563eb' stroke-width='6'/><ellipse cx='230' cy='310' rx='95' ry='16' fill='%23f59e0b' stroke='%23000' stroke-width='5'/><ellipse cx='230' cy='240' rx='45' ry='35' fill='%2378350f' stroke='%23000' stroke-width='5'/><circle cx='215' cy='230' r='5' fill='%23fff'/><circle cx='245' cy='230' r='5' fill='%23fff'/></svg>"
       },
       {
         id: "doodle-6",
@@ -649,7 +704,39 @@
         prompt: "A majestic Husky howling at the moon 🌕",
         likes: 0,
         superLikes: 0,
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><circle cx='360' cy='120' r='50' fill='%23fef08a' stroke='%23f59e0b' stroke-width='6'/><path d='M160,360 L200,240 L260,200 L240,260 L260,360 Z' fill='%2394a3b8' stroke='%23000' stroke-width='6'/><polygon points='230,220 250,170 270,220' fill='%235c2c16' stroke='%23000' stroke-width='4'/><circle cx='215' cy='230' r='4' fill='%23000'/></svg>"
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><circle cx='360' cy='120' r='52' fill='%23fef08a' stroke='%23f59e0b' stroke-width='6'/><path d='M150,370 L195,240 L265,195 L245,260 L265,370 Z' fill='%234b5563' stroke='%23000' stroke-width='6'/><polygon points='235,215 255,165 275,215' fill='%23b91c1c' stroke='%23000' stroke-width='4'/><circle cx='215' cy='225' r='4' fill='%23000'/></svg>"
+      },
+      {
+        id: "doodle-7",
+        name: "DUCKPUP",
+        prompt: "A dog and a duck playing on the beach 🏖️🦆",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='160' cy='280' rx='60' ry='45' fill='%23f59e0b' stroke='%23000' stroke-width='5'/><circle cx='120' cy='230' r='30' fill='%23f59e0b' stroke='%23000' stroke-width='5'/><circle cx='310' cy='275' r='35' fill='%23fef08a' stroke='%23000' stroke-width='5'/><polygon points='345,270 380,278 345,286' fill='%23f97316' stroke='%23000' stroke-width='3'/><circle cx='240' cy='310' r='22' fill='%23ef4444' stroke='%23000' stroke-width='4'/></svg>"
+      },
+      {
+        id: "doodle-8",
+        name: "DR_BARK",
+        prompt: "A dog doctor checking a heartbeat with a stethoscope 🩺🐕",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><circle cx='240' cy='240' r='80' fill='%23b45309' stroke='%23000' stroke-width='5'/><rect x='170' y='140' width='140' height='35' rx='8' fill='%2306b6d4' stroke='%23000' stroke-width='4'/><path d='M190,260 Q240,350 290,260' fill='none' stroke='%234b5563' stroke-width='8'/><circle cx='240' cy='320' r='14' fill='%239ca3af' stroke='%23000' stroke-width='3'/></svg>"
+      },
+      {
+        id: "doodle-9",
+        name: "CAMP_DOG",
+        prompt: "A dog camping by a campfire roasting marshmallows 🏕️🔥",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><polygon points='280,330 310,240 340,330' fill='%23ef4444' stroke='%23000' stroke-width='4'/><polygon points='295,330 310,270 325,330' fill='%23f59e0b'/><circle cx='170' cy='270' r='55' fill='%2378350f' stroke='%23000' stroke-width='5'/><line x1='170' y1='270' x2='290' y2='270' stroke='%23b45309' stroke-width='4'/><rect x='280' y='260' width='22' height='18' rx='4' fill='%23ffffff' stroke='%23000' stroke-width='2'/></svg>"
+      },
+      {
+        id: "doodle-10",
+        name: "SPEEDY",
+        prompt: "A dog driving a fast sports car with sunglasses 🏎️",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><circle cx='220' cy='210' r='45' fill='%23f59e0b' stroke='%23000' stroke-width='4'/><rect x='195' y='195' width='50' height='18' rx='4' fill='%23000'/><rect x='100' y='250' width='280' height='80' rx='20' fill='%23ef4444' stroke='%23000' stroke-width='6'/><circle cx='160' cy='330' r='30' fill='%23000'/><circle cx='320' cy='330' r='30' fill='%23000'/></svg>"
       }
     ];
 
@@ -660,11 +747,19 @@
     const targetBreedEl = document.getElementById("targetBreed");
     const timerDisplay = document.getElementById("timerDisplay");
     const overlay = document.getElementById("overlay");
+    
+    // Tools & Action Buttons
+    const penToolBtn = document.getElementById("penToolBtn");
+    const sprayToolBtn = document.getElementById("sprayToolBtn");
+    const eraserToolBtn = document.getElementById("eraserToolBtn");
+    const undoBtn = document.getElementById("undoBtn");
     const clearBtn = document.getElementById("clearBtn");
+    const resetTimerBtn = document.getElementById("resetTimerBtn");
     const skipBtn = document.getElementById("skipBtn");
     const publishBtn = document.getElementById("publishBtn");
     const overlayRetryBtn = document.getElementById("overlayRetryBtn");
     const overlayUploadBtn = document.getElementById("overlayUploadBtn");
+
     const galleryGrid = document.getElementById("galleryGrid");
     const galleryCount = document.getElementById("galleryCount");
     const leaderboardBody = document.getElementById("leaderboardBody");
@@ -674,7 +769,13 @@
     const cancelModalBtn = document.getElementById("cancelModalBtn");
     const confirmUploadBtn = document.getElementById("confirmUploadBtn");
 
+    function saveState() {
+      undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+      if (undoStack.length > 15) undoStack.shift();
+    }
+
     function clearCanvas() {
+      saveState();
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
@@ -720,25 +821,51 @@
       };
     }
 
+    // MS Paint Style Spray Function
+    function drawSpray(x, y) {
+      const density = brushSize * 3;
+      const radius = brushSize * 2.2;
+      ctx.fillStyle = currentTool === "eraser" ? "#ffffff" : currentColor;
+
+      for (let i = 0; i < density; i++) {
+        const offsetX = (Math.random() - 0.5) * 2 * radius;
+        const offsetY = (Math.random() - 0.5) * 2 * radius;
+        if (offsetX * offsetX + offsetY * offsetY <= radius * radius) {
+          ctx.fillRect(x + offsetX, y + offsetY, 1.5, 1.5);
+        }
+      }
+    }
+
     function startDraw(e) {
       if (!isRoundActive) return;
       e.preventDefault();
+      saveState();
       isDrawing = true;
       const { x, y } = getCoords(e);
-      ctx.beginPath();
-      ctx.moveTo(x, y);
+
+      if (currentTool === "spray") {
+        drawSpray(x, y);
+      } else {
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+      }
     }
 
     function draw(e) {
       if (!isDrawing || !isRoundActive) return;
       e.preventDefault();
       const { x, y } = getCoords(e);
-      ctx.lineTo(x, y);
-      ctx.strokeStyle = currentColor;
-      ctx.lineWidth = currentColor === "#ffffff" ? 24 : brushSize;
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.stroke();
+
+      if (currentTool === "spray") {
+        drawSpray(x, y);
+      } else {
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = currentTool === "eraser" ? "#ffffff" : currentColor;
+        ctx.lineWidth = currentTool === "eraser" ? brushSize * 3 : brushSize;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.stroke();
+      }
     }
 
     function stopDraw() {
@@ -754,29 +881,85 @@
     canvas.addEventListener("touchmove", draw, { passive: false });
     canvas.addEventListener("touchend", stopDraw);
 
+    // Color Swatches
     document.querySelectorAll(".color-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".color-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         currentColor = btn.dataset.color;
+        if (currentTool === "eraser") {
+          currentTool = "pen";
+          penToolBtn.classList.add("active");
+          eraserToolBtn.classList.remove("active");
+        }
       });
+    });
+
+    // Tool Selector
+    penToolBtn.addEventListener("click", () => {
+      currentTool = "pen";
+      penToolBtn.classList.add("active");
+      sprayToolBtn.classList.remove("active");
+      eraserToolBtn.classList.remove("active");
+    });
+
+    sprayToolBtn.addEventListener("click", () => {
+      currentTool = "spray";
+      sprayToolBtn.classList.add("active");
+      penToolBtn.classList.remove("active");
+      eraserToolBtn.classList.remove("active");
+    });
+
+    eraserToolBtn.addEventListener("click", () => {
+      currentTool = "eraser";
+      eraserToolBtn.classList.add("active");
+      penToolBtn.classList.remove("active");
+      sprayToolBtn.classList.remove("active");
+    });
+
+    // Brush Sizes
+    document.querySelectorAll(".size-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".size-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        brushSize = parseInt(btn.dataset.size);
+      });
+    });
+
+    // Undo Action
+    undoBtn.addEventListener("click", () => {
+      if (undoStack.length > 0) {
+        const lastState = undoStack.pop();
+        ctx.putImageData(lastState, 0, 0);
+      }
     });
 
     clearBtn.addEventListener("click", clearCanvas);
 
-    function nextRound() {
+    // Reset Timer (Keeps same prompt)
+    resetTimerBtn.addEventListener("click", () => {
+      overlay.style.display = "none";
+      clearCanvas();
+      undoStack = [];
+      startTimer();
+    });
+
+    // Skip (New Prompt + Reset Timer)
+    function nextPrompt() {
       stopTimer();
       overlay.style.display = "none";
       clearCanvas();
+      undoStack = [];
 
       currentPrompt = PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
       targetBreedEl.textContent = currentPrompt;
       startTimer();
     }
 
-    skipBtn.addEventListener("click", nextRound);
-    overlayRetryBtn.addEventListener("click", nextRound);
+    skipBtn.addEventListener("click", nextPrompt);
+    overlayRetryBtn.addEventListener("click", nextPrompt);
 
+    // Upload Modal Flow
     function openUploadModal() {
       stopTimer();
       usernameInput.value = localStorage.getItem("doggame_username") || "BARKUS";
@@ -812,11 +995,12 @@
 
       uploadModal.style.display = "none";
       renderGalleryAndLeaderboard();
-      nextRound();
+      nextPrompt();
 
       document.querySelector(".gallery-section").scrollIntoView({ behavior: "smooth" });
     });
 
+    // Voting System
     window.vote = function(id, type) {
       const item = gallery.find(g => g.id === id);
       if (!item) return;
@@ -873,7 +1057,7 @@
     }
 
     renderGalleryAndLeaderboard();
-    nextRound();
+    nextPrompt();
   </script>
 </body>
 </html>
