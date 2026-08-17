@@ -11,7 +11,7 @@
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Syne (Display/Punchy), Outfit (Clean UI), JetBrains Mono (Tech/Raw dev) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
@@ -48,18 +48,18 @@
   <!-- Background Ambient Glows -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
     <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-amber-500/10 rounded-full blur-[140px]"></div>
-    <div class="absolute top-[40rem] left-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px]"></div>
-    <div class="absolute top-[80rem] right-10 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-[45rem] left-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-[85rem] right-10 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[160px]"></div>
   </div>
 
   <!-- ============================================================ -->
   <!-- TOP BANNER & NAVBAR                                          -->
   <!-- ============================================================ -->
-  <header class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/80 border-b border-white/5">
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/85 border-b border-white/5">
     <!-- Top Challenge Notice Bar -->
-    <div class="bg-gradient-to-r from-amber-500/20 via-brand-dark to-amber-500/20 border-b border-amber-500/20 px-4 py-1.5 text-center text-xs font-mono">
-      <span class="text-slate-300">🐾 DEV Challenge Entry: <strong>Bark Gallery (Google AI Studio)</strong> is live!</span>
-      <a href="/doggame.html" class="ml-2 font-bold text-brand-gold hover:underline">Play Game →</a>
+    <div class="bg-gradient-to-r from-cyan-500/10 via-brand-dark to-amber-500/10 border-b border-white/5 px-4 py-1.5 text-center text-xs font-mono">
+      <span class="text-slate-300">💻 DEV Challenge Entry: <strong>Bark Gallery (Google AI Studio)</strong> is live!</span>
+      <a href="/doggame.html" class="ml-2 font-bold text-brand-gold hover:underline">Play Live →</a>
     </div>
 
     <!-- Navigation -->
@@ -73,9 +73,9 @@
 
       <ul class="flex items-center gap-4 sm:gap-6 text-xs md:text-sm font-mono font-medium">
         <li><a href="#about-studio" class="text-slate-400 hover:text-white transition">About</a></li>
-        <li><a href="#games" class="text-slate-400 hover:text-white transition">Duckmon</a></li>
-        <li><a href="#dev-challenges" class="text-amber-400 hover:text-amber-300 transition">🐾 Dev Challenges</a></li>
-        <li><a href="#blog" class="text-slate-400 hover:text-white transition">Devlog</a></li>
+        <li><a href="#games" class="text-amber-400 hover:text-amber-300 transition">Duckmon</a></li>
+        <li><a href="#dev-challenges" class="text-slate-400 hover:text-white transition">💻 Challenges</a></li>
+        <li><a href="/devlog.html" class="text-slate-400 hover:text-white transition">Devlog</a></li>
         <li><a href="#contact" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white transition">Contact</a></li>
       </ul>
     </nav>
@@ -127,7 +127,7 @@
           A Home for Solo Hobbyist Game Projects.
         </h3>
         <p class="text-slate-300 leading-relaxed text-base md:text-lg">
-          Quackwork Studios was created as a dedicated host for my solo hobbyist game projects, rapid prototypes, and creative experiments. Built without commercial bloat or corporate red tape, this studio is focused on bringing raw, eccentric ideas to life—from multiverse card battlers to interactive community challenges.
+          Quackwork Studios was created as a dedicated host for my solo hobbyist game projects, rapid prototypes, and creative experiments. Built without commercial bloat or corporate red tape, this studio is focused on bringing raw, eccentric ideas to life—from sprawling multiverse card battlers to interactive community challenges.
         </p>
       </div>
 
@@ -226,12 +226,12 @@
                   "I am the architect. The AI is my expert."
                 </p>
                 <p class="text-xs md:text-sm text-slate-400">
-                  AI doesn't just do everything automatically. I structure the logic, direct the systems, instruct the workflow, and troubleshoot the madness. We collaborate as a team—turning complex ideas into working mechanics, one prompt, bug fix, and late night at a time.
+                  AI doesn't just do everything on autopilot. I design the vision, direct the logic, instruct the workflow, and troubleshoot every mechanic. We collaborate as a team—turning complex ideas into working systems, one prompt, bug fix, and late night at a time.
                 </p>
               </div>
 
               <p class="text-xs md:text-sm text-slate-400 italic">
-                From building this entire website with no prior web experience to shipping DEV.to challenge entries and constructing full card systems in Duckmon—this is what happens when curiosity meets execution.
+                From building this entire website with zero web experience to shipping DEV.to challenge entries and constructing full multimodal card systems in Duckmon—this is what happens when stubborn curiosity meets execution.
               </p>
             </div>
           </div>
@@ -249,21 +249,22 @@
 
 
     <!-- ============================================================ -->
-    <!-- 4. MAIN PROJECT: DUCKMON (#games)                            -->
+    <!-- 4. MAIN PROJECT: DUCKMON (EXPANDED MULTIVERSE MODES)        -->
     <!-- ============================================================ -->
     <section id="games" class="space-y-6 pt-4">
       <div class="flex items-center justify-between">
         <div>
-          <span class="text-xs font-mono uppercase tracking-widest text-brand-gold font-bold">Flagship Title</span>
-          <h2 class="text-3xl md:text-4xl font-display font-black text-white uppercase">Featured Game</h2>
+          <span class="text-xs font-mono uppercase tracking-widest text-brand-gold font-bold">Flagship Multiverse Title</span>
+          <h2 class="text-3xl md:text-4xl font-display font-black text-white uppercase">DUCKMON</h2>
         </div>
         <span class="text-xs font-mono px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300">
           🔥 In Active Development
         </span>
       </div>
 
-      <!-- Duckmon Spotlight Card -->
-      <div class="bg-brand-card/90 border border-brand-border hover:border-amber-500/40 rounded-3xl p-6 md:p-8 backdrop-blur-xl shadow-2xl transition-all duration-300 space-y-6">
+      <!-- Main Duckmon Card -->
+      <div class="bg-brand-card/90 border border-brand-border hover:border-amber-500/40 rounded-3xl p-6 md:p-8 backdrop-blur-xl shadow-2xl transition-all duration-300 space-y-8">
+        
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           <!-- Media Column -->
@@ -276,50 +277,58 @@
               />
             </div>
 
-            <!-- Stats Strip -->
+            <!-- Core Specs Grid -->
             <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
               <div class="p-2 rounded-xl bg-white/5 border border-white/5">
-                <span class="block text-slate-400 text-[10px]">CARDS</span>
-                <span class="text-white font-bold">310+ Unique</span>
+                <span class="block text-slate-400 text-[10px]">BINDER</span>
+                <span class="text-white font-bold">310 Pages</span>
               </div>
               <div class="p-2 rounded-xl bg-white/5 border border-white/5">
-                <span class="block text-slate-400 text-[10px]">ENGINE</span>
-                <span class="text-cyan-400 font-bold">Unity / C#</span>
+                <span class="block text-slate-400 text-[10px]">FACTIONS</span>
+                <span class="text-amber-400 font-bold">11 Unique</span>
               </div>
               <div class="p-2 rounded-xl bg-white/5 border border-white/5">
-                <span class="block text-slate-400 text-[10px]">STYLE</span>
-                <span class="text-amber-400 font-bold">Triple Triad</span>
+                <span class="block text-slate-400 text-[10px]">AUDIO</span>
+                <span class="text-cyan-400 font-bold">Player + Visualizer</span>
               </div>
             </div>
           </div>
 
-          <!-- Content Column -->
+          <!-- Description & Modes -->
           <div class="lg:col-span-7 space-y-4">
             <div>
-              <span class="text-xs font-mono text-amber-400 uppercase tracking-widest font-semibold">2D Tactical Card Battler</span>
-              <h3 class="text-2xl md:text-3xl font-display font-black text-white">Duckmon: Collectable Card Multiverse</h3>
+              <span class="text-xs font-mono text-amber-400 uppercase tracking-widest font-semibold">The Multiverse Tactical Card Battler</span>
+              <h3 class="text-2xl md:text-3xl font-display font-black text-white">More Than Just a Card Game</h3>
             </div>
 
             <p class="text-slate-300 text-sm md:text-base leading-relaxed">
-              A chaotic, lore-heavy card battler spanning infinite realities. Inspired by classic grid battles like Final Fantasy's Triple Triad—ducks replace monsters in an expanding multiverse featuring tactical element captures, collector binders, and custom deck crafting.
+              What started as a simple Triple Triad prototype has evolved into an expansive multiverse loaded with multiple distinct game modes, deep collection systems, rich lore, and an interactive soundtrack experience.
             </p>
 
-            <ul class="space-y-2 text-xs md:text-sm text-slate-300 font-mono">
-              <li class="flex items-center gap-2">
-                <span class="text-amber-400">✔</span> Grid-based positional card capturing & combo chain rules
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-amber-400">✔</span> Full collector binder progression and rarity tiers
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-amber-400">✔</span> Solo-engineered systems iterating weekly inside Unity
-              </li>
-            </ul>
+            <!-- Expanded Modes List -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 text-xs font-mono">
+              <div class="p-2.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-amber-400 font-bold block">📖 CYOA Story Mode</span>
+                <span class="text-slate-300">Narrative choose-your-own-adventure branching campaign.</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-cyan-400 font-bold block">⚔️ 5v5 Tactical Battler</span>
+                <span class="text-slate-300">Pokémon-inspired draft teams, skill rotations & synergies.</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-purple-400 font-bold block">🃏 Grid Card Flipper</span>
+                <span class="text-slate-300">Classic positional capture rules with chain combos.</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-emerald-400 font-bold block">🎲 RNG Dungeon Crawler</span>
+                <span class="text-slate-300">Rogue-lite dungeon runs with dynamic loot & modifiers.</span>
+              </div>
+            </div>
 
-            <!-- CTAs -->
+            <!-- Direct CTAs -->
             <div class="flex flex-wrap items-center gap-3 pt-3">
               <a href="/duckmon.html" class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-bold text-xs font-mono uppercase tracking-wider transition shadow-lg shadow-amber-400/20 hover:scale-105">
-                Learn More & Roadmap
+                Explore Duckmon & Full Roadmap →
               </a>
               <a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white font-semibold text-xs font-mono uppercase tracking-wider transition">
                 Join Discord
@@ -328,37 +337,52 @@
           </div>
 
         </div>
+
+        <!-- In-game OST / Media Visualizer Callout Strip -->
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/5 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">🎵</span>
+            <div>
+              <span class="text-white font-semibold block">Full Original Game Music Library</span>
+              <span class="text-slate-400 text-[11px]">Includes custom built-in audio player and real-time audio visualizer.</span>
+            </div>
+          </div>
+          <a href="/duckmon.html" class="text-amber-400 hover:underline">
+            Listen on Duckmon Page →
+          </a>
+        </div>
+
       </div>
     </section>
 
 
     <!-- ============================================================ -->
-    <!-- 5. DEV CHALLENGES & EXPERIMENTS (TOTALLY SEPARATE)           -->
+    <!-- 5. DEV CHALLENGES SECTION (💻)                               -->
     <!-- ============================================================ -->
     <section id="dev-challenges" class="space-y-6 pt-4">
       <div class="border-t border-white/10 pt-10 flex flex-wrap items-center justify-between gap-3">
         <div>
           <div class="flex items-center gap-2 mb-1">
             <span class="w-2.5 h-2.5 rounded-full bg-purple-400 animate-pulse"></span>
-            <span class="text-xs font-mono uppercase tracking-widest text-purple-400 font-bold">Hackathons & Prototypes</span>
+            <span class="text-xs font-mono uppercase tracking-widest text-purple-400 font-bold">Hackathons & Rapid Prototypes</span>
           </div>
-          <h2 class="text-2xl md:text-3xl font-display font-black text-white uppercase">Dev Challenges Section</h2>
+          <h2 class="text-2xl md:text-3xl font-display font-black text-white uppercase">Dev Challenges</h2>
         </div>
         <p class="text-xs font-mono text-slate-400 max-w-sm">
-          Submissions for DEV.to community challenges, Google AI Studio experiments, and rapid browser minigames.
+          Fun hackathon builds, DEV.to community challenge entries, and rapid web experiments.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- Card 1: Bark Gallery (Google AI Studio / DEV Challenge) -->
+        <!-- Challenge 1: Bark Gallery (Google AI Studio) -->
         <article class="bg-brand-card/70 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-md flex flex-col justify-between group transition-all duration-300 space-y-4">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-xs font-mono">
               <span class="px-2.5 py-1 rounded-md bg-purple-500/10 border border-purple-500/30 text-purple-300 font-semibold">
-                🐾 DEV Challenge
+                💻 DEV Challenge Entry
               </span>
-              <span class="text-slate-400">Browser / Canvas</span>
+              <span class="text-slate-400">Interactive Canvas</span>
             </div>
 
             <h4 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
@@ -366,45 +390,55 @@
             </h4>
 
             <p class="text-slate-300 text-sm leading-relaxed">
-              A 90-second speed-sketching showcase built for DEV.to powered by Google AI Studio prompts, retro spray tools, real-time community voting, and a live Top 10 leaderboard.
+              A 90-second speed-sketching showcase built for the DEV.to challenge—powered by Google AI Studio prompts, retro spray paint tools, real-time community voting, and a live Top 10 leaderboard.
             </p>
 
             <div class="flex flex-wrap gap-1.5 pt-2">
               <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">Google AI Studio</span>
               <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">HTML5 Canvas</span>
-              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">Leaderboards</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">Live Leaderboard</span>
             </div>
           </div>
 
           <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400">Playable in Browser</span>
             <a href="/doggame.html" class="px-4 py-2 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-200 text-xs font-mono font-bold transition">
-              Play Game in Browser 🐾
+              Play Game 🐕
             </a>
           </div>
         </article>
 
-        <!-- Card 2: Upcoming DEV.to Challenge Slot -->
-        <article class="bg-brand-card/40 border border-brand-border border-dashed rounded-3xl p-6 flex flex-col justify-between space-y-4">
+        <!-- Challenge 2: TextZ-Ombie Landing Page (First Ever Web Build) -->
+        <article class="bg-brand-card/70 border border-brand-border hover:border-cyan-500/40 rounded-3xl p-6 backdrop-blur-md flex flex-col justify-between group transition-all duration-300 space-y-4">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-xs font-mono">
-              <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-400">
-                ⚡ Challenge Series
+              <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-semibold">
+                💻 First Web Challenge
               </span>
-              <span class="text-slate-500">In Pipeline</span>
+              <span class="text-slate-400">DEV Halloween Entry</span>
             </div>
 
-            <h4 class="text-xl font-display font-bold text-slate-400">
-              Future DEV.to Experiments
+            <h4 class="text-xl font-display font-bold text-white group-hover:text-cyan-300 transition">
+              TextZ-Ombie: Landing Page Portal
             </h4>
 
-            <p class="text-slate-400 text-sm leading-relaxed">
-              New hackathon builds, API integrations, and community challenge entries will be documented and published directly into this section.
+            <p class="text-slate-300 text-sm leading-relaxed">
+              The very first webpage I ever created, built for the DEV Halloween Frontend Challenge with zero prior HTML/CSS knowledge. Built as the demo portal for my ambitious first 6-month solo zombie survival game project (currently on indefinite hold, with all files preserved).
             </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-2">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">First HTML/CSS Build</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">DEV Challenge</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">Spooky FX Portal</span>
+            </div>
           </div>
 
-          <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-500">
-            <span>Google AI & Web Prototypes</span>
-            <span>Coming Soon</span>
+          <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400">Archived Challenge Page</span>
+            <a href="https://asxgtr.github.io/TextZ-Ombie-Landing-Page/" target="_blank" class="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-200 text-xs font-mono font-bold transition flex items-center gap-1">
+              <span>View Portal</span>
+              <span>↗</span>
+            </a>
           </div>
         </article>
 
@@ -413,38 +447,37 @@
 
 
     <!-- ============================================================ -->
-    <!-- 6. DEVLOG & UPDATES                                          -->
+    <!-- 6. DEVLOG & UPDATES HUB (FORWARDING TO /devlog.html)        -->
     <!-- ============================================================ -->
     <section id="blog" class="space-y-6 pt-4">
-      <div class="border-t border-white/10 pt-10 flex items-center justify-between">
+      <div class="border-t border-white/10 pt-10 flex flex-wrap items-center justify-between gap-3">
         <div>
           <span class="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold">Behind The Scenes</span>
           <h2 class="text-2xl md:text-3xl font-display font-black text-white uppercase">Devlog & Notes</h2>
         </div>
+        <a href="/devlog.html" class="text-xs font-mono font-bold text-amber-400 hover:text-amber-300 transition">
+          Go To Full Devlog Page →
+        </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <article class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="rounded-2xl overflow-hidden border border-white/10 aspect-video bg-black/40">
-              <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/FanUpscale.png" alt="Update Cover" class="w-full h-full object-cover" />
-            </div>
-            <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
-              <span>Jan 12, 2026</span>
-              <span>•</span>
-              <span class="text-amber-400">Duckmon Systems</span>
-            </div>
-            <h3 class="text-lg font-display font-bold text-white">Card Logic & Multiverse Rules Clicking Into Place</h3>
-            <p class="text-slate-300 text-sm leading-relaxed">
-              Iterating on positional grid combat, resolving chain captures, and building out the expanded binder rules.
-            </p>
+      <!-- Devlog Forwarding Banner -->
+      <div class="bg-brand-card/80 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+            <span class="w-2 h-2 rounded-full bg-green-400"></span>
+            <span>Live Development Logs & Patch Breakdowns</span>
           </div>
-          <div class="pt-4 border-t border-white/5">
-            <a href="/duckmon.html" class="text-xs font-mono font-semibold text-brand-gold hover:underline">
-              Read Duckmon Roadmap →
-            </a>
-          </div>
-        </article>
+          <h3 class="text-xl md:text-2xl font-display font-bold text-white">
+            Honest Progress Notes, Technical Breakdowns & Roadmaps
+          </h3>
+          <p class="text-slate-300 text-sm max-w-2xl leading-relaxed">
+            All detailed devlog posts, systems breakdowns, patch notes, and release milestones are documented on the dedicated devlog page.
+          </p>
+        </div>
+
+        <a href="/devlog.html" class="shrink-0 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white font-mono font-bold text-xs uppercase tracking-wider transition hover:scale-105 shadow-lg">
+          View All Devlogs →
+        </a>
       </div>
     </section>
 
@@ -526,7 +559,7 @@
           <li><a href="#" class="hover:text-white transition">Home</a></li>
           <li><a href="#games" class="hover:text-white transition">Duckmon</a></li>
           <li><a href="#dev-challenges" class="hover:text-white transition">Dev Challenges</a></li>
-          <li><a href="#blog" class="hover:text-white transition">Devlog</a></li>
+          <li><a href="/devlog.html" class="hover:text-white transition">Devlog</a></li>
           <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
         </ul>
       </div>
