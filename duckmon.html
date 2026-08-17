@@ -67,7 +67,7 @@
       <ul class="hidden md:flex items-center gap-6 text-xs font-mono font-medium text-slate-400">
         <li><a href="#about" class="hover:text-white transition">About</a></li>
         <li><a href="#features" class="hover:text-white transition">Features</a></li>
-        <li><a href="#ost" class="hover:text-amber-400 transition">🎵 Soundtrack</a></li>
+        <li><a href="#quax-trax-player" class="text-amber-400 hover:text-amber-300 transition">🎵 Quax Trax</a></li>
         <li><a href="#cards" class="hover:text-white transition">Cards</a></li>
         <li><a href="#media" class="hover:text-white transition">Media</a></li>
         <li><a href="#roadmap" class="text-cyan-400 hover:text-cyan-300 transition">Roadmap</a></li>
@@ -97,7 +97,7 @@
           DUCK<span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-cyan-400">MON</span>
         </h1>
         <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-sans leading-relaxed pt-2">
-          310 illustrated cards. 11 factions. A 30-story branching campaign, tactical 5x4 grid warfare, and rogue-lite dungeon runs - built in Unity with stubborn solo dev energy.
+          310 illustrated cards. 11 factions. A 30-story branching campaign, tactical 5x4 grid warfare, and rogue-lite dungeon runs: built in Unity with stubborn solo dev energy.
         </p>
       </div>
 
@@ -161,63 +161,99 @@
 
 
     <!-- ============================================================ -->
-    <!-- 3. INTERACTIVE AUDIO PLAYER & VISUALIZER                     -->
+    <!-- 3. QUAX TRAX: 45-TRACK MUSIC PLAYER & DUCK VISUALIZER        -->
     <!-- ============================================================ -->
-    <section id="ost" class="bg-gradient-to-br from-brand-card via-black/80 to-brand-card border border-cyan-500/20 rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-6 shadow-2xl">
-      <div class="flex flex-wrap items-center justify-between gap-3">
+    <section id="quax-trax-player" class="relative max-w-5xl mx-auto p-3 sm:p-5 rounded-3xl bg-brand-card/95 border-2 border-purple-600 shadow-2xl overflow-hidden font-mono">
+      
+      <!-- Outer Frame Header -->
+      <div class="flex items-center justify-between pb-3 mb-3 border-b border-purple-500/30">
         <div class="flex items-center gap-3">
-          <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
-          <span class="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold">Original Soundtrack & Audio Visualizer</span>
+          <div class="w-7 h-7 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-base">
+            🦆
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-display font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-100 to-amber-400 drop-shadow uppercase">
+            QUAX TRAX
+          </h2>
         </div>
-        <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">
-          In-Game Music Player
-        </span>
+
+        <button id="togglePlaylistBtn" class="px-4 py-1.5 rounded-lg bg-black/80 hover:bg-black border border-white/20 text-white font-bold text-xs uppercase tracking-widest transition hover:border-amber-400">
+          TRAX PLAYLIST
+        </button>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-        <!-- Visualizer Canvas & Controls (7 cols) -->
-        <div class="md:col-span-7 space-y-4">
-          <div class="relative bg-black/60 border border-white/10 rounded-2xl p-4 overflow-hidden">
-            <canvas id="audioVisualizer" class="w-full h-24 rounded-lg bg-black/80"></canvas>
-            <div class="flex items-center justify-between pt-3 font-mono text-xs">
-              <span id="currentTrackTitle" class="text-amber-400 font-bold truncate">🎵 Warm Duck Shuffle</span>
-              <span id="audioStatus" class="text-slate-500">Ready</span>
+      <!-- Player Screen Viewport -->
+      <div class="relative w-full rounded-2xl overflow-hidden border-2 border-purple-900/60 bg-black aspect-[16/9] min-h-[360px] sm:min-h-[460px] shadow-inner flex flex-col justify-between">
+        
+        <!-- Scenic Landscape Canvas & 14 Duck Fountain Jets -->
+        <canvas id="quaxCanvas" class="absolute inset-0 w-full h-full object-cover z-0"></canvas>
+
+        <!-- Top Track Banner -->
+        <div class="relative z-10 mx-auto mt-4 px-6 py-2 rounded-xl bg-white/75 backdrop-blur-md border border-white/40 shadow-lg text-center max-w-[85%]">
+          <span id="currentArtist" class="block text-[11px] sm:text-xs font-bold text-slate-800 uppercase tracking-widest">ARNEBHUS</span>
+          <span id="currentTrack" class="block text-sm sm:text-base font-black text-black uppercase tracking-tight truncate">WARM DUCK SHUFFLE</span>
+        </div>
+
+        <!-- Collapsible 45-Track Drawer with Search -->
+        <div id="playlistDrawer" class="absolute top-0 left-0 bottom-0 w-72 sm:w-88 bg-brand-dark/95 border-r-2 border-purple-600 p-4 z-20 overflow-hidden flex flex-col backdrop-blur-xl transition-transform duration-300 transform -translate-x-full shadow-2xl">
+          
+          <div class="flex items-center justify-between pb-2 mb-2 border-b border-purple-500/30">
+            <div>
+              <span class="text-xs font-black text-purple-300 uppercase tracking-widest block">Quax Trax Playlist</span>
+              <span class="text-[10px] text-slate-400 font-mono">45 Game Soundtracks</span>
+            </div>
+            <button id="closeDrawerBtn" class="text-slate-400 hover:text-white font-bold text-xs p-1">✕</button>
+          </div>
+
+          <!-- Instant Search Filter -->
+          <input 
+            type="text" 
+            id="trackSearchInput" 
+            placeholder="Search artist or title..." 
+            class="w-full mb-3 px-3 py-1.5 rounded-lg bg-black/60 border border-purple-500/30 text-white placeholder-slate-500 text-xs font-mono focus:outline-none focus:border-amber-400"
+          />
+
+          <!-- Scrollable List -->
+          <ul id="quaxTrackList" class="flex-1 overflow-y-auto space-y-1.5 text-xs pr-1">
+            <!-- 45 tracks rendered dynamically -->
+          </ul>
+        </div>
+
+        <!-- Bottom Controls & Scrubber -->
+        <div class="relative z-10 p-3 sm:p-4 bg-gradient-to-t from-black/95 via-black/80 to-transparent space-y-3">
+          
+          <!-- Progress Bar with Duck Scrubber -->
+          <div class="relative w-full h-3 bg-purple-950/80 rounded-full border border-purple-500/40 cursor-pointer" id="progressBarContainer">
+            <div id="progressBarFill" class="h-full bg-gradient-to-r from-amber-400 to-amber-200 rounded-full w-0 relative">
+              <div class="absolute -right-3 -top-3.5 text-lg select-none filter drop-shadow-md">
+                🦆
+              </div>
             </div>
           </div>
 
-          <!-- Controls -->
-          <div class="flex items-center gap-3">
-            <button id="playAudioBtn" class="px-5 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-cyan-400/20">
-              ▶ Play Track
+          <!-- Chunky Green Retro Controls -->
+          <div class="grid grid-cols-6 gap-1.5 sm:gap-2 pt-1 font-bold text-black text-xs sm:text-sm">
+            <button id="traxBtn" class="py-2.5 sm:py-3 rounded-xl bg-[#76c81e] hover:bg-[#8cee24] active:translate-y-0.5 border-2 border-black shadow-[0_4px_0_#43790c] font-black uppercase transition">
+              TRAX
             </button>
-            <button id="nextTrackBtn" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white font-mono text-xs transition">
-              ⏭ Next Track
+            <button id="prevBtn" class="py-2.5 sm:py-3 rounded-xl bg-[#76c81e] hover:bg-[#8cee24] active:translate-y-0.5 border-2 border-black shadow-[0_4px_0_#43790c] font-black transition">
+              &lt;&lt;&lt;
+            </button>
+            <button id="pauseBtn" class="py-2.5 sm:py-3 rounded-xl bg-[#76c81e] hover:bg-[#8cee24] active:translate-y-0.5 border-2 border-black shadow-[0_4px_0_#43790c] font-black transition">
+              II
+            </button>
+            <button id="playBtn" class="py-2.5 sm:py-3 rounded-xl bg-[#76c81e] hover:bg-[#8cee24] active:translate-y-0.5 border-2 border-black shadow-[0_4px_0_#43790c] font-black uppercase transition">
+              PLAY
+            </button>
+            <button id="nextBtn" class="py-2.5 sm:py-3 rounded-xl bg-[#76c81e] hover:bg-[#8cee24] active:translate-y-0.5 border-2 border-black shadow-[0_4px_0_#43790c] font-black transition">
+              &gt;&gt;&gt;
+            </button>
+            <button id="muteBtn" class="py-2.5 sm:py-3 rounded-xl bg-[#76c81e] hover:bg-[#8cee24] active:translate-y-0.5 border-2 border-black shadow-[0_4px_0_#43790c] font-black uppercase transition">
+              X
             </button>
           </div>
+
         </div>
 
-        <!-- Tracklist (5 cols) -->
-        <div class="md:col-span-5 bg-white/5 border border-white/5 rounded-2xl p-4 space-y-2 text-xs font-mono">
-          <span class="text-slate-400 uppercase tracking-wider block font-bold text-[10px]">Featured Game OST</span>
-          <ul id="trackList" class="space-y-1.5">
-            <li class="p-2 rounded-lg bg-white/10 text-white flex justify-between cursor-pointer" data-track="0">
-              <span>1. Warm Duck Shuffle</span>
-              <span class="text-amber-400">arnebhus</span>
-            </li>
-            <li class="p-2 rounded-lg hover:bg-white/5 text-slate-300 flex justify-between cursor-pointer" data-track="1">
-              <span>2. Swing Machine</span>
-              <span class="text-slate-400">Kevin MacLeod</span>
-            </li>
-            <li class="p-2 rounded-lg hover:bg-white/5 text-slate-300 flex justify-between cursor-pointer" data-track="2">
-              <span>3. 8 Bit Love</span>
-              <span class="text-slate-400">müxa</span>
-            </li>
-            <li class="p-2 rounded-lg hover:bg-white/5 text-slate-300 flex justify-between cursor-pointer" data-track="3">
-              <span>4. Neon Reverie</span>
-              <span class="text-slate-400">BR</span>
-            </li>
-          </ul>
-        </div>
       </div>
     </section>
 
@@ -235,7 +271,6 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <!-- Feature 1 -->
         <div class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-3">
           <div class="text-2xl">⚔️</div>
           <h4 class="text-lg font-display font-bold text-white">Tactical 5x4 Grid Battles</h4>
@@ -244,7 +279,6 @@
           </p>
         </div>
 
-        <!-- Feature 2 -->
         <div class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-3">
           <div class="text-2xl">📖</div>
           <h4 class="text-lg font-display font-bold text-white">30-Story Campaign</h4>
@@ -253,7 +287,6 @@
           </p>
         </div>
 
-        <!-- Feature 3 -->
         <div class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-3">
           <div class="text-2xl">🃏</div>
           <h4 class="text-lg font-display font-bold text-white">310 Illustrated Cards</h4>
@@ -262,7 +295,6 @@
           </p>
         </div>
 
-        <!-- Feature 4 -->
         <div class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-3">
           <div class="text-2xl">📂</div>
           <h4 class="text-lg font-display font-bold text-white">Deckbuilder & Binder</h4>
@@ -271,7 +303,6 @@
           </p>
         </div>
 
-        <!-- Feature 5 -->
         <div class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-3">
           <div class="text-2xl">☁️</div>
           <h4 class="text-lg font-display font-bold text-white">Progression & Rewards</h4>
@@ -280,7 +311,6 @@
           </p>
         </div>
 
-        <!-- Feature 6 -->
         <div class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-3">
           <div class="text-2xl">💎</div>
           <h4 class="text-lg font-display font-bold text-white">Clean, Fair System</h4>
@@ -307,7 +337,6 @@
         </p>
       </div>
 
-      <!-- Card Image Grid -->
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
           <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123522.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
@@ -496,19 +525,25 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <!-- Music & Audio -->
+        <!-- Music & Audio (All 45 Tracks) -->
         <div class="space-y-3">
           <h4 class="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold pb-2 border-b border-white/10">
-            Music & Audio
+            Music & Audio (Quax Trax)
           </h4>
-          <ul class="space-y-2 text-xs font-mono text-slate-300">
-            <li><strong class="text-white">Warm Duck Shuffle:</strong> arnebhus</li>
-            <li><strong class="text-white">Swing Machine:</strong> Kevin MacLeod</li>
-            <li><strong class="text-white">Inspiring:</strong> Wavecont</li>
-            <li><strong class="text-white">8 Bit Love:</strong> müxa</li>
-            <li><strong class="text-white">Neon Reverie:</strong> BR</li>
-            <li class="text-slate-400 pt-1"><strong>Additional Artists:</strong> Nonak, Kike Gutz, Off Beat, MudiG, HitsLab, Milbela</li>
-            <li class="text-slate-400"><strong>SFX:</strong> Pixabay, Freesound Community, Universfield</li>
+          <ul class="space-y-1.5 text-xs font-mono text-slate-300">
+            <li><strong class="text-white">Alex Productions:</strong> Epic Cinematic Adventure</li>
+            <li><strong class="text-white">Arnebhus:</strong> Warm Duck Shuffle</li>
+            <li><strong class="text-white">BR:</strong> Neon Reverie</li>
+            <li><strong class="text-white">Kevin MacLeod:</strong> Swing Machine</li>
+            <li><strong class="text-white">Kike Gutz:</strong> 14 Original Multiverse Tracks</li>
+            <li><strong class="text-white">MudiG:</strong> 7 Celtic & Combat Themes</li>
+            <li><strong class="text-white">müxa:</strong> 8 Bit Love, Fighters Game</li>
+            <li><strong class="text-white">Nonak:</strong> 6 Electronic & Battle Tracks</li>
+            <li><strong class="text-white">Off Beat:</strong> 7 Ambient & Lo-Fi Beats</li>
+            <li><strong class="text-white">Pratzapp & Sakura Hz:</strong> Thar</li>
+            <li><strong class="text-white">Wavecont:</strong> Inspiring</li>
+            <li><strong class="text-white">WarbringerGhesh:</strong> Forfeit My Life</li>
+            <li><strong class="text-white">SFX:</strong> Pixabay, Freesound Community, Universfield</li>
           </ul>
         </div>
 
@@ -600,131 +635,358 @@
 
 
   <!-- ============================================================ -->
-  <!-- AUDIO VISUALIZER JAVASCRIPT                                 -->
+  <!-- QUAX TRAX ENGINE (45 TRACKS + DUCK WATER FOUNTAIN SIMULATION)-->
   <!-- ============================================================ -->
   <script>
-    const TRACKS = [
-      { title: "Warm Duck Shuffle", artist: "arnebhus", baseFreq: 140 },
-      { title: "Swing Machine", artist: "Kevin MacLeod", baseFreq: 220 },
-      { title: "8 Bit Love", artist: "müxa", baseFreq: 330 },
-      { title: "Neon Reverie", artist: "BR", baseFreq: 180 }
+    // Complete 45-Track In-Game OST Catalog
+    const QUAX_PLAYLIST = [
+      // 1-8
+      { artist: "Alex Productions", title: "Epic Cinematic Adventure Music Iceland", freq: 160 },
+      { artist: "Arnebhus", title: "Warm Duck Shuffle", freq: 220 },
+      { artist: "BR", title: "Neon Reverie", freq: 280 },
+      { artist: "Kike Gutz", title: "Cold Streets", freq: 190 },
+      { artist: "Kike Gutz", title: "Dominion Pulse", freq: 250 },
+      { artist: "Kike Gutz", title: "Electric Mirage", freq: 310 },
+      { artist: "Kike Gutz", title: "Feel The Fire", freq: 350 },
+      { artist: "Kike Gutz", title: "Grindcore Spit", freq: 400 },
+
+      // 9-16
+      { artist: "Kike Gutz", title: "Mango Breeze", freq: 210 },
+      { artist: "Kike Gutz", title: "Oath Beneath Sakura", freq: 240 },
+      { artist: "Kike Gutz", title: "Prelude To Forever", freq: 260 },
+      { artist: "Kike Gutz", title: "Sapphire Storm", freq: 320 },
+      { artist: "Kike Gutz", title: "Seraphic Symphony", freq: 290 },
+      { artist: "Kike Gutz", title: "Slideway Soul", freq: 230 },
+      { artist: "Kike Gutz", title: "Taiko Command", freq: 180 },
+      { artist: "Kike Gutz", title: "Taiko Flame Call", freq: 340 },
+
+      // 17-24
+      { artist: "Kike Gutz", title: "Tripwire Acid Funk", freq: 370 },
+      { artist: "Kevin MacLeod", title: "Swing Machine", freq: 220 },
+      { artist: "MudiG", title: "Clan Of The Highlands", freq: 200 },
+      { artist: "MudiG", title: "Explosion Flashes", freq: 380 },
+      { artist: "MudiG", title: "Lost Train", freq: 210 },
+      { artist: "MudiG", title: "New Light", freq: 270 },
+      { artist: "MudiG", title: "Poseidon's Wrath", freq: 330 },
+      { artist: "MudiG", title: "Time Spiral", freq: 290 },
+
+      // 25-32
+      { artist: "MudiG", title: "Warrior Pulse", freq: 310 },
+      { artist: "müxa", title: "8 Bit Love", freq: 330 },
+      { artist: "müxa", title: "Fighters Game (Part 1)", freq: 360 },
+      { artist: "müxa", title: "Fighters Game (Part 2)", freq: 370 },
+      { artist: "Nonak", title: "Joules", freq: 250 },
+      { artist: "Nonak", title: "Nothing Can Stop Us", freq: 300 },
+      { artist: "Nonak", title: "One Last Goodbye", freq: 220 },
+      { artist: "Nonak", title: "The Curse Gets Worse", freq: 390 },
+
+      // 33-40
+      { artist: "Nonak", title: "Toxic", freq: 340 },
+      { artist: "Nonak", title: "Victory Dance", freq: 280 },
+      { artist: "Off Beat", title: "Chiki Piqui Club", freq: 260 },
+      { artist: "Off Beat", title: "Cozy Cabin", freq: 190 },
+      { artist: "Off Beat", title: "Deathwalk", freq: 410 },
+      { artist: "Off Beat", title: "Pride And Joy", freq: 240 },
+      { artist: "Off Beat", title: "Resilience", freq: 300 },
+      { artist: "Off Beat", title: "The Leaves That Fall", freq: 210 },
+
+      // 41-45
+      { artist: "Off Beat", title: "You Were Right", freq: 230 },
+      { artist: "Pratzapp & Sakura Hz", title: "Thar", freq: 270 },
+      { artist: "Wavecont", title: "Inspiring", freq: 290 },
+      { artist: "WarbringerGhesh", title: "Forfeit My Life", freq: 420 },
+      { artist: "Unknown Freepik Artist", title: "BT2", freq: 250 }
     ];
 
-    let currentTrackIdx = 0;
+    let currentTrackIndex = 1; // Default to Warm Duck Shuffle
     let isPlaying = false;
-    let audioCtx = null;
-    let oscNode = null;
-    let gainNode = null;
-    let animId = null;
+    let isMuted = false;
+    let progressPercent = 0;
 
-    const canvas = document.getElementById("audioVisualizer");
+    // Web Audio Context & Analyser
+    let audioCtx = null;
+    let synthOsc = null;
+    let synthGain = null;
+    let analyser = null;
+    let dataArray = null;
+
+    // 14 Water Jets with Rubber Ducks
+    const NUM_JETS = 14;
+    const ducks = [];
+    for (let i = 0; i < NUM_JETS; i++) {
+      ducks.push({
+        height: 0,
+        targetHeight: 0,
+        bobOffset: Math.random() * Math.PI * 2
+      });
+    }
+
+    // DOM Elements
+    const canvas = document.getElementById("quaxCanvas");
     const ctx = canvas.getContext("2d");
-    const playBtn = document.getElementById("playAudioBtn");
-    const nextBtn = document.getElementById("nextTrackBtn");
-    const trackTitleEl = document.getElementById("currentTrackTitle");
-    const audioStatusEl = document.getElementById("audioStatus");
-    const trackListItems = document.querySelectorAll("#trackList li");
+    const currentArtistEl = document.getElementById("currentArtist");
+    const currentTrackEl = document.getElementById("currentTrack");
+    const playlistDrawer = document.getElementById("playlistDrawer");
+    const togglePlaylistBtn = document.getElementById("togglePlaylistBtn");
+    const closeDrawerBtn = document.getElementById("closeDrawerBtn");
+    const quaxTrackList = document.getElementById("quaxTrackList");
+    const trackSearchInput = document.getElementById("trackSearchInput");
+    const progressBarFill = document.getElementById("progressBarFill");
+
+    const playBtn = document.getElementById("playBtn");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const traxBtn = document.getElementById("traxBtn");
+    const muteBtn = document.getElementById("muteBtn");
+
+    // Dynamic Render with Instant Search
+    function renderPlaylist(filterText = "") {
+      quaxTrackList.innerHTML = QUAX_PLAYLIST
+        .map((track, idx) => ({ ...track, originalIdx: idx }))
+        .filter(track => {
+          if (!filterText) return true;
+          const q = filterText.toLowerCase();
+          return track.artist.toLowerCase().includes(q) || track.title.toLowerCase().includes(q);
+        })
+        .map((track) => {
+          const isCurrent = track.originalIdx === currentTrackIndex;
+          return `
+            <li class="p-2.5 rounded-lg cursor-pointer transition border ${
+              isCurrent 
+                ? 'bg-[#15803d] text-white border-green-400 font-bold' 
+                : 'bg-white/5 hover:bg-white/10 text-slate-300 border-white/5'
+            }" data-index="${track.originalIdx}">
+              <span class="block text-[10px] text-slate-400 uppercase">${track.artist}</span>
+              <span class="block text-xs truncate">${track.title}</span>
+            </li>
+          `;
+        }).join("");
+
+      // Re-bind Click Events
+      document.querySelectorAll("#quaxTrackList li").forEach(item => {
+        item.addEventListener("click", () => {
+          currentTrackIndex = parseInt(item.dataset.index);
+          loadTrack(currentTrackIndex);
+          if (!isPlaying) startPlayback();
+        });
+      });
+    }
+    renderPlaylist();
+
+    trackSearchInput.addEventListener("input", (e) => {
+      renderPlaylist(e.target.value.trim());
+    });
 
     function resizeCanvas() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
     }
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    function drawVisualizer() {
-      ctx.fillStyle = "rgba(10, 12, 16, 0.25)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Draw Scenic Lake Landscape + 14 Water Jets & Rubber Ducks
+    function renderCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const numBars = 32;
-      const barWidth = canvas.width / numBars;
+      // Sky
+      const skyGradient = ctx.createLinearGradient(0, 0, 0, canvas.height * 0.6);
+      skyGradient.addColorStop(0, "#c2d1d9");
+      skyGradient.addColorStop(0.6, "#e8ded1");
+      skyGradient.addColorStop(1, "#c5b6a1");
+      ctx.fillStyle = skyGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height * 0.6);
 
-      for (let i = 0; i < numBars; i++) {
-        const height = isPlaying 
-          ? Math.sin(Date.now() * 0.005 + i * 0.4) * (canvas.height * 0.4) + (canvas.height * 0.45)
-          : 6;
+      // Mountains
+      ctx.fillStyle = "#8a9aa6";
+      ctx.beginPath();
+      ctx.moveTo(0, canvas.height * 0.45);
+      ctx.lineTo(canvas.width * 0.25, canvas.height * 0.25);
+      ctx.lineTo(canvas.width * 0.5, canvas.height * 0.4);
+      ctx.lineTo(canvas.width * 0.75, canvas.height * 0.2);
+      ctx.lineTo(canvas.width, canvas.height * 0.42);
+      ctx.lineTo(canvas.width, canvas.height * 0.6);
+      ctx.lineTo(0, canvas.height * 0.6);
+      ctx.fill();
 
-        const gradient = ctx.createLinearGradient(0, canvas.height, 0, 0);
-        gradient.addColorStop(0, "#06B6D4");
-        gradient.addColorStop(1, "#F59E0B");
+      // Lake Water
+      const waterGradient = ctx.createLinearGradient(0, canvas.height * 0.55, 0, canvas.height);
+      waterGradient.addColorStop(0, "#48626e");
+      waterGradient.addColorStop(0.5, "#2b404d");
+      waterGradient.addColorStop(1, "#17252f");
+      ctx.fillStyle = waterGradient;
+      ctx.fillRect(0, canvas.height * 0.55, canvas.width, canvas.height * 0.45);
 
-        ctx.fillStyle = gradient;
-        ctx.fillRect(i * barWidth + 2, canvas.height - height, barWidth - 4, height);
+      // Real Audio Frequency Data
+      if (analyser && isPlaying) {
+        analyser.getByteFrequencyData(dataArray);
       }
 
-      animId = requestAnimationFrame(drawVisualizer);
-    }
-    drawVisualizer();
+      const time = Date.now() * 0.004;
+      const jetWidth = canvas.width / (NUM_JETS + 1);
+      const bottomY = canvas.height - 50;
 
-    function updateTrackUI() {
-      const track = TRACKS[currentTrackIdx];
-      trackTitleEl.textContent = `🎵 ${track.title} (${track.artist})`;
-      trackListItems.forEach((item, idx) => {
-        if (idx === currentTrackIdx) {
-          item.className = "p-2 rounded-lg bg-white/15 text-white flex justify-between cursor-pointer font-bold border-l-2 border-amber-400";
-        } else {
-          item.className = "p-2 rounded-lg hover:bg-white/5 text-slate-300 flex justify-between cursor-pointer";
+      // 14 Water Jets & Floating Rubber Ducks
+      for (let i = 0; i < NUM_JETS; i++) {
+        const x = (i + 1) * jetWidth;
+        
+        let freqPower = 0;
+        if (analyser && isPlaying && dataArray) {
+          const freqIdx = Math.floor((i / NUM_JETS) * (dataArray.length * 0.6));
+          freqPower = dataArray[freqIdx] / 255;
         }
-      });
-    }
 
-    function togglePlay() {
+        const wave = Math.sin(time + ducks[i].bobOffset) * 0.5 + 0.5;
+        ducks[i].targetHeight = isPlaying 
+          ? (freqPower * 140) + (wave * 25) + 15 
+          : (wave * 10) + 5;
+
+        ducks[i].height += (ducks[i].targetHeight - ducks[i].height) * 0.25;
+        const currentY = bottomY - ducks[i].height;
+
+        // Water Stream
+        ctx.beginPath();
+        ctx.moveTo(x - 2, bottomY);
+        ctx.lineTo(x + 2, bottomY);
+        ctx.lineTo(x + 3.5, currentY + 4);
+        ctx.lineTo(x - 3.5, currentY + 4);
+        ctx.closePath();
+
+        const streamGrad = ctx.createLinearGradient(0, bottomY, 0, currentY);
+        streamGrad.addColorStop(0, "rgba(56, 189, 248, 0.4)");
+        streamGrad.addColorStop(0.7, "rgba(186, 230, 253, 0.8)");
+        streamGrad.addColorStop(1, "rgba(255, 255, 255, 0.95)");
+        ctx.fillStyle = streamGrad;
+        ctx.fill();
+
+        // Water Droplet Splashes
+        if (ducks[i].height > 15) {
+          ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+          ctx.beginPath();
+          ctx.arc(x - 4, currentY + 6, 1.5, 0, Math.PI * 2);
+          ctx.arc(x + 5, currentY + 8, 1.8, 0, Math.PI * 2);
+          ctx.arc(x, currentY + 2, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Yellow Rubber Duck
+        ctx.font = "20px sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        
+        ctx.save();
+        ctx.translate(x, currentY - 6);
+        ctx.rotate(Math.sin(time + i) * 0.08);
+        ctx.fillText("🦆", 0, 0);
+        ctx.restore();
+      }
+
+      // Progress Bar Update
+      if (isPlaying) {
+        progressPercent = (progressPercent + 0.04) % 100;
+        progressBarFill.style.width = `${progressPercent}%`;
+      }
+
+      requestAnimationFrame(renderCanvas);
+    }
+    renderCanvas();
+
+    // Audio Engine
+    function initAudio() {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 64;
+        dataArray = new Uint8Array(analyser.frequencyBinCount);
       }
-
-      if (isPlaying) {
-        if (oscNode) {
-          oscNode.stop();
-          oscNode.disconnect();
-          oscNode = null;
-        }
-        isPlaying = false;
-        playBtn.textContent = "▶ Play Track";
-        audioStatusEl.textContent = "Paused";
-      } else {
-        oscNode = audioCtx.createOscillator();
-        gainNode = audioCtx.createGain();
-        oscNode.type = "sine";
-        oscNode.frequency.setValueAtTime(TRACKS[currentTrackIdx].baseFreq, audioCtx.currentTime);
-        gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime);
-
-        oscNode.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-        oscNode.start();
-
-        isPlaying = true;
-        playBtn.textContent = "⏸ Pause Track";
-        audioStatusEl.textContent = "Playing";
-      }
-      updateTrackUI();
     }
 
-    playBtn.addEventListener("click", togglePlay);
+    function loadTrack(index) {
+      const track = QUAX_PLAYLIST[index];
+      currentArtistEl.textContent = track.artist;
+      currentTrackEl.textContent = track.title;
+      progressPercent = 0;
+      renderPlaylist(trackSearchInput.value.trim());
+
+      if (isPlaying) {
+        stopPlayback();
+        startPlayback();
+      }
+    }
+
+    function startPlayback() {
+      initAudio();
+      stopPlayback();
+
+      const track = QUAX_PLAYLIST[currentTrackIndex];
+
+      synthOsc = audioCtx.createOscillator();
+      synthGain = audioCtx.createGain();
+
+      synthOsc.type = "triangle";
+      synthOsc.frequency.setValueAtTime(track.freq, audioCtx.currentTime);
+
+      const lfo = audioCtx.createOscillator();
+      const lfoGain = audioCtx.createGain();
+      lfo.frequency.setValueAtTime(3.5, audioCtx.currentTime);
+      lfoGain.gain.setValueAtTime(40, audioCtx.currentTime);
+      lfo.connect(synthOsc.frequency);
+      lfo.start();
+
+      synthGain.gain.setValueAtTime(isMuted ? 0 : 0.06, audioCtx.currentTime);
+
+      synthOsc.connect(analyser);
+      analyser.connect(synthGain);
+      synthGain.connect(audioCtx.destination);
+
+      synthOsc.start();
+      isPlaying = true;
+    }
+
+    function stopPlayback() {
+      if (synthOsc) {
+        try {
+          synthOsc.stop();
+          synthOsc.disconnect();
+        } catch (e) {}
+        synthOsc = null;
+      }
+      isPlaying = false;
+    }
+
+    // Button Event Listeners
+    playBtn.addEventListener("click", () => {
+      if (!isPlaying) startPlayback();
+    });
+
+    pauseBtn.addEventListener("click", () => {
+      stopPlayback();
+    });
 
     nextBtn.addEventListener("click", () => {
-      currentTrackIdx = (currentTrackIdx + 1) % TRACKS.length;
-      if (isPlaying) {
-        togglePlay();
-        togglePlay();
-      } else {
-        updateTrackUI();
+      currentTrackIndex = (currentTrackIndex + 1) % QUAX_PLAYLIST.length;
+      loadTrack(currentTrackIndex);
+    });
+
+    prevBtn.addEventListener("click", () => {
+      currentTrackIndex = (currentTrackIndex - 1 + QUAX_PLAYLIST.length) % QUAX_PLAYLIST.length;
+      loadTrack(currentTrackIndex);
+    });
+
+    muteBtn.addEventListener("click", () => {
+      isMuted = !isMuted;
+      if (synthGain) {
+        synthGain.gain.setValueAtTime(isMuted ? 0 : 0.06, audioCtx.currentTime);
       }
+      muteBtn.style.background = isMuted ? "#ef4444" : "#76c81e";
     });
 
-    trackListItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        currentTrackIdx = parseInt(item.dataset.track);
-        if (isPlaying) {
-          togglePlay();
-          togglePlay();
-        } else {
-          updateTrackUI();
-        }
-      });
-    });
-
-    updateTrackUI();
+    function toggleDrawer() {
+      playlistDrawer.classList.toggle("-translate-x-full");
+    }
+    traxBtn.addEventListener("click", toggleDrawer);
+    togglePlaylistBtn.addEventListener("click", toggleDrawer);
+    closeDrawerBtn.addEventListener("click", () => playlistDrawer.classList.add("-translate-x-full"));
   </script>
 </body>
 </html>
