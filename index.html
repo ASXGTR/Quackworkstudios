@@ -1,303 +1,542 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
-  <title>Quackwork Studios | Real & Raw Game Development</title>
+  <title>Quackwork Studios | Solo Dev & Multiverse Games</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index,follow">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Quackwork Studios: Solo indie game development, Multiverse card battlers, and DEV challenge experiments powered by human architecture & AI engineering.">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Syne (Display/Punchy), Outfit (Clean UI), JetBrains Mono (Tech/Raw dev) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              goldHover: '#D97706',
+              cyan: '#06B6D4',
+              purple: '#A855F7',
+              dark: '#0A0C10',
+              card: '#121620',
+              cardHover: '#181E2B',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
-<body>
+<body class="bg-brand-dark text-slate-200 font-sans min-h-screen antialiased selection:bg-brand-gold selection:text-black">
 
-  <header class="header-wrapper">
-    <div class="top-notice-bar">
-      <span class="notice-text">🐾 DEV Challenge Entry: Bark Gallery (Google AI Studio) is live!</span>
-      <a href="/doggame.html" class="notice-link">Play Game</a>
+  <!-- Background Ambient Glows -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-amber-500/10 rounded-full blur-[140px]"></div>
+    <div class="absolute top-[40rem] left-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-[80rem] right-10 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[160px]"></div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TOP BANNER & NAVBAR                                          -->
+  <!-- ============================================================ -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/80 border-b border-white/5">
+    <!-- Top Challenge Notice Bar -->
+    <div class="bg-gradient-to-r from-amber-500/20 via-brand-dark to-amber-500/20 border-b border-amber-500/20 px-4 py-1.5 text-center text-xs font-mono">
+      <span class="text-slate-300">🐾 DEV Challenge Entry: <strong>Bark Gallery (Google AI Studio)</strong> is live!</span>
+      <a href="/doggame.html" class="ml-2 font-bold text-brand-gold hover:underline">Play Game →</a>
     </div>
 
-    <nav class="navbar">
-      <div class="navbar-container">
-        <a href="#" class="brand-link">
-          <div class="brand-pixel-badge">
-            <span class="pixel-cell"></span>
-            <span class="pixel-cell"></span>
-            <span class="pixel-cell"></span>
-            <span class="pixel-cell"></span>
-          </div>
-          <span class="brand-name">Quackwork Studios</span>
-        </a>
+    <!-- Navigation -->
+    <nav class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center font-mono font-bold text-amber-400 group-hover:scale-105 transition">
+          🦆
+        </div>
+        <span class="font-display font-bold text-lg text-white tracking-tight">Quackwork Studios</span>
+      </a>
 
-        <ul class="navbar-links">
-          <li><a href="#" class="navbar-link">Home</a></li>
-          <li><a href="#games" class="navbar-link">Games</a></li>
-          <li><a href="/doggame.html" class="navbar-link" style="color: #f59e0b;">🐾 Bark Gallery</a></li>
-          <li><a href="#blog" class="navbar-link">Blog</a></li>
-          <li><a href="#contact" class="navbar-link">Contact</a></li>
-        </ul>
-      </div>
+      <ul class="flex items-center gap-4 sm:gap-6 text-xs md:text-sm font-mono font-medium">
+        <li><a href="#about-studio" class="text-slate-400 hover:text-white transition">About</a></li>
+        <li><a href="#games" class="text-slate-400 hover:text-white transition">Duckmon</a></li>
+        <li><a href="#dev-challenges" class="text-amber-400 hover:text-amber-300 transition">🐾 Dev Challenges</a></li>
+        <li><a href="#blog" class="text-slate-400 hover:text-white transition">Devlog</a></li>
+        <li><a href="#contact" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white transition">Contact</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="hero-section">
-      <div class="hero-container">
-        <div class="hero-grid">
-          <div class="hero-text-block">
-            <h1 class="hero-title">Real & Raw Game Development</h1>
-            <p class="hero-subtitle">
-              Quackwork Studios is a one-person journey built by a dad, a husband, and a stubborn solo developer. No formal training, no industry background. Just curiosity, obsession, and a laptop that really should have died by now. I build weird, experimental, AI-assisted 2D Unity games with charm, personality, and unapologetic chaos.
-            </p>
+  <main class="max-w-5xl mx-auto px-5 py-12 md:py-20 space-y-20">
 
-            <div class="hero-actions">
-              <a href="#games" class="primary-cta">Explore Projects</a>
-              <a href="#about" class="secondary-cta">About the Studio</a>
-            </div>
+    <!-- ============================================================ -->
+    <!-- 1. BIG STUDIO TITLE & LOGO UNDERNEATH                        -->
+    <!-- ============================================================ -->
+    <section class="text-center space-y-6">
+      <div class="inline-block space-y-2">
+        <span class="text-xs font-mono tracking-[0.25em] uppercase text-brand-gold font-bold px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/5">
+          Solo Indie Game Forge
+        </span>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-display font-black tracking-tight text-white uppercase drop-shadow-md">
+          Quackwork <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-cyan-400">Studios</span>
+        </h1>
+      </div>
 
-            <div class="hero-stats">
-              <div class="stat-card">
-                <div class="stat-icon-and-label">
-                  <img src="https://api.iconify.design/lucide-gamepad-2.svg?color=%23b8bfca" class="stat-icon" />
-                  <span class="stat-label">Active Projects</span>
-                </div>
-                <p class="stat-value">2</p>
-              </div>
-
-              <div class="stat-card">
-                <div class="stat-icon-and-label">
-                  <img src="https://api.iconify.design/lucide-calendar-days.svg?color=%23b8bfca" class="stat-icon" />
-                  <span class="stat-label">Years Creating</span>
-                </div>
-                <p class="stat-value">&lt;1</p>
-              </div>
-
-              <div class="stat-card">
-                <div class="stat-icon-and-label">
-                  <img src="https://api.iconify.design/lucide-rocket.svg?color=%23b8bfca" class="stat-icon" />
-                  <span class="stat-label">Next Release</span>
-                </div>
-                <p class="stat-value">TBD</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-media-block">
-            <div class="hero-media-frame">
-              <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/QuackworkStudios.png" alt="Quackwork Studios Logo" />
-              <div class="hero-overlay"></div>
-            </div>
+      <!-- Studio Logo Underneath Title -->
+      <div class="flex justify-center pt-2">
+        <div class="relative group">
+          <div class="absolute -inset-1 bg-gradient-to-r from-amber-500/40 via-cyan-500/30 to-amber-500/40 rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition duration-500"></div>
+          
+          <div class="relative w-48 h-48 md:w-56 md:h-56 rounded-3xl bg-brand-card/90 border border-brand-border p-4 flex items-center justify-center shadow-2xl backdrop-blur-md">
+            <img 
+              src="https://github.com/ASXGTR/Quackworkstudios/raw/main/QuackworkStudios.png" 
+              alt="Quackwork Studios Logo" 
+              class="w-full h-full object-contain filter drop-shadow-md transition-transform duration-300 group-hover:scale-105"
+            />
           </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="about-section">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">About Me</h2>
-          <p class="section-subtitle">Solo dev, dad, husband, building games one stubborn idea at a time.</p>
-        </div>
-        <a href="#contact" class="section-action">
-          <img src="https://api.iconify.design/lucide-mail.svg?color=%23d7dbe0" class="action-icon" />
-          <span class="action-label">Say hi</span>
-        </a>
+
+    <!-- ============================================================ -->
+    <!-- 2. ABOUT THE STUDIO                                          -->
+    <!-- ============================================================ -->
+    <section id="about-studio" class="relative bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-10 backdrop-blur-xl shadow-xl space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+        <h2 class="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold">About The Studio</h2>
       </div>
 
-      <div class="about-content">
-        <div class="about-card">
-          <div class="about-text-group">
-            <p class="about-text">
-              My name is John, a solo game dev, dad, husband, and the creator of Quackwork Studios. What started as a hobby turned into a full creative obsession. I build in Unity, experiment with AI tools, and learn whatever I need to bring ideas to life.
-            </p>
-            <p class="about-text">
-              Then came <strong>Duckmon</strong>. It evolved into a lore-heavy, multiverse-spanning 2D card battler inspired by Triple Triad. Ducks replaced zombies, and suddenly everything clicked. Duckmon is now the heart of Quackwork Studios.
-            </p>
-            <p class="about-text">
-              I handle everything: art, systems, coding, audio, and design. I use AI tools as creative amplifiers; every mechanic and idea still comes through me. I am the director; the AI is just part of the toolkit.
-            </p>
-          </div>
-        </div>
+      <div class="space-y-4">
+        <h3 class="text-2xl md:text-3xl font-display font-bold text-white">
+          A Home for Solo Hobbyist Game Projects.
+        </h3>
+        <p class="text-slate-300 leading-relaxed text-base md:text-lg">
+          Quackwork Studios was created as a dedicated host for my solo hobbyist game projects, rapid prototypes, and creative experiments. Built without commercial bloat or corporate red tape, this studio is focused on bringing raw, eccentric ideas to life—from multiverse card battlers to interactive community challenges.
+        </p>
+      </div>
 
-        <div class="about-side-card">
-          <h3 class="side-title">Toolkit</h3>
-          <div class="tool-badges">
-            <span class="tool-badge">Unity</span>
-            <span class="tool-badge">C#</span>
-            <span class="tool-badge">Google AI</span>
-            <span class="tool-badge">Ionos</span>
-            <span class="tool-badge">Cloudflare</span>
-            <span class="tool-badge">Git</span>
-            <span class="tool-badge">Copilot</span>
-            <span class="tool-badge">Supabase</span>
-            <span class="tool-badge">Brevo</span>
-          </div>
-          <div class="side-image-frame">
-            <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Exp15Black.png" alt="Concept Art" />
-          </div>
+      <!-- Quick Studio Stat Pills -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-white/5 font-mono text-xs">
+        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-center">
+          <span class="block text-slate-400 text-[10px]">TEAM SIZE</span>
+          <span class="text-white font-bold">1 Solo Dev</span>
+        </div>
+        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-center">
+          <span class="block text-slate-400 text-[10px]">PHILOSOPHY</span>
+          <span class="text-amber-400 font-bold">Real & Raw</span>
+        </div>
+        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-center">
+          <span class="block text-slate-400 text-[10px]">PRIMARY ENGINE</span>
+          <span class="text-cyan-400 font-bold">Unity / C#</span>
+        </div>
+        <div class="bg-white/5 border border-white/5 rounded-xl p-3 text-center">
+          <span class="block text-slate-400 text-[10px]">ACTIVE FOCUS</span>
+          <span class="text-purple-400 font-bold">Duckmon</span>
         </div>
       </div>
     </section>
 
-    <section id="games" class="featured-games-section">
-      <div class="games-container">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Featured Games</h2>
-            <p class="section-subtitle">Projects built with focus, chaos, and a lot of late nights.</p>
+
+    <!-- ============================================================ -->
+    <!-- 3. ABOUT THE DEVELOPER & JOURNEY                             -->
+    <!-- ============================================================ -->
+    <section id="about" class="space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+        <h2 class="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold">About The Developer</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        <!-- Profile Quick Card (4 Cols) -->
+        <div class="md:col-span-4 bg-brand-card/50 border border-brand-border rounded-3xl p-6 flex flex-col justify-between backdrop-blur-md space-y-6">
+          <div class="space-y-4">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-200 flex items-center justify-center text-3xl shadow-inner font-bold text-black">
+              🦆
+            </div>
+            <div>
+              <h4 class="text-2xl font-display font-bold text-white">John</h4>
+              <p class="text-sm font-mono text-amber-400">Solo Dev • Dad • Creator</p>
+            </div>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Dad, husband, and a stubborn solo dev building weird, charming, and chaotic games on a laptop that refuses to quit.
+            </p>
+          </div>
+
+          <!-- Studio Toolkit -->
+          <div class="pt-6 border-t border-white/5 space-y-3">
+            <h5 class="text-xs font-mono uppercase tracking-widest text-slate-400 font-semibold">Dev Toolkit</h5>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-slate-300">Unity</span>
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-slate-300">C#</span>
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-semibold">Google AI Studio</span>
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-slate-300">GitHub</span>
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-slate-300">Cloudflare</span>
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-slate-300">Copilot</span>
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-slate-300">Supabase</span>
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono bg-white/5 border border-white/10 text-slate-300">Brevo</span>
+            </div>
           </div>
         </div>
 
-        <div class="games-grid">
-          <!-- Game 1: Duckmon -->
-          <article class="game-card">
-            <div class="game-media">
-              <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/TitleImageUpscale.png" alt="Duckmon Title Card" />
-              <div class="game-label">Active Development</div>
+        <!-- Dev Journey & AI Partnership Story (8 Cols) -->
+        <div class="md:col-span-8 bg-brand-card/90 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-xl flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <!-- Terminal Header -->
+            <div class="flex items-center justify-between pb-3 border-b border-white/10 font-mono text-xs text-slate-400">
+              <span class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                <span class="ml-2 text-slate-300">the_journey.md</span>
+              </span>
+              <span class="text-cyan-400">0 Experience ➔ Shipped Code</span>
             </div>
-            <div class="game-content">
-              <div class="game-title-row">
-                <h3 class="game-title">Duckmon: Collectable Card Multiverse</h3>
-                <span class="game-tag">Strategy / Card Game</span>
-              </div>
-              <p class="game-description">
-                A chaotic, lore-heavy card battler spanning infinite realities. Inspired by Triple Triad and evolving every week.
+
+            <!-- Sub Header -->
+            <h3 class="text-xl md:text-2xl font-display font-bold text-white">
+              Starting With Zero Experience: <span class="text-cyan-300">No Tutorials, Pure AI Collaboration</span>
+            </h3>
+
+            <!-- Real Story & AI Manifesto -->
+            <div class="space-y-3 text-slate-300 text-sm md:text-base leading-relaxed">
+              <p>
+                When I opened Unity for the very first time, I had <strong>zero coding experience, no game dev background, and zero formal training</strong>. Instead of getting lost in tutorial hell, I dove straight in and embraced artificial intelligence to help me bring my vision to life inside the engine.
               </p>
-              <a href="/duckmon.html" class="blog-button">Learn More & View Roadmap</a>
-            </div>
-          </article>
-
-          <!-- Game 2: Bark Gallery (DEV Challenge) -->
-          <article class="game-card">
-            <div class="game-media" style="background: radial-gradient(circle, #232d3f 0%, #0d121c 100%); display: flex; align-items: center; justify-content: center; height: 210px; font-size: 4rem;">
-              <span>🐕🎨</span>
-              <div class="game-label" style="background: #f59e0b; color: #0f172a;">DEV Challenge</div>
-            </div>
-            <div class="game-content">
-              <div class="game-title-row">
-                <h3 class="game-title">Bark Gallery: Speed Sketch Challenge</h3>
-                <span class="game-tag">Community / Canvas</span>
+              
+              <!-- The Quote / Disclaimer Block -->
+              <div class="bg-black/40 border-l-4 border-amber-400 p-4 rounded-r-xl space-y-1 text-slate-200 my-2">
+                <p class="font-mono text-sm md:text-base font-bold text-white">
+                  "I am the architect. The AI is my expert."
+                </p>
+                <p class="text-xs md:text-sm text-slate-400">
+                  AI doesn't just do everything automatically. I structure the logic, direct the systems, instruct the workflow, and troubleshoot the madness. We collaborate as a team—turning complex ideas into working mechanics, one prompt, bug fix, and late night at a time.
+                </p>
               </div>
-              <p class="game-description">
-                A 90-second speed-sketching showcase powered by Google AI Studio prompts, retro spray tools, real-time community voting, and a live Top 10 leaderboard.
+
+              <p class="text-xs md:text-sm text-slate-400 italic">
+                From building this entire website with no prior web experience to shipping DEV.to challenge entries and constructing full card systems in Duckmon—this is what happens when curiosity meets execution.
               </p>
-              <a href="/doggame.html" class="blog-button">Play in Browser 🐾</a>
             </div>
-          </article>
+          </div>
+
+          <div class="pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-3">
+            <span class="text-xs font-mono text-slate-400">Check out the flagship project:</span>
+            <a href="#games" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition hover:scale-105">
+              Explore Duckmon ↓
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- 4. MAIN PROJECT: DUCKMON (#games)                            -->
+    <!-- ============================================================ -->
+    <section id="games" class="space-y-6 pt-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-brand-gold font-bold">Flagship Title</span>
+          <h2 class="text-3xl md:text-4xl font-display font-black text-white uppercase">Featured Game</h2>
+        </div>
+        <span class="text-xs font-mono px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300">
+          🔥 In Active Development
+        </span>
+      </div>
+
+      <!-- Duckmon Spotlight Card -->
+      <div class="bg-brand-card/90 border border-brand-border hover:border-amber-500/40 rounded-3xl p-6 md:p-8 backdrop-blur-xl shadow-2xl transition-all duration-300 space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Media Column -->
+          <div class="lg:col-span-5 space-y-3">
+            <div class="relative group rounded-2xl overflow-hidden border border-white/10 bg-black/50 aspect-video flex items-center justify-center p-2">
+              <img 
+                src="https://github.com/ASXGTR/Quackworkstudios/raw/main/TitleImageUpscale.png" 
+                alt="Duckmon Title Card" 
+                class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+
+            <!-- Stats Strip -->
+            <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+              <div class="p-2 rounded-xl bg-white/5 border border-white/5">
+                <span class="block text-slate-400 text-[10px]">CARDS</span>
+                <span class="text-white font-bold">310+ Unique</span>
+              </div>
+              <div class="p-2 rounded-xl bg-white/5 border border-white/5">
+                <span class="block text-slate-400 text-[10px]">ENGINE</span>
+                <span class="text-cyan-400 font-bold">Unity / C#</span>
+              </div>
+              <div class="p-2 rounded-xl bg-white/5 border border-white/5">
+                <span class="block text-slate-400 text-[10px]">STYLE</span>
+                <span class="text-amber-400 font-bold">Triple Triad</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Column -->
+          <div class="lg:col-span-7 space-y-4">
+            <div>
+              <span class="text-xs font-mono text-amber-400 uppercase tracking-widest font-semibold">2D Tactical Card Battler</span>
+              <h3 class="text-2xl md:text-3xl font-display font-black text-white">Duckmon: Collectable Card Multiverse</h3>
+            </div>
+
+            <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+              A chaotic, lore-heavy card battler spanning infinite realities. Inspired by classic grid battles like Final Fantasy's Triple Triad—ducks replace monsters in an expanding multiverse featuring tactical element captures, collector binders, and custom deck crafting.
+            </p>
+
+            <ul class="space-y-2 text-xs md:text-sm text-slate-300 font-mono">
+              <li class="flex items-center gap-2">
+                <span class="text-amber-400">✔</span> Grid-based positional card capturing & combo chain rules
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-amber-400">✔</span> Full collector binder progression and rarity tiers
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-amber-400">✔</span> Solo-engineered systems iterating weekly inside Unity
+              </li>
+            </ul>
+
+            <!-- CTAs -->
+            <div class="flex flex-wrap items-center gap-3 pt-3">
+              <a href="/duckmon.html" class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-bold text-xs font-mono uppercase tracking-wider transition shadow-lg shadow-amber-400/20 hover:scale-105">
+                Learn More & Roadmap
+              </a>
+              <a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white font-semibold text-xs font-mono uppercase tracking-wider transition">
+                Join Discord
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <section id="blog" class="blog-section">
-      <div class="section-header">
+
+    <!-- ============================================================ -->
+    <!-- 5. DEV CHALLENGES & EXPERIMENTS (TOTALLY SEPARATE)           -->
+    <!-- ============================================================ -->
+    <section id="dev-challenges" class="space-y-6 pt-4">
+      <div class="border-t border-white/10 pt-10 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 class="section-title">Devlog & Updates</h2>
-          <p class="section-subtitle">Honest progress notes, experiments, and breakdowns.</p>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-2.5 h-2.5 rounded-full bg-purple-400 animate-pulse"></span>
+            <span class="text-xs font-mono uppercase tracking-widest text-purple-400 font-bold">Hackathons & Prototypes</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-display font-black text-white uppercase">Dev Challenges Section</h2>
+        </div>
+        <p class="text-xs font-mono text-slate-400 max-w-sm">
+          Submissions for DEV.to community challenges, Google AI Studio experiments, and rapid browser minigames.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Card 1: Bark Gallery (Google AI Studio / DEV Challenge) -->
+        <article class="bg-brand-card/70 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-md flex flex-col justify-between group transition-all duration-300 space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="px-2.5 py-1 rounded-md bg-purple-500/10 border border-purple-500/30 text-purple-300 font-semibold">
+                🐾 DEV Challenge
+              </span>
+              <span class="text-slate-400">Browser / Canvas</span>
+            </div>
+
+            <h4 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+              Bark Gallery: Speed Sketch Challenge
+            </h4>
+
+            <p class="text-slate-300 text-sm leading-relaxed">
+              A 90-second speed-sketching showcase built for DEV.to powered by Google AI Studio prompts, retro spray tools, real-time community voting, and a live Top 10 leaderboard.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-2">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">Google AI Studio</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">HTML5 Canvas</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">Leaderboards</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <a href="/doggame.html" class="px-4 py-2 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-200 text-xs font-mono font-bold transition">
+              Play Game in Browser 🐾
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 2: Upcoming DEV.to Challenge Slot -->
+        <article class="bg-brand-card/40 border border-brand-border border-dashed rounded-3xl p-6 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-400">
+                ⚡ Challenge Series
+              </span>
+              <span class="text-slate-500">In Pipeline</span>
+            </div>
+
+            <h4 class="text-xl font-display font-bold text-slate-400">
+              Future DEV.to Experiments
+            </h4>
+
+            <p class="text-slate-400 text-sm leading-relaxed">
+              New hackathon builds, API integrations, and community challenge entries will be documented and published directly into this section.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-500">
+            <span>Google AI & Web Prototypes</span>
+            <span>Coming Soon</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- 6. DEVLOG & UPDATES                                          -->
+    <!-- ============================================================ -->
+    <section id="blog" class="space-y-6 pt-4">
+      <div class="border-t border-white/10 pt-10 flex items-center justify-between">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold">Behind The Scenes</span>
+          <h2 class="text-2xl md:text-3xl font-display font-black text-white uppercase">Devlog & Notes</h2>
         </div>
       </div>
-      <div class="blog-grid">
-        <article class="blog-card">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/FanUpscale.png" alt="Update Image" />
-          <div class="blog-content">
-            <div class="blog-meta-row">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="rounded-2xl overflow-hidden border border-white/10 aspect-video bg-black/40">
+              <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/FanUpscale.png" alt="Update Cover" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
               <span>Jan 12, 2026</span>
-              <span class="divider-dot"></span>
-              <span class="blog-category">Update</span>
+              <span>•</span>
+              <span class="text-amber-400">Duckmon Systems</span>
             </div>
-            <h3 class="blog-title">Duckmon: Systems Coming Together</h3>
-            <p class="blog-excerpt">Card logic and multiverse rules are finally clicking.</p>
-            <a href="/duckmon.html" class="blog-button">Duckmon Info</a>
+            <h3 class="text-lg font-display font-bold text-white">Card Logic & Multiverse Rules Clicking Into Place</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Iterating on positional grid combat, resolving chain captures, and building out the expanded binder rules.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/5">
+            <a href="/duckmon.html" class="text-xs font-mono font-semibold text-brand-gold hover:underline">
+              Read Duckmon Roadmap →
+            </a>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="contact" class="contact-section">
-      <div class="contact-container">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Contact</h2>
-            <p class="section-subtitle">Collabs, feedback, or chaos: drop me a message.</p>
-          </div>
-          <div class="contact-icons">
-            <a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="social-link">
-              <img src="https://api.iconify.design/simple-icons:discord.svg?color=%23d7dbe0" class="social-icon" />
-            </a>
-            <a href="https://github.com/ASXGTR" target="_blank" class="social-link">
-              <img src="https://api.iconify.design/lucide-github.svg?color=%23d7dbe0" class="social-icon" />
-            </a>
-          </div>
+
+    <!-- ============================================================ -->
+    <!-- 7. CONTACT & COMMUNITY                                       -->
+    <!-- ============================================================ -->
+    <section id="contact" class="space-y-6 pt-4">
+      <div class="border-t border-white/10 pt-10 flex items-center justify-between">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold">Get In Touch</span>
+          <h2 class="text-2xl md:text-3xl font-display font-black text-white uppercase">Contact & Community</h2>
         </div>
+        <div class="flex items-center gap-3">
+          <a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition" title="Discord">
+            <img src="https://api.iconify.design/simple-icons:discord.svg?color=%23d7dbe0" class="w-5 h-5" alt="Discord" />
+          </a>
+          <a href="https://github.com/ASXGTR" target="_blank" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition" title="GitHub">
+            <img src="https://api.iconify.design/lucide-github.svg?color=%23d7dbe0" class="w-5 h-5" alt="GitHub" />
+          </a>
+        </div>
+      </div>
 
-        <div class="contact-grid">
-          <form method="post" action="#" class="contact-form">
-            <div class="form-fields">
-              <div class="form-group">
-                <label for="name" class="form-label">Your Name</label>
-                <input type="text" id="name" name="name" required placeholder="Alex Dev" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" required placeholder="you@example.com" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label for="message" class="form-label">Message</label>
-                <textarea id="message" name="message" rows="5" required placeholder="Tell me about your idea..." class="form-textarea"></textarea>
-              </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="submit-button">Send Message</button>
-            </div>
-          </form>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <!-- Contact Form (7 cols) -->
+        <form method="post" action="#" class="md:col-span-7 bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-md space-y-4">
+          <div>
+            <label for="name" class="block text-xs font-mono uppercase text-slate-400 mb-1">Your Name</label>
+            <input type="text" id="name" name="name" required placeholder="Alex Dev" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-mono text-sm" />
+          </div>
+          <div>
+            <label for="email" class="block text-xs font-mono uppercase text-slate-400 mb-1">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-mono text-sm" />
+          </div>
+          <div>
+            <label for="message" class="block text-xs font-mono uppercase text-slate-400 mb-1">Message</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Collabs, feedback, or game ideas..." class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-mono text-sm"></textarea>
+          </div>
+          <button type="submit" class="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-amber-400/20">
+            Send Message
+          </button>
+        </form>
 
-          <aside class="contact-aside">
-            <div class="aside-block">
-              <div class="aside-row">
-                <img src="https://api.iconify.design/lucide-mail.svg?color=%23b8bfca" class="aside-icon" />
-                <span class="aside-text">QuackworkStudios@gmail.com</span>
-              </div>
-              <div class="aside-image-frame">
-                <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Mythic07.png" alt="Featured Card Art" />
-              </div>
+        <!-- Aside / Art (5 cols) -->
+        <div class="md:col-span-5 bg-brand-card/50 border border-brand-border rounded-3xl p-6 backdrop-blur-md flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+              <img src="https://api.iconify.design/lucide-mail.svg?color=%23b8bfca" class="w-4 h-4" alt="Mail" />
+              <span>QuackworkStudios@gmail.com</span>
             </div>
-          </aside>
+            <div class="rounded-2xl overflow-hidden border border-white/10 aspect-square bg-black/40">
+              <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Mythic07.png" alt="Featured Card Art" class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <p class="text-xs font-mono text-slate-500 text-center">
+            Multiverse Card Artwork Sneak Peek
+          </p>
         </div>
       </div>
     </section>
+
   </main>
 
-  <footer class="footer-wrapper">
-    <div class="footer-container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="brand-pixel-badge">
-            <span class="pixel-cell"></span>
-            <span class="pixel-cell"></span>
-            <span class="pixel-cell"></span>
-            <span class="pixel-cell"></span>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER                                                       -->
+  <!-- ============================================================ -->
+  <footer class="border-t border-white/5 bg-brand-dark/90 mt-20">
+    <div class="max-w-5xl mx-auto px-5 py-10 space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded-md bg-amber-400/10 border border-amber-400/30 flex items-center justify-center font-mono text-xs text-amber-400">
+            🦆
           </div>
-          <span class="footer-brand-name">Quackwork Studios</span>
+          <span class="font-display font-bold text-white">Quackwork Studios</span>
         </div>
 
-        <ul class="footer-links">
-          <li><a href="#" class="footer-link">Home</a></li>
-          <li><a href="#games" class="footer-link">Games</a></li>
-          <li><a href="/doggame.html" class="footer-link">Bark Gallery</a></li>
-          <li><a href="#blog" class="footer-link">Blog</a></li>
-          <li><a href="#contact" class="footer-link">Contact</a></li>
+        <ul class="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400">
+          <li><a href="#" class="hover:text-white transition">Home</a></li>
+          <li><a href="#games" class="hover:text-white transition">Duckmon</a></li>
+          <li><a href="#dev-challenges" class="hover:text-white transition">Dev Challenges</a></li>
+          <li><a href="#blog" class="hover:text-white transition">Devlog</a></li>
+          <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
         </ul>
       </div>
 
-      <div class="footer-bottom">
-        <p class="footer-copyright">
-          © 2026 Quackwork Studios • AI Assisted • Solo Built
-        </p>
-
-        <div class="footer-policies">
-          <a href="/terms.html" class="policy-link">Terms of Use</a>
-          <span class="divider-dot"></span>
-          <a href="/privacy.html" class="policy-link">Privacy Policy</a>
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-white/5 text-xs font-mono text-slate-500">
+        <p>© 2026 Quackwork Studios • Human Architect • AI Co-Pilot • Solo Built</p>
+        <div class="flex items-center gap-3">
+          <a href="/terms.html" class="hover:text-slate-400 transition">Terms</a>
+          <span>•</span>
+          <a href="/privacy.html" class="hover:text-slate-400 transition">Privacy Policy</a>
         </div>
       </div>
     </div>
