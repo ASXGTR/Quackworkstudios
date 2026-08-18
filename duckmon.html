@@ -52,9 +52,7 @@
     <div class="absolute top-[100rem] right-10 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[160px]"></div>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- NAVBAR                                                       -->
-  <!-- ============================================================ -->
+  <!-- NAVBAR -->
   <header class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/85 border-b border-white/5">
     <nav class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3 group">
@@ -85,9 +83,7 @@
 
   <main class="max-w-5xl mx-auto px-5 py-12 md:py-16 space-y-20">
 
-    <!-- ============================================================ -->
-    <!-- 1. HERO SECTION                                              -->
-    <!-- ============================================================ -->
+    <!-- 1. HERO SECTION -->
     <section class="space-y-8 text-center">
       <div class="inline-block space-y-2">
         <span class="text-xs font-mono tracking-[0.25em] uppercase text-brand-gold font-bold px-3.5 py-1 rounded-full border border-amber-500/20 bg-amber-500/5">
@@ -101,7 +97,7 @@
         </p>
       </div>
 
-      <!-- Quick Feature Pills -->
+      <!-- Feature Pills -->
       <div class="flex flex-wrap justify-center gap-2 font-mono text-xs">
         <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300">🃏 310 Illustrated Cards</span>
         <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-amber-300">⚔️ 5x4 Grid Warfare</span>
@@ -113,7 +109,7 @@
       <!-- Hero Gameplay Frame -->
       <div class="relative rounded-3xl overflow-hidden border border-white/10 bg-black/60 shadow-2xl group">
         <img 
-          src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20131059.png" 
+          src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20131059.png" 
           alt="Duckmon Tactical Gameplay Preview" 
           class="w-full h-auto object-cover max-h-[520px] transition-transform duration-500 group-hover:scale-[1.01]"
         />
@@ -130,10 +126,7 @@
       </div>
     </section>
 
-
-    <!-- ============================================================ -->
-    <!-- 2. ABOUT THE GAME                                            -->
-    <!-- ============================================================ -->
+    <!-- 2. ABOUT THE GAME -->
     <section id="about" class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-10 backdrop-blur-xl space-y-6 shadow-xl">
       <div class="flex items-center gap-3">
         <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
@@ -159,12 +152,12 @@
       </div>
     </section>
 
-
-    <!-- ============================================================ -->
-    <!-- 3. QUAX TRAX: 45-TRACK MUSIC PLAYER & DUCK VISUALIZER        -->
-    <!-- ============================================================ -->
+    <!-- 3. QUAX TRAX: 45-TRACK REAL MP3 PLAYER & DUCK VISUALIZER -->
     <section id="quax-trax-player" class="relative max-w-5xl mx-auto p-3 sm:p-5 rounded-3xl bg-brand-card/95 border-2 border-purple-600 shadow-2xl overflow-hidden font-mono">
       
+      <!-- Hidden Real Audio Element -->
+      <audio id="quaxAudio" preload="metadata" crossorigin="anonymous"></audio>
+
       <!-- Outer Frame Header -->
       <div class="flex items-center justify-between pb-3 mb-3 border-b border-purple-500/30">
         <div class="flex items-center gap-3">
@@ -177,60 +170,64 @@
         </div>
 
         <button id="togglePlaylistBtn" class="px-4 py-1.5 rounded-lg bg-black/80 hover:bg-black border border-white/20 text-white font-bold text-xs uppercase tracking-widest transition hover:border-amber-400">
-          TRAX PLAYLIST
+          TRAX PLAYLIST (45)
         </button>
       </div>
 
       <!-- Player Screen Viewport -->
       <div class="relative w-full rounded-2xl overflow-hidden border-2 border-purple-900/60 bg-black aspect-[16/9] min-h-[360px] sm:min-h-[460px] shadow-inner flex flex-col justify-between">
         
-        <!-- Scenic Landscape Canvas & 14 Duck Fountain Jets -->
         <canvas id="quaxCanvas" class="absolute inset-0 w-full h-full object-cover z-0"></canvas>
 
         <!-- Top Track Banner -->
-        <div class="relative z-10 mx-auto mt-4 px-6 py-2 rounded-xl bg-white/75 backdrop-blur-md border border-white/40 shadow-lg text-center max-w-[85%]">
-          <span id="currentArtist" class="block text-[11px] sm:text-xs font-bold text-slate-800 uppercase tracking-widest">ARNEBHUS</span>
-          <span id="currentTrack" class="block text-sm sm:text-base font-black text-black uppercase tracking-tight truncate">WARM DUCK SHUFFLE</span>
+        <div class="relative z-10 mx-auto mt-4 px-6 py-2 rounded-xl bg-white/85 backdrop-blur-md border border-white/40 shadow-lg text-center max-w-[85%]">
+          <div class="flex items-center justify-center gap-2">
+            <span id="trackCategory" class="px-2 py-0.5 rounded bg-amber-400 text-black text-[9px] font-bold uppercase tracking-wider">GAMEBOARD</span>
+            <span id="currentArtist" class="text-[11px] sm:text-xs font-bold text-slate-800 uppercase tracking-widest">ARNEBHUS</span>
+          </div>
+          <span id="currentTrack" class="block text-sm sm:text-base font-black text-black uppercase tracking-tight truncate mt-0.5">WARM DUCK SHUFFLE</span>
         </div>
 
-        <!-- Collapsible 45-Track Drawer with Search -->
-        <div id="playlistDrawer" class="absolute top-0 left-0 bottom-0 w-72 sm:w-88 bg-brand-dark/95 border-r-2 border-purple-600 p-4 z-20 overflow-hidden flex flex-col backdrop-blur-xl transition-transform duration-300 transform -translate-x-full shadow-2xl">
+        <!-- 45-Track Drawer -->
+        <div id="playlistDrawer" class="absolute top-0 left-0 bottom-0 w-72 sm:w-96 bg-brand-dark/95 border-r-2 border-purple-600 p-4 z-20 overflow-hidden flex flex-col backdrop-blur-xl transition-transform duration-300 transform -translate-x-full shadow-2xl">
           
           <div class="flex items-center justify-between pb-2 mb-2 border-b border-purple-500/30">
             <div>
               <span class="text-xs font-black text-purple-300 uppercase tracking-widest block">Quax Trax Playlist</span>
-              <span class="text-[10px] text-slate-400 font-mono">45 Game Soundtracks</span>
+              <span class="text-[10px] text-slate-400 font-mono">45 Original & Curated Tracks</span>
             </div>
             <button id="closeDrawerBtn" class="text-slate-400 hover:text-white font-bold text-xs p-1">✕</button>
           </div>
 
-          <!-- Instant Search Filter -->
           <input 
             type="text" 
             id="trackSearchInput" 
-            placeholder="Search artist or title..." 
+            placeholder="Search faction, artist, or title..." 
             class="w-full mb-3 px-3 py-1.5 rounded-lg bg-black/60 border border-purple-500/30 text-white placeholder-slate-500 text-xs font-mono focus:outline-none focus:border-amber-400"
           />
 
-          <!-- Scrollable List -->
-          <ul id="quaxTrackList" class="flex-1 overflow-y-auto space-y-1.5 text-xs pr-1">
-            <!-- 45 tracks rendered dynamically -->
+          <ul id="quaxTrackList" class="flex-1 overflow-y-auto space-y-1.5 text-xs pr-1 select-none">
+            <!-- Rendered via JavaScript -->
           </ul>
         </div>
 
         <!-- Bottom Controls & Scrubber -->
         <div class="relative z-10 p-3 sm:p-4 bg-gradient-to-t from-black/95 via-black/80 to-transparent space-y-3">
           
-          <!-- Progress Bar with Duck Scrubber -->
-          <div class="relative w-full h-3 bg-purple-950/80 rounded-full border border-purple-500/40 cursor-pointer" id="progressBarContainer">
-            <div id="progressBarFill" class="h-full bg-gradient-to-r from-amber-400 to-amber-200 rounded-full w-0 relative">
-              <div class="absolute -right-3 -top-3.5 text-lg select-none filter drop-shadow-md">
-                🦆
+          <div class="space-y-1">
+            <div class="relative w-full h-3.5 bg-purple-950/80 rounded-full border border-purple-500/40 cursor-pointer" id="progressBarContainer">
+              <div id="progressBarFill" class="h-full bg-gradient-to-r from-amber-400 to-amber-200 rounded-full w-0 relative pointer-events-none transition-[width] duration-75">
+                <div class="absolute -right-3 -top-3.5 text-lg select-none filter drop-shadow-md">
+                  🦆
+                </div>
               </div>
+            </div>
+            <div class="flex justify-between text-[10px] font-mono text-slate-400 px-1">
+              <span id="timeCurrent">0:00</span>
+              <span id="timeDuration">0:00</span>
             </div>
           </div>
 
-          <!-- Chunky Green Retro Controls -->
           <div class="grid grid-cols-6 gap-1.5 sm:gap-2 pt-1 font-bold text-black text-xs sm:text-sm">
             <button id="traxBtn" class="py-2.5 sm:py-3 rounded-xl bg-[#76c81e] hover:bg-[#8cee24] active:translate-y-0.5 border-2 border-black shadow-[0_4px_0_#43790c] font-black uppercase transition">
               TRAX
@@ -248,7 +245,7 @@
               &gt;&gt;&gt;
             </button>
             <button id="muteBtn" class="py-2.5 sm:py-3 rounded-xl bg-[#76c81e] hover:bg-[#8cee24] active:translate-y-0.5 border-2 border-black shadow-[0_4px_0_#43790c] font-black uppercase transition">
-              X
+              VOL
             </button>
           </div>
 
@@ -257,10 +254,7 @@
       </div>
     </section>
 
-
-    <!-- ============================================================ -->
-    <!-- 4. CORE FEATURES & GAME MODES                                -->
-    <!-- ============================================================ -->
+    <!-- 4. CORE FEATURES & MODES -->
     <section id="features" class="space-y-6">
       <div class="border-t border-white/10 pt-10 flex flex-wrap items-center justify-between gap-3">
         <div>
@@ -270,7 +264,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
         <div class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-3">
           <div class="text-2xl">⚔️</div>
           <h4 class="text-lg font-display font-bold text-white">Tactical 5x4 Grid Battles</h4>
@@ -318,14 +311,10 @@
             No predatory gacha mechanics, no pay-to-win. Every card is earned through gameplay, story decisions, and progression.
           </p>
         </div>
-
       </div>
     </section>
 
-
-    <!-- ============================================================ -->
-    <!-- 5. CARD SHOWCASE GALLERY                                     -->
-    <!-- ============================================================ -->
+    <!-- 5. CARD SHOWCASE GALLERY (Images from /Image) -->
     <section id="cards" class="space-y-6">
       <div class="border-t border-white/10 pt-10 flex flex-wrap items-center justify-between gap-3">
         <div>
@@ -339,42 +328,39 @@
 
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123522.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
+          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20123522.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
         </div>
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123620.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
+          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20123620.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
         </div>
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123658.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
+          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20123658.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
         </div>
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123730.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
+          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20123730.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
         </div>
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123806.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
+          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20123806.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
         </div>
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123827.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
+          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20123827.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
         </div>
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123858.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
+          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20123858.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
         </div>
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20123922.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
+          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20123922.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
         </div>
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20124001.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
+          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20124001.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
         </div>
         <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40 hover:border-amber-500/50 transition duration-300 hover:scale-105">
-          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Screenshot%202026-02-02%20124028.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
+          <img src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Image/Screenshot%202026-02-02%20124028.png" alt="Duckmon Card" class="w-full h-auto object-cover" />
         </div>
       </div>
     </section>
 
-
-    <!-- ============================================================ -->
-    <!-- 6. GAMEPLAY & MEDIA SHOWCASE (VIDEOS)                        -->
-    <!-- ============================================================ -->
+    <!-- 6. GAMEPLAY & MEDIA SHOWCASE (Videos from /Video) -->
     <section id="media" class="space-y-6">
       <div class="border-t border-white/10 pt-10 flex flex-wrap items-center justify-between gap-3">
         <div>
@@ -384,15 +370,13 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Video 1: Card Pack Opening -->
         <div class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-3">
           <h4 class="text-lg font-display font-bold text-white flex items-center gap-2">
             <span>✨</span> Card Pack Opening
           </h4>
           <div class="rounded-2xl overflow-hidden border border-white/10 bg-black">
             <video controls class="w-full aspect-video">
-              <source src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Card%20Pack%20Opening.mp4" type="video/mp4">
+              <source src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Video/Card%20Pack%20Opening.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -401,14 +385,13 @@
           </p>
         </div>
 
-        <!-- Video 2: Card Binder Showcase -->
         <div class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 backdrop-blur-md space-y-3">
           <h4 class="text-lg font-display font-bold text-white flex items-center gap-2">
             <span>📂</span> 310-Page Binder Showcase
           </h4>
           <div class="rounded-2xl overflow-hidden border border-white/10 bg-black">
             <video controls class="w-full aspect-video">
-              <source src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Binder%20Example%20Video.mp4" type="video/mp4">
+              <source src="https://github.com/ASXGTR/Quackworkstudios/raw/main/Video/Binder%20Example%20Video.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -416,14 +399,10 @@
             Flipping through the in-game collection binder and faction sorting.
           </p>
         </div>
-
       </div>
     </section>
 
-
-    <!-- ============================================================ -->
-    <!-- 7. ROADMAP SECTION (#roadmap)                                -->
-    <!-- ============================================================ -->
+    <!-- 7. ROADMAP SECTION -->
     <section id="roadmap" class="space-y-6">
       <div class="border-t border-white/10 pt-10 flex flex-wrap items-center justify-between gap-3">
         <div>
@@ -436,8 +415,6 @@
       </div>
 
       <div class="space-y-4">
-        
-        <!-- Stage 1 (Current) -->
         <div class="bg-brand-card/90 border-l-4 border-amber-400 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-3">
           <div class="flex items-center justify-between font-mono text-xs">
             <span class="text-amber-400 font-bold uppercase tracking-widest">Stage 1: Active Development</span>
@@ -464,7 +441,6 @@
           </ul>
         </div>
 
-        <!-- Stage 2 (Coming Soon) -->
         <div class="bg-brand-card/70 border-l-4 border-cyan-400 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-3">
           <div class="flex items-center justify-between font-mono text-xs">
             <span class="text-cyan-400 font-bold uppercase tracking-widest">Stage 2: Demo v1.0 Release</span>
@@ -487,7 +463,6 @@
           </ul>
         </div>
 
-        <!-- Stage 3 (Post-Demo) -->
         <div class="bg-brand-card/50 border-l-4 border-purple-400 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-3">
           <div class="flex items-center justify-between font-mono text-xs">
             <span class="text-purple-400 font-bold uppercase tracking-widest">Stage 3: Post-Demo Content Expansion</span>
@@ -509,14 +484,10 @@
             </li>
           </ul>
         </div>
-
       </div>
     </section>
 
-
-    <!-- ============================================================ -->
-    <!-- 8. PROJECT CREDITS (#credits)                                -->
-    <!-- ============================================================ -->
+    <!-- 8. PROJECT CREDITS -->
     <section id="credits" class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-10 backdrop-blur-xl space-y-8">
       <div class="flex items-center gap-3">
         <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
@@ -524,8 +495,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Music & Audio (All 45 Tracks) -->
         <div class="space-y-3">
           <h4 class="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold pb-2 border-b border-white/10">
             Music & Audio (Quax Trax)
@@ -547,7 +516,6 @@
           </ul>
         </div>
 
-        <!-- Visuals & Art -->
         <div class="space-y-3">
           <h4 class="text-xs font-mono uppercase tracking-widest text-amber-400 font-bold pb-2 border-b border-white/10">
             Visuals & Art
@@ -560,7 +528,6 @@
           </ul>
         </div>
 
-        <!-- Development & Tools -->
         <div class="space-y-3">
           <h4 class="text-xs font-mono uppercase tracking-widest text-purple-400 font-bold pb-2 border-b border-white/10">
             Development & Tools
@@ -573,7 +540,6 @@
             <li><strong class="text-white">Web Starter Template:</strong> GrapesJS Studio</li>
           </ul>
         </div>
-
       </div>
 
       <div class="text-center pt-6 border-t border-white/10 font-mono text-xs text-slate-400 space-y-2">
@@ -603,10 +569,7 @@
 
   </main>
 
-
-  <!-- ============================================================ -->
-  <!-- FOOTER                                                       -->
-  <!-- ============================================================ -->
+  <!-- FOOTER -->
   <footer class="border-t border-white/5 bg-brand-dark/90 mt-20">
     <div class="max-w-5xl mx-auto px-5 py-10 space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-4">
@@ -633,80 +596,293 @@
     </div>
   </footer>
 
-
-  <!-- ============================================================ -->
-  <!-- QUAX TRAX ENGINE (45 TRACKS + DUCK WATER FOUNTAIN SIMULATION)-->
-  <!-- ============================================================ -->
+  <!-- QUAX TRAX REAL AUDIO ENGINE + DUCK VISUALIZER -->
   <script>
-    // Complete 45-Track In-Game OST Catalog
+    // GitHub Audio Folder Path
+    const AUDIO_BASE_PATH = "https://github.com/ASXGTR/Quackworkstudios/raw/main/Audio/";
+
+    // 45 Real Tracks mapped to exact filenames
     const QUAX_PLAYLIST = [
-      // 1-8
-      { artist: "Alex Productions", title: "Epic Cinematic Adventure Music Iceland", freq: 160 },
-      { artist: "Arnebhus", title: "Warm Duck Shuffle", freq: 220 },
-      { artist: "BR", title: "Neon Reverie", freq: 280 },
-      { artist: "Kike Gutz", title: "Cold Streets", freq: 190 },
-      { artist: "Kike Gutz", title: "Dominion Pulse", freq: 250 },
-      { artist: "Kike Gutz", title: "Electric Mirage", freq: 310 },
-      { artist: "Kike Gutz", title: "Feel The Fire", freq: 350 },
-      { artist: "Kike Gutz", title: "Grindcore Spit", freq: 400 },
-
-      // 9-16
-      { artist: "Kike Gutz", title: "Mango Breeze", freq: 210 },
-      { artist: "Kike Gutz", title: "Oath Beneath Sakura", freq: 240 },
-      { artist: "Kike Gutz", title: "Prelude To Forever", freq: 260 },
-      { artist: "Kike Gutz", title: "Sapphire Storm", freq: 320 },
-      { artist: "Kike Gutz", title: "Seraphic Symphony", freq: 290 },
-      { artist: "Kike Gutz", title: "Slideway Soul", freq: 230 },
-      { artist: "Kike Gutz", title: "Taiko Command", freq: 180 },
-      { artist: "Kike Gutz", title: "Taiko Flame Call", freq: 340 },
-
-      // 17-24
-      { artist: "Kike Gutz", title: "Tripwire Acid Funk", freq: 370 },
-      { artist: "Kevin MacLeod", title: "Swing Machine", freq: 220 },
-      { artist: "MudiG", title: "Clan Of The Highlands", freq: 200 },
-      { artist: "MudiG", title: "Explosion Flashes", freq: 380 },
-      { artist: "MudiG", title: "Lost Train", freq: 210 },
-      { artist: "MudiG", title: "New Light", freq: 270 },
-      { artist: "MudiG", title: "Poseidon's Wrath", freq: 330 },
-      { artist: "MudiG", title: "Time Spiral", freq: 290 },
-
-      // 25-32
-      { artist: "MudiG", title: "Warrior Pulse", freq: 310 },
-      { artist: "müxa", title: "8 Bit Love", freq: 330 },
-      { artist: "müxa", title: "Fighters Game (Part 1)", freq: 360 },
-      { artist: "müxa", title: "Fighters Game (Part 2)", freq: 370 },
-      { artist: "Nonak", title: "Joules", freq: 250 },
-      { artist: "Nonak", title: "Nothing Can Stop Us", freq: 300 },
-      { artist: "Nonak", title: "One Last Goodbye", freq: 220 },
-      { artist: "Nonak", title: "The Curse Gets Worse", freq: 390 },
-
-      // 33-40
-      { artist: "Nonak", title: "Toxic", freq: 340 },
-      { artist: "Nonak", title: "Victory Dance", freq: 280 },
-      { artist: "Off Beat", title: "Chiki Piqui Club", freq: 260 },
-      { artist: "Off Beat", title: "Cozy Cabin", freq: 190 },
-      { artist: "Off Beat", title: "Deathwalk", freq: 410 },
-      { artist: "Off Beat", title: "Pride And Joy", freq: 240 },
-      { artist: "Off Beat", title: "Resilience", freq: 300 },
-      { artist: "Off Beat", title: "The Leaves That Fall", freq: 210 },
-
-      // 41-45
-      { artist: "Off Beat", title: "You Were Right", freq: 230 },
-      { artist: "Pratzapp & Sakura Hz", title: "Thar", freq: 270 },
-      { artist: "Wavecont", title: "Inspiring", freq: 290 },
-      { artist: "WarbringerGhesh", title: "Forfeit My Life", freq: 420 },
-      { artist: "Unknown Freepik Artist", title: "BT2", freq: 250 }
+      {
+        tag: "Gameboard",
+        artist: "Arnebhus",
+        title: "Warm Duck Shuffle",
+        file: "Gameboard - arnebhus-warm-duck-shuffle(chosic.com).mp3"
+      },
+      {
+        tag: "Title Theme",
+        artist: "Kevin MacLeod",
+        title: "Swing Machine",
+        file: "Title - Swing-Machine-chosic.com_.mp3"
+      },
+      {
+        tag: "Intro",
+        artist: "müxa",
+        title: "8 Bit Love",
+        file: "Intro - 8 Bit Love.mp3"
+      },
+      {
+        tag: "Combat",
+        artist: "müxa",
+        title: "Fighters Game",
+        file: "FightersGameSB9.mp3"
+      },
+      {
+        tag: "Combat",
+        artist: "Quackwork",
+        title: "Battle Draw",
+        file: "battledraw.mp3"
+      },
+      {
+        tag: "OST",
+        artist: "Freepik / Unknown",
+        title: "BT2",
+        file: "BT2.mp3"
+      },
+      {
+        tag: "Lo-Fi",
+        artist: "Off Beat",
+        title: "Chiki Piqui Club",
+        file: "ChikiPiquiClubSB10.mp3"
+      },
+      {
+        tag: "Electro",
+        artist: "Kike Gutz",
+        title: "Dominion Pulse",
+        file: "DominionPulseSB4.mp3"
+      },
+      {
+        tag: "Electric Faction",
+        artist: "Off Beat",
+        title: "You Were Right",
+        file: "Electric A - You Were Right.mp3"
+      },
+      {
+        tag: "Electric Faction",
+        artist: "Kike Gutz",
+        title: "Electric Mirage",
+        file: "Electric B - freepik-electric-mirage.mp3"
+      },
+      {
+        tag: "Fire Faction",
+        artist: "MudiG",
+        title: "Explosion Flashes",
+        file: "Fire A - Explosion Flashes.mp3"
+      },
+      {
+        tag: "Fire Faction",
+        artist: "Kike Gutz",
+        title: "Feel The Fire",
+        file: "Fire B - freepik-feel-the-fire.mp3"
+      },
+      {
+        tag: "Ambient",
+        artist: "MudiG",
+        title: "Lost Train",
+        file: "freepik-lost-train.mp3"
+      },
+      {
+        tag: "Battle",
+        artist: "Nonak",
+        title: "One Last Goodbye",
+        file: "freepik-one-last-goodbye.mp3"
+      },
+      {
+        tag: "Battle",
+        artist: "Kike Gutz",
+        title: "Taiko Command",
+        file: "freepik-taiko-commandSB2.mp3"
+      },
+      {
+        tag: "Battle",
+        artist: "Kike Gutz",
+        title: "Taiko Flame Call",
+        file: "freepik-taiko-flame-callSB3.mp3"
+      },
+      {
+        tag: "Victory",
+        artist: "Nonak",
+        title: "Victory Dance",
+        file: "freepik-victory-dance.mp3"
+      },
+      {
+        tag: "Metal",
+        artist: "Kike Gutz",
+        title: "Grindcore Spit",
+        file: "GrindcoreSpitSB11.mp3"
+      },
+      {
+        tag: "Holy Faction",
+        artist: "Kike Gutz",
+        title: "Seraphic Symphony",
+        file: "Holy A - freepik-seraphic-symphony.mp3"
+      },
+      {
+        tag: "Holy Faction",
+        artist: "MudiG",
+        title: "New Light",
+        file: "Holy B - New Light.mp3"
+      },
+      {
+        tag: "Ice Faction",
+        artist: "Alex Productions",
+        title: "Epic Cinematic Adventure (Iceland)",
+        file: "Ice A - alex-productions-epic-cinematic-adventure-music-iceland(chosic.com).mp3"
+      },
+      {
+        tag: "Ice Faction",
+        artist: "Kike Gutz",
+        title: "Cold Streets",
+        file: "Ice B - Cold Streets.mp3"
+      },
+      {
+        tag: "Mythic Faction",
+        artist: "MudiG",
+        title: "Time Spiral",
+        file: "Mythic A - freepik-time-spiral.mp3"
+      },
+      {
+        tag: "Mythic Faction",
+        artist: "Kike Gutz",
+        title: "Prelude To Forever",
+        file: "Mythic B - freepik-prelude-to-forever.mp3"
+      },
+      {
+        tag: "Nature Faction",
+        artist: "Kike Gutz",
+        title: "Mango Breeze",
+        file: "Nature A - Mango Breeze.mp3"
+      },
+      {
+        tag: "Nature Faction",
+        artist: "Off Beat",
+        title: "The Leaves That Fall",
+        file: "Nature B - The Leaves That Fall.mp3"
+      },
+      {
+        tag: "Physical Faction",
+        artist: "MudiG",
+        title: "Warrior Pulse",
+        file: "Physical A - Warrior Pulse.mp3"
+      },
+      {
+        tag: "Physical Faction",
+        artist: "Nonak",
+        title: "Joules",
+        file: "Physical B - Joules.mp3"
+      },
+      {
+        tag: "Player Choice",
+        artist: "Off Beat",
+        title: "Resilience",
+        file: "Player Choice - freepik-resilience.mp3"
+      },
+      {
+        tag: "Player Choice",
+        artist: "Nonak",
+        title: "Nothing Can Stop Us",
+        file: "Player Choice - nothing-can-stop-us.mp3"
+      },
+      {
+        tag: "Battle",
+        artist: "MudiG",
+        title: "Poseidon's Wrath",
+        file: "Poseidon's WrathSB1.mp3"
+      },
+      {
+        tag: "Lo-Fi",
+        artist: "Off Beat",
+        title: "Pride And Joy",
+        file: "PrideAndJoySB8.mp3"
+      },
+      {
+        tag: "Electro",
+        artist: "Kike Gutz",
+        title: "Sapphire Storm",
+        file: "SaffireStormSB5.mp3"
+      },
+      {
+        tag: "Atmospheric",
+        artist: "Quackwork",
+        title: "Season Strings",
+        file: "Season StringsSB12.mp3"
+      },
+      {
+        tag: "Funk",
+        artist: "Kike Gutz",
+        title: "Slideway Soul",
+        file: "Slideway SoulSB6.mp3"
+      },
+      {
+        tag: "Story Electric",
+        artist: "WarbringerGhesh",
+        title: "Forfeit My Life",
+        file: "Story Electric warbringerghesh-forfeit-my-life-494440.mp3"
+      },
+      {
+        tag: "Technology Faction",
+        artist: "Wavecont",
+        title: "Inspiring",
+        file: "Technology A - Wavecont-Inspiring-Full(chosic.com).mp3"
+      },
+      {
+        tag: "Technology Faction",
+        artist: "BR",
+        title: "Neon Reverie",
+        file: "Technology B - Neon Reverie.mp3"
+      },
+      {
+        tag: "Dark",
+        artist: "Nonak",
+        title: "The Curse Gets Worse",
+        file: "TheCurseGetsWorseSB7.mp3"
+      },
+      {
+        tag: "Toxic Faction",
+        artist: "Kike Gutz",
+        title: "Tripwire Acid Funk",
+        file: "Toxic A - Tripwire Acid Funk.mp3"
+      },
+      {
+        tag: "Toxic Faction",
+        artist: "Nonak",
+        title: "Toxic",
+        file: "Toxic B - Toxic.mp3"
+      },
+      {
+        tag: "Undead Faction",
+        artist: "Pratzapp & Sakura Hz",
+        title: "Thar",
+        file: "Undead A - pratzapp-sakura-hz-thar-3(chosic.com).mp3"
+      },
+      {
+        tag: "Undead Faction",
+        artist: "Off Beat",
+        title: "Deathwalk",
+        file: "Undead B - Deathewalk.mp3"
+      },
+      {
+        tag: "Wind Faction",
+        artist: "Kike Gutz",
+        title: "Oath Beneath Sakura",
+        file: "Wind A - OAth Beneath Sakura.mp3"
+      },
+      {
+        tag: "Wind Faction",
+        artist: "MudiG",
+        title: "Clan Of The Highlands",
+        file: "Wind B - Clan Of The Highlands.mp3"
+      }
     ];
 
-    let currentTrackIndex = 1; // Default to Warm Duck Shuffle
+    let currentTrackIndex = 0;
     let isPlaying = false;
     let isMuted = false;
-    let progressPercent = 0;
 
-    // Web Audio Context & Analyser
+    // Web Audio API Elements
     let audioCtx = null;
-    let synthOsc = null;
-    let synthGain = null;
+    let audioSourceNode = null;
+    let gainNode = null;
     let analyser = null;
     let dataArray = null;
 
@@ -722,16 +898,21 @@
     }
 
     // DOM Elements
+    const audioEl = document.getElementById("quaxAudio");
     const canvas = document.getElementById("quaxCanvas");
     const ctx = canvas.getContext("2d");
     const currentArtistEl = document.getElementById("currentArtist");
     const currentTrackEl = document.getElementById("currentTrack");
+    const trackCategoryEl = document.getElementById("trackCategory");
     const playlistDrawer = document.getElementById("playlistDrawer");
     const togglePlaylistBtn = document.getElementById("togglePlaylistBtn");
     const closeDrawerBtn = document.getElementById("closeDrawerBtn");
     const quaxTrackList = document.getElementById("quaxTrackList");
     const trackSearchInput = document.getElementById("trackSearchInput");
+    const progressBarContainer = document.getElementById("progressBarContainer");
     const progressBarFill = document.getElementById("progressBarFill");
+    const timeCurrentEl = document.getElementById("timeCurrent");
+    const timeDurationEl = document.getElementById("timeDuration");
 
     const playBtn = document.getElementById("playBtn");
     const pauseBtn = document.getElementById("pauseBtn");
@@ -740,35 +921,70 @@
     const traxBtn = document.getElementById("traxBtn");
     const muteBtn = document.getElementById("muteBtn");
 
-    // Dynamic Render with Instant Search
+    function initWebAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 64;
+        dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+        audioSourceNode = audioCtx.createMediaElementSource(audioEl);
+        gainNode = audioCtx.createGain();
+
+        audioSourceNode.connect(analyser);
+        analyser.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function formatTime(seconds) {
+      if (isNaN(seconds) || seconds < 0) return "0:00";
+      const m = Math.floor(seconds / 60);
+      const s = Math.floor(seconds % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
     function renderPlaylist(filterText = "") {
       quaxTrackList.innerHTML = QUAX_PLAYLIST
         .map((track, idx) => ({ ...track, originalIdx: idx }))
         .filter(track => {
           if (!filterText) return true;
           const q = filterText.toLowerCase();
-          return track.artist.toLowerCase().includes(q) || track.title.toLowerCase().includes(q);
+          return (
+            track.artist.toLowerCase().includes(q) ||
+            track.title.toLowerCase().includes(q) ||
+            track.tag.toLowerCase().includes(q)
+          );
         })
         .map((track) => {
           const isCurrent = track.originalIdx === currentTrackIndex;
           return `
-            <li class="p-2.5 rounded-lg cursor-pointer transition border ${
+            <li class="p-2.5 rounded-lg cursor-pointer transition border flex items-center justify-between gap-2 ${
               isCurrent 
-                ? 'bg-[#15803d] text-white border-green-400 font-bold' 
+                ? 'bg-amber-400 text-black border-amber-300 font-bold shadow-md shadow-amber-400/20' 
                 : 'bg-white/5 hover:bg-white/10 text-slate-300 border-white/5'
             }" data-index="${track.originalIdx}">
-              <span class="block text-[10px] text-slate-400 uppercase">${track.artist}</span>
-              <span class="block text-xs truncate">${track.title}</span>
+              <div class="overflow-hidden">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[9px] px-1.5 py-0.2 rounded font-bold uppercase ${isCurrent ? 'bg-black text-amber-400' : 'bg-purple-500/20 text-purple-300'}">${track.tag}</span>
+                  <span class="text-[10px] uppercase truncate ${isCurrent ? 'text-black font-bold' : 'text-slate-400'}">${track.artist}</span>
+                </div>
+                <span class="block text-xs truncate mt-0.5">${track.title}</span>
+              </div>
+              ${isCurrent && isPlaying ? '<span class="text-xs animate-pulse">🔊</span>' : ''}
             </li>
           `;
         }).join("");
 
-      // Re-bind Click Events
       document.querySelectorAll("#quaxTrackList li").forEach(item => {
         item.addEventListener("click", () => {
           currentTrackIndex = parseInt(item.dataset.index);
-          loadTrack(currentTrackIndex);
-          if (!isPlaying) startPlayback();
+          loadAndPlayTrack(currentTrackIndex);
         });
       });
     }
@@ -778,6 +994,106 @@
       renderPlaylist(e.target.value.trim());
     });
 
+    function loadTrack(index) {
+      const track = QUAX_PLAYLIST[index];
+      currentArtistEl.textContent = track.artist;
+      currentTrackEl.textContent = track.title;
+      trackCategoryEl.textContent = track.tag;
+      
+      const fileUrl = AUDIO_BASE_PATH + encodeURIComponent(track.file);
+      audioEl.src = fileUrl;
+      audioEl.load();
+
+      progressBarFill.style.width = "0%";
+      timeCurrentEl.textContent = "0:00";
+      timeDurationEl.textContent = "0:00";
+
+      renderPlaylist(trackSearchInput.value.trim());
+    }
+
+    function loadAndPlayTrack(index) {
+      loadTrack(index);
+      playAudio();
+    }
+
+    function playAudio() {
+      initWebAudio();
+      audioEl.play().then(() => {
+        isPlaying = true;
+        playBtn.classList.add("bg-amber-400", "shadow-[0_4px_0_#b45309]");
+        renderPlaylist(trackSearchInput.value.trim());
+      }).catch(err => {
+        console.warn("Playback blocked or loading error:", err);
+      });
+    }
+
+    function pauseAudio() {
+      audioEl.pause();
+      isPlaying = false;
+      playBtn.classList.remove("bg-amber-400", "shadow-[0_4px_0_#b45309]");
+      renderPlaylist(trackSearchInput.value.trim());
+    }
+
+    audioEl.addEventListener("timeupdate", () => {
+      if (audioEl.duration) {
+        const pct = (audioEl.currentTime / audioEl.duration) * 100;
+        progressBarFill.style.width = `${pct}%`;
+        timeCurrentEl.textContent = formatTime(audioEl.currentTime);
+        timeDurationEl.textContent = formatTime(audioEl.duration);
+      }
+    });
+
+    audioEl.addEventListener("loadedmetadata", () => {
+      timeDurationEl.textContent = formatTime(audioEl.duration);
+    });
+
+    audioEl.addEventListener("ended", () => {
+      currentTrackIndex = (currentTrackIndex + 1) % QUAX_PLAYLIST.length;
+      loadAndPlayTrack(currentTrackIndex);
+    });
+
+    progressBarContainer.addEventListener("click", (e) => {
+      if (!audioEl.duration) return;
+      const rect = progressBarContainer.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const seekRatio = Math.max(0, Math.min(1, clickX / width));
+      audioEl.currentTime = seekRatio * audioEl.duration;
+    });
+
+    playBtn.addEventListener("click", () => {
+      if (!audioEl.src || audioEl.src === window.location.href) {
+        loadTrack(currentTrackIndex);
+      }
+      playAudio();
+    });
+
+    pauseBtn.addEventListener("click", pauseAudio);
+
+    nextBtn.addEventListener("click", () => {
+      currentTrackIndex = (currentTrackIndex + 1) % QUAX_PLAYLIST.length;
+      loadAndPlayTrack(currentTrackIndex);
+    });
+
+    prevBtn.addEventListener("click", () => {
+      currentTrackIndex = (currentTrackIndex - 1 + QUAX_PLAYLIST.length) % QUAX_PLAYLIST.length;
+      loadAndPlayTrack(currentTrackIndex);
+    });
+
+    muteBtn.addEventListener("click", () => {
+      isMuted = !isMuted;
+      audioEl.muted = isMuted;
+      muteBtn.textContent = isMuted ? "MUTED" : "VOL";
+      muteBtn.style.background = isMuted ? "#ef4444" : "#76c81e";
+    });
+
+    function toggleDrawer() {
+      playlistDrawer.classList.toggle("-translate-x-full");
+    }
+    traxBtn.addEventListener("click", toggleDrawer);
+    togglePlaylistBtn.addEventListener("click", toggleDrawer);
+    closeDrawerBtn.addEventListener("click", () => playlistDrawer.classList.add("-translate-x-full"));
+
     function resizeCanvas() {
       canvas.width = canvas.parentElement.clientWidth;
       canvas.height = canvas.parentElement.clientHeight;
@@ -785,7 +1101,6 @@
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    // Draw Scenic Lake Landscape + 14 Water Jets & Rubber Ducks
     function renderCanvas() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -818,7 +1133,7 @@
       ctx.fillRect(0, canvas.height * 0.55, canvas.width, canvas.height * 0.45);
 
       // Real Audio Frequency Data
-      if (analyser && isPlaying) {
+      if (analyser && isPlaying && !audioEl.paused) {
         analyser.getByteFrequencyData(dataArray);
       }
 
@@ -831,13 +1146,13 @@
         const x = (i + 1) * jetWidth;
         
         let freqPower = 0;
-        if (analyser && isPlaying && dataArray) {
-          const freqIdx = Math.floor((i / NUM_JETS) * (dataArray.length * 0.6));
+        if (analyser && isPlaying && !audioEl.paused && dataArray) {
+          const freqIdx = Math.floor((i / NUM_JETS) * (dataArray.length * 0.65));
           freqPower = dataArray[freqIdx] / 255;
         }
 
         const wave = Math.sin(time + ducks[i].bobOffset) * 0.5 + 0.5;
-        ducks[i].targetHeight = isPlaying 
+        ducks[i].targetHeight = (isPlaying && !audioEl.paused)
           ? (freqPower * 140) + (wave * 25) + 15 
           : (wave * 10) + 5;
 
@@ -881,112 +1196,12 @@
         ctx.restore();
       }
 
-      // Progress Bar Update
-      if (isPlaying) {
-        progressPercent = (progressPercent + 0.04) % 100;
-        progressBarFill.style.width = `${progressPercent}%`;
-      }
-
       requestAnimationFrame(renderCanvas);
     }
     renderCanvas();
 
-    // Audio Engine
-    function initAudio() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 64;
-        dataArray = new Uint8Array(analyser.frequencyBinCount);
-      }
-    }
-
-    function loadTrack(index) {
-      const track = QUAX_PLAYLIST[index];
-      currentArtistEl.textContent = track.artist;
-      currentTrackEl.textContent = track.title;
-      progressPercent = 0;
-      renderPlaylist(trackSearchInput.value.trim());
-
-      if (isPlaying) {
-        stopPlayback();
-        startPlayback();
-      }
-    }
-
-    function startPlayback() {
-      initAudio();
-      stopPlayback();
-
-      const track = QUAX_PLAYLIST[currentTrackIndex];
-
-      synthOsc = audioCtx.createOscillator();
-      synthGain = audioCtx.createGain();
-
-      synthOsc.type = "triangle";
-      synthOsc.frequency.setValueAtTime(track.freq, audioCtx.currentTime);
-
-      const lfo = audioCtx.createOscillator();
-      const lfoGain = audioCtx.createGain();
-      lfo.frequency.setValueAtTime(3.5, audioCtx.currentTime);
-      lfoGain.gain.setValueAtTime(40, audioCtx.currentTime);
-      lfo.connect(synthOsc.frequency);
-      lfo.start();
-
-      synthGain.gain.setValueAtTime(isMuted ? 0 : 0.06, audioCtx.currentTime);
-
-      synthOsc.connect(analyser);
-      analyser.connect(synthGain);
-      synthGain.connect(audioCtx.destination);
-
-      synthOsc.start();
-      isPlaying = true;
-    }
-
-    function stopPlayback() {
-      if (synthOsc) {
-        try {
-          synthOsc.stop();
-          synthOsc.disconnect();
-        } catch (e) {}
-        synthOsc = null;
-      }
-      isPlaying = false;
-    }
-
-    // Button Event Listeners
-    playBtn.addEventListener("click", () => {
-      if (!isPlaying) startPlayback();
-    });
-
-    pauseBtn.addEventListener("click", () => {
-      stopPlayback();
-    });
-
-    nextBtn.addEventListener("click", () => {
-      currentTrackIndex = (currentTrackIndex + 1) % QUAX_PLAYLIST.length;
-      loadTrack(currentTrackIndex);
-    });
-
-    prevBtn.addEventListener("click", () => {
-      currentTrackIndex = (currentTrackIndex - 1 + QUAX_PLAYLIST.length) % QUAX_PLAYLIST.length;
-      loadTrack(currentTrackIndex);
-    });
-
-    muteBtn.addEventListener("click", () => {
-      isMuted = !isMuted;
-      if (synthGain) {
-        synthGain.gain.setValueAtTime(isMuted ? 0 : 0.06, audioCtx.currentTime);
-      }
-      muteBtn.style.background = isMuted ? "#ef4444" : "#76c81e";
-    });
-
-    function toggleDrawer() {
-      playlistDrawer.classList.toggle("-translate-x-full");
-    }
-    traxBtn.addEventListener("click", toggleDrawer);
-    togglePlaylistBtn.addEventListener("click", toggleDrawer);
-    closeDrawerBtn.addEventListener("click", () => playlistDrawer.classList.add("-translate-x-full"));
+    // Initial Load
+    loadTrack(currentTrackIndex);
   </script>
 </body>
 </html>
