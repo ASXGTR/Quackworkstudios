@@ -695,21 +695,28 @@
 
   <!-- ENGINE & SUPABASE SYNC SCRIPT -->
   <script>
+    <!-- ENGINE & SUPABASE SYNC SCRIPT -->
+  <script>
     // ============================================================
-    // 1. SUPABASE CLIENT INITIALIZATION (WITHOUT VARIABLE COLLISION)
+    // 1. SUPABASE CLIENT INITIALIZATION
     // ============================================================
     const SUPABASE_URL = "https://ryhiswzhfivvagxztqqc.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5aGlzd3poZml2dmFneHp0dHFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MDIzNzUsImV4cCI6MjA4NTI3ODM3NX0.SHSVZ4GE_Eh_2CpqwNIXdOFz5_x7uapSU3ICM8HCqXk";
-    
-    let supabaseClient = null;
+
+    let supabase = null;
     try {
-      if (window.supabase && typeof window.supabase.createClient === 'function') {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      if (window.supabase && typeof window.supabase.createClient === "function") {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      } else {
+        console.warn("Supabase CDN not loaded.");
       }
     } catch (e) {
       console.warn("Supabase init error:", e);
     }
 
+    // ============================================================
+    // 2. GAME ENGINE (YOUR EXISTING LOGIC)
+    // ============================================================
     const DEFAULT_GALLERY = [
       {
         id: "doodle-1",
@@ -779,7 +786,7 @@
     const targetBreedEl = document.getElementById("targetBreed");
     const timerDisplay = document.getElementById("timerDisplay");
     const overlay = document.getElementById("overlay");
-    
+
     const penToolBtn = document.getElementById("penToolBtn");
     const sprayToolBtn = document.getElementById("sprayToolBtn");
     const eraserToolBtn = document.getElementById("eraserToolBtn");
@@ -997,19 +1004,20 @@
     cancelModalBtn.addEventListener("click", () => uploadModal.style.display = "none");
 
     // ============================================================
-    // 2. SUPABASE DATA SYNC
+    // 3. SUPABASE DATA SYNC
     // ============================================================
     async function loadGallery() {
-      if (!supabaseClient) {
+      if (!supabase) {
+        // No backend → just show whatever is in gallery (defaults or optimistic)
         renderGalleryAndLeaderboard();
         return;
       }
 
       try {
-        const { data, error } = await supabaseClient
-          .from('bark_gallery')
-          .select('*')
-          .order('created_at', { ascending: false });
+        const { data, error } = await supabase
+          .from("bark_gallery")
+          .select("*")
+          .order("created_at", { ascending: false });
 
         if (error) throw error;
 
@@ -1022,8 +1030,6 @@
             superLikes: row.super_likes || 0,
             img: row.image_data
           }));
-        } else {
-          gallery = [...DEFAULT_GALLERY];
         }
 
         renderGalleryAndLeaderboard();
@@ -1042,9 +1048,10 @@
       const dataUrl = canvas.toDataURL("image/jpeg", 0.6);
       uploadModal.style.display = "none";
 
-      // Immediate Optimistic Render
+      // Optimistic local insert so you see it immediately
+      const tempId = "temp-" + Date.now();
       gallery.unshift({
-        id: "temp-" + Date.now(),
+        id: tempId,
         name: cleanName,
         prompt: currentPrompt,
         likes: 0,
@@ -1053,20 +1060,38 @@
       });
       renderGalleryAndLeaderboard();
 
-      if (supabaseClient) {
+      if (supabase) {
         try {
-          const { error } = await supabaseClient
-            .from('bark_gallery')
+          const { data, error } = await supabase
+            .from("bark_gallery")
             .insert([{
               dog_tag: cleanName,
               prompt: currentPrompt,
               image_data: dataUrl,
               likes: 0,
               super_likes: 0
-            }]);
+            }])
+            .select();
 
           if (error) throw error;
-          await loadGallery();
+
+          // Replace temp entry with real DB row
+          if (data && data[0]) {
+            const real = data[0];
+            gallery = gallery.map(item =>
+              item.id === tempId
+                ? {
+                    id: real.id,
+                    name: real.dog_tag,
+                    prompt: real.prompt,
+                    likes: real.likes || 0,
+                    superLikes: real.super_likes || 0,
+                    img: real.image_data
+                  }
+                : item
+            );
+            renderGalleryAndLeaderboard();
+          }
         } catch (err) {
           console.error("Upload error:", err);
         }
@@ -1085,16 +1110,16 @@
 
       renderGalleryAndLeaderboard();
 
-      // Only sync valid database UUIDs (skip local starter doodles)
-      if (supabaseClient && typeof id === 'string' && id.length > 25 && !id.startsWith("doodle-") && !id.startsWith("temp-")) {
+      // Only sync real DB IDs (skip starter + temp)
+      if (supabase && typeof id === "string" && id.length > 25 && !id.startsWith("doodle-") && !id.startsWith("temp-")) {
         try {
-          await supabaseClient
-            .from('bark_gallery')
+          await supabase
+            .from("bark_gallery")
             .update({
               likes: item.likes,
               super_likes: item.superLikes
             })
-            .eq('id', id);
+            .eq("id", id);
         } catch (err) {
           console.error("Vote sync error:", err);
         }
@@ -1146,38 +1171,38 @@
       `).join("");
     }
 
-    // ============================================================
-    // 3. INITIALIZATION & REALTIME
-    // ============================================================
-    async function initSupabaseSync() {
-      // Immediate initial render so page is responsive instantly
-      renderGalleryAndLeaderboard();
-      nextPrompt();
+   // ============================================================
+// 4. INITIALIZATION & REALTIME (FIXED)
+// ============================================================
+async function initSupabaseSync() {
+  // Render defaults immediately so UI is alive
+  renderGalleryAndLeaderboard();
+  nextPrompt();
 
-      if (!supabaseClient) {
-        console.warn("Supabase not available — running in fallback mode.");
-        return;
-      }
+  if (!supabase) {
+    console.warn("Supabase not available — running in local-only mode.");
+    return;
+  }
 
-      // Realtime subscription
-      try {
-        supabaseClient
-          .channel('public:bark_gallery')
-          .on(
-            'postgres_changes',
-            { event: '*', schema: 'public', table: 'bark_gallery' },
-            () => loadGallery()
-          )
-          .subscribe();
-      } catch (err) {
-        console.warn("Realtime sub error:", err);
-      }
+  try {
+    supabase
+      .channel("public:bark_gallery")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "bark_gallery" },
+        () => loadGallery()
+      )
+      .subscribe();
+  } catch (err) {
+    console.warn("Realtime subscription error:", err);
+  }
 
-      // Load live rows from database
-      await loadGallery();
-    }
+  await loadGallery();
+}
 
-    initSupabaseSync();
-  </script>
+// Boot the backend sync
+initSupabaseSync();
+</script>
 </body>
 </html>
+
