@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Devlog & Journey Archives | Quackwork Studios</title>
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Development logs, code breakdowns, Unity struggles, and solo indie journey archives for Quackwork Studios and Duckmon.">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              goldHover: '#D97706',
+              cyan: '#06B6D4',
+              purple: '#A855F7',
+              dark: '#0A0C10',
+              card: '#121620',
+              cardHover: '#181E2B',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-brand-dark text-slate-200 font-sans min-h-screen antialiased selection:bg-brand-gold selection:text-black">
+
+  <!-- Background Ambient Glows -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-amber-500/10 rounded-full blur-[140px]"></div>
+    <div class="absolute top-[45rem] left-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-[90rem] right-10 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[160px]"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/85 border-b border-white/5">
+    <nav class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center font-mono font-bold text-amber-400 group-hover:scale-105 transition">
+          🦆
+        </div>
+        <span class="font-display font-bold text-lg text-white tracking-tight">Quackwork Studios</span>
+      </a>
+
+      <ul class="flex items-center gap-4 sm:gap-6 text-xs md:text-sm font-mono font-medium text-slate-400">
+        <li><a href="/" class="hover:text-white transition">Home</a></li>
+        <li><a href="/duckmon.html" class="hover:text-white transition">Duckmon</a></li>
+        <li><a href="/devlog.html" class="text-amber-400 font-bold transition">Devlog</a></li>
+        <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a href="/" class="text-xs font-mono text-slate-400 hover:text-white transition">← Home</a>
+        <a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition hover:scale-105 shadow-md shadow-amber-400/20">
+          Discord
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-5 py-12 md:py-16 space-y-12">
+
+    <!-- 1. HEADER TITLE & JOURNAL BANNER -->
+    <section class="text-center space-y-6">
+      <div class="inline-block space-y-2">
+        <span class="text-xs font-mono tracking-[0.25em] uppercase text-brand-gold font-bold px-3.5 py-1 rounded-full border border-amber-500/20 bg-amber-500/5">
+          Engineering Logs & Markdown Notes
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-display font-black tracking-tight text-white uppercase drop-shadow-md">
+          Devlog <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-cyan-400">Archives</span>
+        </h1>
+        <p class="text-sm sm:text-base text-slate-300 max-w-xl mx-auto font-sans leading-relaxed pt-1">
+          A chronicle of a solo dev building games with zero formal background. From first installing Unity to late-night AI debugging and systems architecture.
+        </p>
+      </div>
+
+      <!-- Journal Image Frame -->
+      <div class="relative max-w-lg mx-auto rounded-3xl overflow-hidden border-2 border-white/10 bg-black shadow-2xl p-2 group">
+        <div class="relative rounded-2xl overflow-hidden bg-brand-card/90 border border-white/5 flex items-center justify-center">
+          <img 
+            src="Image/Journal.png" 
+            alt="Devlog Journal Art" 
+            class="w-full h-auto object-cover max-h-72 transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      </div>
+
+      <div class="flex justify-center items-center gap-3 text-xs font-mono">
+        <a href="https://dev.to/asx" target="_blank" class="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition flex items-center gap-2">
+          <span>Follow @asx on DEV.to</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- 2. CHRONOLOGICAL DEVLOG POSTS (LATEST -> OLDEST) -->
+    <section class="space-y-4">
+      
+      <!-- Entry 40 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-amber-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 font-bold">
+            Dev Log #40
+          </span>
+          <span class="text-slate-400">August 6, 2026</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-amber-300 transition">
+          <a href="https://dev.to/asx/dev-log-40-rngdungeon-mini-game-3n7d" target="_blank">Dev Log 40 - RNGDungeon Mini Game</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Deep dive into data architecture, procedural dungeon loops, dynamic room modifiers, and wiring up the rogue-lite game loop in Unity.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#unity3d #gamedev #csharp</span>
+          <a href="https://dev.to/asx/dev-log-40-rngdungeon-mini-game-3n7d" target="_blank" class="text-xs font-mono font-bold text-amber-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 39 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-amber-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 font-bold">
+            Dev Log #39
+          </span>
+          <span class="text-slate-400">July 25, 2026</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-amber-300 transition">
+          <a href="https://dev.to/asx/dev-log-39-continued-improvements-3031" target="_blank">DEV LOG 39 - Continued Improvements</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          UI optimizations, tooltips stabilization, memory cleanups, and script refactors to prevent edge-case state desyncs across scene transitions.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#gamedev #unity3d #python</span>
+          <a href="https://dev.to/asx/dev-log-39-continued-improvements-3031" target="_blank" class="text-xs font-mono font-bold text-amber-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 38 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-amber-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 font-bold">
+            Dev Log #38
+          </span>
+          <span class="text-slate-400">December 22, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-amber-300 transition">
+          <a href="https://dev.to/asx/dev-log-38-the-christmas-resurrection-kind-of--2gnm" target="_blank">Dev Log 38 - The Christmas Resurrection (Kind - Of )</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Holiday rebuilding milestones, stabilizing core mechanics, and resurrecting broken prototype branches.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#gamedev #unity3d #beginners</span>
+          <a href="https://dev.to/asx/dev-log-38-the-christmas-resurrection-kind-of--2gnm" target="_blank" class="text-xs font-mono font-bold text-amber-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 37 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-amber-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 font-bold">
+            Dev Log #37
+          </span>
+          <span class="text-slate-400">November 15, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-amber-300 transition">
+          <a href="https://dev.to/asx/dev-log-37-consolidated-update-oo7" target="_blank">Dev Log 37 - Consolidated Update</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Combining systems architectures, cleaning up legacy scripts, and aligning project data into consolidated registries.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#devjournal #unity3d #csharp</span>
+          <a href="https://dev.to/asx/dev-log-37-consolidated-update-oo7" target="_blank" class="text-xs font-mono font-bold text-amber-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 36 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-cyan-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-bold">
+            Dev Log #36
+          </span>
+          <span class="text-slate-400">November 8, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-cyan-300 transition">
+          <a href="https://dev.to/asx/dev-log-36-mythic-pause-4apk" target="_blank">Dev Log 36 - Mythic Pause</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Stepping back to re-evaluate scope, focusing down the card battler design, and laying down the groundwork for Duckmon.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#devjournal #gamedev #unity3d</span>
+          <a href="https://dev.to/asx/dev-log-36-mythic-pause-4apk" target="_blank" class="text-xs font-mono font-bold text-cyan-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 35 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-cyan-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-bold">
+            Dev Log #35
+          </span>
+          <span class="text-slate-400">October 22, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-cyan-300 transition">
+          <a href="https://dev.to/asx/dev-log-35-equip-hands-tooltips-2k51" target="_blank">Dev Log 35 - Equip Hands Tooltips</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Custom equipment slot interactions, runtime tooltip binding, and smooth UX hover states.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#devjournal #unity3d #gamedev</span>
+          <a href="https://dev.to/asx/dev-log-35-equip-hands-tooltips-2k51" target="_blank" class="text-xs font-mono font-bold text-cyan-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 34 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-cyan-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-bold">
+            Dev Log #34
+          </span>
+          <span class="text-slate-400">October 20, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-cyan-300 transition">
+          <a href="https://dev.to/asx/dev-log-34-tooltip-resurrection-2jgg" target="_blank">Dev Log 34 - Tooltip Resurrection</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Diagnosing UI prefab clone rebinding issues and solving state persistence bugs that survived multiple refactors.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#beginners #devjournal #gamedev</span>
+          <a href="https://dev.to/asx/dev-log-34-tooltip-resurrection-2jgg" target="_blank" class="text-xs font-mono font-bold text-cyan-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 33 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-cyan-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-bold">
+            Dev Log #33
+          </span>
+          <span class="text-slate-400">October 18, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-cyan-300 transition">
+          <a href="https://dev.to/asx/dev-log-33-liquid-entry-landing-page-1nld" target="_blank">Dev Log 33 - Liquid Entry & Landing Page</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Building the first web landing page portal and expanding in-game database schemas.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#webdev #unity3d #devjournal</span>
+          <a href="https://dev.to/asx/dev-log-33-liquid-entry-landing-page-1nld" target="_blank" class="text-xs font-mono font-bold text-cyan-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 32 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-cyan-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-bold">
+            Dev Log #32
+          </span>
+          <span class="text-slate-400">October 14, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-cyan-300 transition">
+          <a href="https://dev.to/asx/dev-log-32-relic-001-plague-of-rot-54od" target="_blank">Dev Log 32 - Relic 001 - Plague of Rot</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Audio spectrogram experimentation, hidden audio relic encoder/decoder scripts, and secret in-game lore injection.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#python #ai #lore</span>
+          <a href="https://dev.to/asx/dev-log-32-relic-001-plague-of-rot-54od" target="_blank" class="text-xs font-mono font-bold text-cyan-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 31 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-cyan-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-bold">
+            Dev Log #31
+          </span>
+          <span class="text-slate-400">October 11, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-cyan-300 transition">
+          <a href="https://dev.to/asx/dev-log-31-attachment-panel-1l9c" target="_blank">Dev Log 31 - Attachment Panel</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Modular slotting systems, weapon modification panels, and inventory state persistence.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#gamedev #unity3d #devjournal</span>
+          <a href="https://dev.to/asx/dev-log-31-attachment-panel-1l9c" target="_blank" class="text-xs font-mono font-bold text-cyan-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 30 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-cyan-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-bold">
+            Dev Log #30
+          </span>
+          <span class="text-slate-400">October 6, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-cyan-300 transition">
+          <a href="https://dev.to/asx/dev-log-30-discord-invite-46hj" target="_blank">Dev Log 30 - Discord Community Launch</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Opening the Quackwork Discord server for early feedback, playtesting, and development transparency.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#discord #community #gamedev</span>
+          <a href="https://dev.to/asx/dev-log-30-discord-invite-46hj" target="_blank" class="text-xs font-mono font-bold text-cyan-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 29 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-cyan-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-bold">
+            Dev Log #29
+          </span>
+          <span class="text-slate-400">October 5, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-cyan-300 transition">
+          <a href="https://dev.to/asx/dev-log-29-unity-security-update-3fm2" target="_blank">Dev Log 29 - Unity Security Update</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Upgrading Unity engine builds, updating dependencies, and cleaning deprecated code pipelines.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#unity #engine #security</span>
+          <a href="https://dev.to/asx/dev-log-29-unity-security-update-3fm2" target="_blank" class="text-xs font-mono font-bold text-cyan-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 28 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #28
+          </span>
+          <span class="text-slate-400">October 3, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-28-inventory-loot-system-1523" target="_blank">Dev Log 28 - Inventory Loot System</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Rebuilding inventory grids, fixing gear asset duplicates, and solidifying item generation logic.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#inventory #systems #csharp</span>
+          <a href="https://dev.to/asx/dev-log-28-inventory-loot-system-1523" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 27 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #27
+          </span>
+          <span class="text-slate-400">September 30, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-27-gear-registry-refactor-bpf" target="_blank">Dev Log 27 - Gear Registry Refactor</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Centralizing gear definitions into ScriptableObjects and refactoring data injection pathways.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#unity3d #csharp #refactoring</span>
+          <a href="https://dev.to/asx/dev-log-27-gear-registry-refactor-bpf" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 26 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #26
+          </span>
+          <span class="text-slate-400">September 28, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-26-weather-system-overhaul-3e1" target="_blank">Dev Log 26 - Weather System Overhaul</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Atmospheric shader systems, dynamic weather cycles, and environmental particle effects.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#gamedev #unity3d #shaders</span>
+          <a href="https://dev.to/asx/dev-log-26-weather-system-overhaul-3e1" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 25 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #25
+          </span>
+          <span class="text-slate-400">September 25, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-25-the-first-50-days-20i" target="_blank">Dev Log 25 - The First 50 Days</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Reflecting on 50 days of solo development, lessons learned the hard way, and rebuilding discipline.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#milestone #solodev #reflection</span>
+          <a href="https://dev.to/asx/dev-log-25-the-first-50-days-20i" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 24 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #24
+          </span>
+          <span class="text-slate-400">September 24, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-24-resurrection-protocol-3b4e" target="_blank">Dev Log 24 - Resurrection Protocol</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Recovering corrupted scene files, Git recovery tactics, and saving progress from the brink.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#git #debugging #recovery</span>
+          <a href="https://dev.to/asx/dev-log-24-resurrection-protocol-3b4e" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 23 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #23
+          </span>
+          <span class="text-slate-400">September 21, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-23-fruitful-imports-2c7l" target="_blank">Dev Log 23 - Fruitful Imports</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Automated asset import pipelines, sprite slicing automation, and atlas optimization.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#automation #assets #pipeline</span>
+          <a href="https://dev.to/asx/dev-log-23-fruitful-imports-2c7l" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 22 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #22
+          </span>
+          <span class="text-slate-400">September 20, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-22-importer-overhaul-51ig" target="_blank">Dev Log 22 - Importer Overhaul</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Rebuilding the JSON-to-ScriptableObject importer tool for faster asset iteration.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#tools #csharp #unity</span>
+          <a href="https://dev.to/asx/dev-log-22-importer-overhaul-51ig" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 21 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #21
+          </span>
+          <span class="text-slate-400">September 18, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-21-drag-and-drop-3a53" target="_blank">Dev Log 21 - Drag And Drop</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Building tactile UI drag-and-drop handlers for inventory management and grid placement.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#ui #unity #csharp</span>
+          <a href="https://dev.to/asx/dev-log-21-drag-and-drop-3a53" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 20 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #20
+          </span>
+          <span class="text-slate-400">September 16, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-20-the-grind-1k4c" target="_blank">Dev Log 20 - The Grind</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Pushing through the repetitive architecture work and keeping motivation alive during long solo coding stretches.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#solodev #mindset #gamedev</span>
+          <a href="https://dev.to/asx/dev-log-20-the-grind-1k4c" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 19 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #19
+          </span>
+          <span class="text-slate-400">September 10, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-19-chaos-to-clarity-1h8d" target="_blank">Dev Log 19 - Chaos To Clarity</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Untangling spaghetti code, introducing clean modular handlers, and establishing strict coding conventions.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#cleanCode #architecture #unity</span>
+          <a href="https://dev.to/asx/dev-log-19-chaos-to-clarity-1h8d" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 18 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #18
+          </span>
+          <span class="text-slate-400">September 7, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-18-burnout-3p9o" target="_blank">Dev Log 18 - Burnout</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          The brutal truth about converting 500+ items into ScriptableObjects, JSON schema validation, and surviving solo dev burnout.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#burnout #scriptableobjects #solodev</span>
+          <a href="https://dev.to/asx/dev-log-18-burnout-3p9o" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 17 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #17
+          </span>
+          <span class="text-slate-400">September 6, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-17-cs-json-4e4o" target="_blank">Dev Log 17 - .cs > .json</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Migrating hardcoded C# structs into dynamic JSON configurations for rapid game balance tweaks.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#json #csharp #gamedev</span>
+          <a href="https://dev.to/asx/dev-log-17-cs-json-4e4o" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 16.01 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #16.01
+          </span>
+          <span class="text-slate-400">September 4, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-1601-updated-5c2i" target="_blank">Dev Log 16.01 - Updated</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Quick patch note breakdown and editor tool performance improvements.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#patchnotes #unity #csharp</span>
+          <a href="https://dev.to/asx/dev-log-1601-updated-5c2i" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 16 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #16
+          </span>
+          <span class="text-slate-400">September 4, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-16-runtime-editor-5e17" target="_blank">Dev Log 16 - Runtime Editor</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Building in-game debugging overlays and runtime item inspectors for live testing.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#tools #editor #unity3d</span>
+          <a href="https://dev.to/asx/dev-log-16-runtime-editor-5e17" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 15 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #15
+          </span>
+          <span class="text-slate-400">September 2, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-15-the-glyphs-1b9" target="_blank">Dev Log 15 - The Glyphs</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Mysterious glyph decoding logic, custom UI text formatting, and lore integration.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#glyphs #lore #ui</span>
+          <a href="https://dev.to/asx/dev-log-15-the-glyphs-1b9" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 14 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-purple-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold">
+            Dev Log #14
+          </span>
+          <span class="text-slate-400">August 31, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-purple-300 transition">
+          <a href="https://dev.to/asx/dev-log-14-zero-to-impostor-1nj2" target="_blank">Dev Log 14 - Zero to Impostor</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          StoryNode JSON directional logic locking in, and hunting down elusive scene visual bleed bugs during transitions.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#story #narrative #json</span>
+          <a href="https://dev.to/asx/dev-log-14-zero-to-impostor-1nj2" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 01 (First Ever Dev Log) -->
+      <article class="bg-brand-card/90 border-l-4 border-amber-400 border border-brand-border hover:border-amber-500/50 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-2xl space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 font-bold">
+            Dev Log #01 • The Beginning
+          </span>
+          <span class="text-slate-400">August 8, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-amber-300 transition">
+          <a href="https://dev.to/asx/my-first-dev-log-4cfg" target="_blank">Dev Log 01 - My First Dev Log (The Fall of Sanity)</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          <em>"Installed Unity. Opened a blank scene. No code. No plan. Just vibes and a cube. Closed it."</em> The very beginning of moving shared enums, Git archaeology, and compiler errors.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-amber-400 font-bold">Origin Story • First Ever Dev Log</span>
+          <a href="https://dev.to/asx/my-first-dev-log-4cfg" target="_blank" class="text-xs font-mono font-bold text-amber-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Bottom Discord CTA Box -->
+    <div class="bg-gradient-to-r from-amber-500/20 via-brand-card to-cyan-500/20 border border-white/10 rounded-3xl p-8 text-center space-y-4 shadow-2xl">
+      <h3 class="text-2xl font-display font-bold text-white">Join The Dev Journey</h3>
+      <p class="text-slate-300 text-sm max-w-lg mx-auto font-sans">
+        Follow active development, test early preview builds, and talk card balance with the solo dev on Discord.
+      </p>
+      <div class="pt-2">
+        <a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition hover:scale-105 shadow-lg shadow-amber-400/20">
+          <span>Join the Discord</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 bg-brand-dark/90 mt-20">
+    <div class="max-w-5xl mx-auto px-5 py-10 space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded-md bg-amber-400/10 border border-amber-400/30 flex items-center justify-center font-mono text-xs text-amber-400">
+            🦆
+          </div>
+          <span class="font-display font-bold text-white">Quackwork Studios</span>
+        </div>
+
+        <ul class="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400">
+          <li><a href="/" class="hover:text-white transition">Home</a></li>
+          <li><a href="/duckmon.html" class="hover:text-white transition">Duckmon</a></li>
+          <li><a href="/devlog.html" class="text-white font-bold transition">Devlog</a></li>
+          <li><a href="/terms.html" class="hover:text-white transition">Terms</a></li>
+          <li><a href="/privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-white/5 text-xs font-mono text-slate-500">
+        <p>© 2026 Quackwork Studios • Human Architect • AI Co-Pilot • Solo Built</p>
+        <div class="flex items-center gap-3">
+          <a href="/terms.html" class="hover:text-slate-400 transition">Terms</a>
+          <span>•</span>
+          <a href="/privacy.html" class="hover:text-slate-400 transition">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
