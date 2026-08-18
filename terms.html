@@ -1,98 +1,271 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Terms of Use | Quackwork Studios</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    /* Styled to match Quackwork Main Page & Privacy Page */
-    body { background: #000; color: #fff; font-family: 'Inter', sans-serif; line-height: 1.6; margin: 0; padding: 0; }
-    .container { width: 90%; max-width: 900px; margin: 40px auto; padding-bottom: 60px; }
-    .top-link { text-align: center; margin-bottom: 30px; }
-    .top-link a { color: #00d9ff; font-size: 18px; text-decoration: none; transition: 0.2s; }
-    .top-link a:hover { text-shadow: 0 0 10px #00d9ff; }
-    .logo { display: block; margin: 0 auto 20px; max-width: 200px; }
-    .game-title-img { display: block; margin: 0 auto 30px; max-width: 400px; }
-    h1 { font-size: 32px; color: #fff; text-align: center; margin-bottom: 10px; }
-    h2 { font-size: 20px; color: #00d9ff; margin-top: 40px; border-bottom: 1px solid rgb(29 34 42); padding-bottom: 8px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-    h3 { font-size: 18px; color: #fff; margin-top: 20px; margin-bottom: 10px; }
-    p, li { font-size: 16px; color: #b8bfca; margin-bottom: 15px; }
-    strong { color: #fff; }
-    .legal-card { background: rgb(16 21 26 / 0.6); border: 1px solid rgb(29 34 42); padding: 40px; border-radius: 1rem; }
-    footer { margin-top: 60px; padding: 20px; text-align: center; border-top: 1px solid rgb(29 34 42); color: #777; font-size: 13px; }
-    
-    @media (max-width: 600px) {
-      .legal-card { padding: 20px; }
-      h1 { font-size: 24px; }
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Terms of Use for Quackwork Studios and Duckmon: Rules of play, intellectual property, account responsibilities, and service terms.">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              goldHover: '#D97706',
+              cyan: '#06B6D4',
+              purple: '#A855F7',
+              dark: '#0A0C10',
+              card: '#121620',
+              cardHover: '#181E2B',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          }
+        }
+      }
     }
-  </style>
+  </script>
 </head>
-<body>
 
-<div class="container">
-  <div class="top-link"><a href="/">← Back to Homepage</a></div>
-  
-  <img class="logo" src="https://raw.githubusercontent.com/ASXGTR/Quackworkstudios/main/QuackworkStudios.png" alt="Quackwork Studios">
-  <img class="game-title-img" src="https://github.com/ASXGTR/Quackworkstudios/raw/main/TitleTextUpscale.png" alt="Duckmon">
+<body class="bg-brand-dark text-slate-200 font-sans min-h-screen antialiased selection:bg-brand-gold selection:text-black">
 
-  <div class="legal-card">
-    <h1>Terms of Use</h1>
-    <p style="text-align: center;"><strong>Quackwork Studios — Duckmon</strong><br>Last updated: April 28, 2026</p>
-
-    <p>These Terms of Use (“Terms”, “Agreement”) govern your access to and use of Duckmon (“the Game”), developed and operated by Quackwork Studios (“we”, “us”, “our”).</p>
-    
-    <p>By creating an account, accessing the Game, or clicking “Accept”, you acknowledge that you have read, understood, and agreed to be bound by these Terms and our Privacy Policy. <strong>If you do not agree to these Terms or the Privacy Policy, you must not use the Game.</strong></p>
-
-    <h2>1. Acceptance of Privacy Policy</h2>
-    <p>By accepting these Terms, you confirm that you have fully read, understood, and agreed to our Privacy Policy. Acceptance is required to create an account and use the Game.</p>
-
-    <h2>2. Acceptance of These Terms</h2>
-    <p>By clicking “Accept”, you confirm that you have fully read, understood, and agreed to all Terms outlined in this document. If you do not agree, you must exit the Game.</p>
-
-    <h2>3. Eligibility</h2>
-    <p>You must meet the minimum age required by your local laws to create an online account. You may not use the Game if you are prohibited from doing so under applicable laws.</p>
-
-    <h2>4. Account Responsibilities</h2>
-    <p>You are responsible for maintaining control of your account and ensuring your login credentials remain secure. We do not store your password; authentication is handled securely by <strong>Supabase Auth</strong>.</p>
-    <p><strong>You must not:</strong> Share your account, attempt to access another player’s account, or create multiple accounts for abuse.</p>
-
-    <h2>5. Acceptable Use</h2>
-    <p>You agree not to engage in behaviour that harms the Game, including: Cheating, botting, modifying game files, using unauthorized third-party tools, or harassing other players.</p>
-
-    <h2>6. Ownership and Intellectual Property</h2>
-    <p>All content in the Game—including artwork, characters, code, audio, and design—is the property of <strong>Quackwork Studios</strong>. You are granted a personal, non-exclusive licence to play the Game.</p>
-
-    <h2>7. Game Updates and Changes</h2>
-    <p>We may update, modify, or remove features at any time. We are not obligated to maintain or support the Game indefinitely.</p>
-
-    <h2>8. Online Services and Availability</h2>
-    <p>The Game requires an internet connection. We do not guarantee uninterrupted service or permanent availability of servers. We are not liable for downtime or service interruptions.</p>
-
-    <h2>9. Account Termination</h2>
-    <p>We may suspend or terminate your account for violating these Terms or engaging in cheating/abuse. Account deletion is permanent and irreversible.</p>
-
-    <h2>10. Enforcement and Account Actions</h2>
-    <p>We reserve the right to suspend, restrict, or terminate any account at our sole discretion, with or without notice. We are not required to provide evidence or justification for enforcement actions taken to protect the Game’s integrity.</p>
-
-    <h2>11. Platform and Service Terms</h2>
-    <p>You agree to comply with the Terms of Service of platforms we use, including: <strong>Supabase</strong>, <strong>Brevo</strong>, <strong>itch.io</strong>, and <strong>Steam</strong>. Failure to comply with these third-party terms may result in account termination.</p>
-
-    <h2>12. Limitation of Liability</h2>
-    <p>To the maximum extent permitted by law, Quackwork Studios is not liable for loss of data, progress, crashes, or any incidental damages. Your use of the Game is at your own risk.</p>
-
-    <h2>13. Changes to These Terms</h2>
-    <p>We may update these Terms. Continued use of the Game after changes are posted constitutes acceptance of the updated Terms.</p>
-
-    <h2>14. Light-hearted Disclaimer</h2>
-    <p>While we take enforcement seriously, we also enjoy a bit of Duckmon humour. By playing the Game, you acknowledge that if your account is banned, you may be theoretically imagined drifting through an infinite duck-themed multiverse—a whimsical realm filled with overly enthusiastic duck hunters who prefer duck eggs for breakfast.</p>
-
-    <h2>15. Contact Information</h2>
-    <p>If you have questions about these Terms, contact: <strong>support@quackworkstudios.com</strong></p>
+  <!-- Background Ambient Glows -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-amber-500/10 rounded-full blur-[140px]"></div>
+    <div class="absolute top-[50rem] left-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px]"></div>
   </div>
 
-  <footer>© 2026 Quackwork Studios — All Rights Reserved</footer>
-</div>
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/85 border-b border-white/5">
+    <nav class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center font-mono font-bold text-amber-400 group-hover:scale-105 transition">
+          🦆
+        </div>
+        <span class="font-display font-bold text-lg text-white tracking-tight">Quackwork Studios</span>
+      </a>
+
+      <ul class="flex items-center gap-4 sm:gap-6 text-xs md:text-sm font-mono font-medium text-slate-400">
+        <li><a href="/" class="hover:text-white transition">Home</a></li>
+        <li><a href="/duckmon.html" class="hover:text-white transition">Duckmon</a></li>
+        <li><a href="/devlog.html" class="hover:text-white transition">Devlog</a></li>
+        <li><a href="/privacy.html" class="hover:text-white transition">Privacy</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a href="/" class="text-xs font-mono text-slate-400 hover:text-white transition">← Home</a>
+        <a href="https://discord.gg/uYEmN2Rswt" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition hover:scale-105 shadow-md shadow-amber-400/20">
+          Discord
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-5 py-12 md:py-16 space-y-8">
+
+    <!-- Top Header & Logo -->
+    <div class="text-center space-y-4">
+      <div class="w-20 h-20 mx-auto rounded-2xl bg-brand-card/90 border border-brand-border p-3 flex items-center justify-center shadow-xl backdrop-blur-md">
+        <img 
+          src="Image/QuackworkStudios.png" 
+          alt="Quackwork Studios Logo" 
+          class="w-full h-full object-contain filter drop-shadow-md"
+        />
+      </div>
+
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-brand-gold font-bold px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/5">
+          Legal Agreement
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-display font-black tracking-tight text-white uppercase mt-2">
+          Terms of Use
+        </h1>
+        <p class="text-xs font-mono text-slate-400 mt-1">
+          Quackwork Studios • Duckmon • Last updated: August 18, 2026
+        </p>
+      </div>
+    </div>
+
+    <!-- Legal Terms Card -->
+    <div class="bg-brand-card/75 border border-brand-border rounded-3xl p-6 sm:p-10 backdrop-blur-xl shadow-2xl space-y-8 leading-relaxed text-slate-300 font-sans text-sm sm:text-base">
+      
+      <div class="space-y-3 pb-6 border-b border-white/5">
+        <p>
+          These Terms of Use (“Terms”, “Agreement”) govern your access to and use of <strong>Duckmon</strong> (“the Game”) and related web services operated by <strong>Quackwork Studios</strong> (“we”, “us”, “our”).
+        </p>
+        <p class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 font-mono text-xs">
+          ⚠️ By creating an account, authenticating, downloading builds, or playing the Game, you agree to be bound by these Terms and our Privacy Policy. If you do not agree, do not access or use the Game.
+        </p>
+      </div>
+
+      <!-- Section 1 & 2 -->
+      <section class="space-y-3">
+        <h2 class="text-base sm:text-lg font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-2">
+          <span>01.</span> Acceptance of Terms & Privacy
+        </h2>
+        <p class="text-slate-300 pl-2">
+          Accessing the Game confirms that you have read, understood, and agreed to both these Terms and our <a href="/privacy.html" class="text-amber-400 hover:underline">Privacy Policy</a>. Account registration requires acceptance of these conditions.
+        </p>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="space-y-3">
+        <h2 class="text-base sm:text-lg font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-2">
+          <span>02.</span> Eligibility & Age Requirements
+        </h2>
+        <p class="text-slate-300 pl-2">
+          You must meet the minimum legal age required in your jurisdiction to consent to online services and create an authenticated account (e.g. 13+ in the US/UK or applicable regional requirements).
+        </p>
+      </section>
+
+      <!-- Section 4 & 5 -->
+      <section class="space-y-3">
+        <h2 class="text-base sm:text-lg font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-2">
+          <span>03.</span> Account Responsibilities & Fair Play
+        </h2>
+        <div class="space-y-2 pl-2 text-xs sm:text-sm">
+          <p>
+            • <strong>Account Security:</strong> You are responsible for safeguarding your login credentials. We do not store plaintext passwords; authentication is securely routed through <strong>Supabase Auth</strong>.
+          </p>
+          <p>
+            • <strong>Prohibited Behaviour:</strong> Cheating, memory injection, speed-hacking, unauthorized botting, reverse-engineering client binaries, abusing server endpoints, exploiting economy bugs, or harassing community members is strictly prohibited.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="space-y-3">
+        <h2 class="text-base sm:text-lg font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-2">
+          <span>04.</span> Ownership & Intellectual Property
+        </h2>
+        <p class="text-slate-300 pl-2">
+          All Game assets—including card artworks, character concepts, game rules, code, sound effects, Quax Trax OST audio compositions, and visual branding—are the exclusive intellectual property of <strong>Quackwork Studios</strong>. You are granted a personal, revocable, non-exclusive license to play the Game.
+        </p>
+      </section>
+
+      <!-- Section 7 & 8 -->
+      <section class="space-y-3">
+        <h2 class="text-base sm:text-lg font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-2">
+          <span>05.</span> Online Availability & Game Evolution
+        </h2>
+        <p class="text-slate-300 pl-2 text-xs sm:text-sm">
+          Duckmon is an actively developing title. We reserve the right to balance card stats, adjust mechanics, add or remove modes, or patch bugs at any time. While we aim for high uptime, we do not guarantee uninterrupted server availability and are not liable for external downtime.
+        </p>
+      </section>
+
+      <!-- Section 9 & 10 -->
+      <section class="space-y-3">
+        <h2 class="text-base sm:text-lg font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-2">
+          <span>06.</span> Account Enforcement & Termination
+        </h2>
+        <p class="text-slate-300 pl-2 text-xs sm:text-sm">
+          We reserve the right to restrict, suspend, or permanently terminate accounts found violating these Terms, attempting backend exploits, or compromising multiplayer game integrity. Account termination results in permanent loss of save data.
+        </p>
+      </section>
+
+      <!-- Section 11 -->
+      <section class="space-y-3">
+        <h2 class="text-base sm:text-lg font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-2">
+          <span>07.</span> Third-Party Platform Compliance
+        </h2>
+        <p class="text-slate-300 pl-2 text-xs sm:text-sm">
+          Players must also adhere to the terms of the third-party platforms utilized for distribution and backend infrastructure: <strong>Supabase</strong>, <strong>Brevo</strong>, <strong>itch.io</strong>, and <strong>Steam</strong>.
+        </p>
+      </section>
+
+      <!-- Section 12 -->
+      <section class="space-y-3">
+        <h2 class="text-base sm:text-lg font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-2">
+          <span>08.</span> Limitation of Liability
+        </h2>
+        <p class="text-slate-300 pl-2 text-xs sm:text-sm">
+          To the maximum extent permitted by law, Quackwork Studios provides the Game on an "as is" and "as available" basis without warranties of any kind. We are not liable for indirect damages, lost match data, or client hardware malfunctions.
+        </p>
+      </section>
+
+      <!-- Section 14 (Humour Disclaimer) -->
+      <section class="space-y-3 p-4 rounded-2xl bg-black/40 border border-purple-500/30">
+        <h2 class="text-xs font-mono uppercase tracking-wider text-purple-400 font-bold flex items-center gap-2">
+          <span>🦆 Multiverse Lore Clause</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 italic">
+          "While we take game integrity seriously, we also enjoy Duckmon lore. By playing the Game, you acknowledge that if your account is banned for cheating, you may be canonically imagined drifting through a fractured duck-themed multiverse: a chaotic realm filled with overly enthusiastic duck hunters who prefer duck eggs for breakfast."
+        </p>
+      </section>
+
+      <!-- Section 15 -->
+      <section class="space-y-3">
+        <h2 class="text-base sm:text-lg font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-2">
+          <span>09.</span> Contact Information
+        </h2>
+        <div class="p-4 rounded-xl bg-black/40 border border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+          <div>
+            <span class="text-slate-400 block">Questions regarding Terms:</span>
+            <span class="text-amber-400 font-bold text-sm">QuackworkStudios@gmail.com</span>
+          </div>
+          <a href="mailto:QuackworkStudios@gmail.com" class="px-4 py-2 rounded-lg bg-amber-400 hover:bg-amber-300 text-black font-bold uppercase tracking-wider transition">
+            Contact Us →
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Back to Home Link -->
+    <div class="text-center pt-4">
+      <a href="/" class="text-xs font-mono text-amber-400 hover:underline">
+        ← Return to Quackwork Studios Homepage
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 bg-brand-dark/90 mt-20">
+    <div class="max-w-5xl mx-auto px-5 py-10 space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded-md bg-amber-400/10 border border-amber-400/30 flex items-center justify-center font-mono text-xs text-amber-400">
+            🦆
+          </div>
+          <span class="font-display font-bold text-white">Quackwork Studios</span>
+        </div>
+
+        <ul class="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400">
+          <li><a href="/" class="hover:text-white transition">Home</a></li>
+          <li><a href="/duckmon.html" class="hover:text-white transition">Duckmon</a></li>
+          <li><a href="/devlog.html" class="hover:text-white transition">Devlog</a></li>
+          <li><a href="/terms.html" class="text-white font-bold transition">Terms</a></li>
+          <li><a href="/privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-white/5 text-xs font-mono text-slate-500">
+        <p>© 2026 Quackwork Studios • Human Architect • AI Co-Pilot • Solo Built</p>
+        <div class="flex items-center gap-3">
+          <a href="/terms.html" class="text-amber-400">Terms</a>
+          <span>•</span>
+          <a href="/privacy.html" class="hover:text-slate-400 transition">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
