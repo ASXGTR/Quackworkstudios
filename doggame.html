@@ -650,7 +650,7 @@
               </tr>
             </thead>
             <tbody id="leaderboardBody">
-              <!-- Dynamically populated from Supabase -->
+              <!-- Dynamically populated -->
             </tbody>
           </table>
         </div>
@@ -667,7 +667,7 @@
         </div>
 
         <div id="galleryGrid" class="gallery-grid">
-          <!-- Dynamically populated from Supabase -->
+          <!-- Dynamically populated -->
         </div>
       </div>
     </section>
@@ -696,47 +696,45 @@
   <!-- ENGINE & SUPABASE SYNC SCRIPT -->
   <script>
     // ============================================================
-    // 1. SUPABASE CLIENT INITIALIZATION
+    // 1. SUPABASE CLIENT INITIALIZATION (SAFE NAMESPACE)
     // ============================================================
     const SUPABASE_URL = "https://ryhiswzhfivvagxztqqc.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5aGlzd3poZml2dmFneHp0dHFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MDIzNzUsImV4cCI6MjA4NTI3ODM3NX0.SHSVZ4GE_Eh_2CpqwNIXdOFz5_x7uapSU3ICM8HCqXk";
 
-    let supabase = null;
+    let supabaseClient = null;
     try {
       if (window.supabase && typeof window.supabase.createClient === "function") {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      } else {
-        console.warn("Supabase CDN not loaded.");
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       }
     } catch (e) {
       console.warn("Supabase init error:", e);
     }
 
     // ============================================================
-    // 2. GAME ENGINE
+    // 2. GAME ENGINE & PROMPTS
     // ============================================================
     const DEFAULT_GALLERY = [
       {
         id: "doodle-1",
         name: "PUGGY",
         prompt: "A wrinkly Pug wearing retro sunglasses 😎",
-        likes: 0,
-        superLikes: 0,
+        likes: 4,
+        superLikes: 2,
         img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><circle cx='240' cy='240' r='105' fill='%23b45309' stroke='%23000' stroke-width='6'/><ellipse cx='240' cy='285' rx='48' ry='32' fill='%23451a03' stroke='%23000' stroke-width='4'/><rect x='165' y='200' width='65' height='38' rx='8' fill='%23000'/><rect x='250' y='200' width='65' height='38' rx='8' fill='%23000'/><line x1='230' y1='216' x2='250' y2='216' stroke='%23000' stroke-width='6'/><polygon points='140,175 125,115 180,155' fill='%2378350f' stroke='%23000' stroke-width='4'/><polygon points='340,175 355,115 300,155' fill='%2378350f' stroke='%23000' stroke-width='4'/></svg>"
       },
       {
         id: "doodle-2",
         name: "CHOPPER",
         prompt: "A dog caught stealing a slice of pizza 🍕",
-        likes: 0,
-        superLikes: 0,
+        likes: 3,
+        superLikes: 1,
         img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='190' cy='260' rx='85' ry='55' fill='%23f59e0b' stroke='%23000' stroke-width='6'/><circle cx='130' cy='210' r='45' fill='%23f59e0b' stroke='%23000' stroke-width='6'/><circle cx='120' cy='200' r='6' fill='%23000'/><polygon points='145,225 300,265 290,170' fill='%23fef08a' stroke='%23b45309' stroke-width='6'/><circle cx='215' cy='225' r='10' fill='%23ef4444'/><circle cx='255' cy='235' r='10' fill='%23ef4444'/></svg>"
       },
       {
         id: "doodle-3",
         name: "BARKY",
         prompt: "A dog wearing a Santa hat at Christmas 🎅",
-        likes: 0,
+        likes: 2,
         superLikes: 0,
         img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='240' cy='275' rx='85' ry='75' fill='%23fef08a' stroke='%23000' stroke-width='6'/><circle cx='210' cy='255' r='8' fill='%23000'/><circle cx='270' cy='255' r='8' fill='%23000'/><ellipse cx='240' cy='295' rx='14' ry='10' fill='%23000'/><polygon points='165,210 240,85 315,210' fill='%23ef4444' stroke='%23000' stroke-width='5'/><rect x='155' y='200' width='170' height='26' rx='13' fill='%23ffffff' stroke='%23000' stroke-width='4'/><circle cx='240' cy='75' r='20' fill='%23ffffff' stroke='%23000' stroke-width='4'/></svg>"
       }
@@ -815,7 +813,6 @@
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
-    clearCanvas();
 
     function startTimer() {
       clearInterval(timerInterval);
@@ -907,6 +904,7 @@
       isDrawing = false;
     }
 
+    // Canvas Events
     canvas.addEventListener("mousedown", startDraw);
     canvas.addEventListener("mousemove", draw);
     canvas.addEventListener("mouseup", stopDraw);
@@ -916,6 +914,7 @@
     canvas.addEventListener("touchmove", draw, { passive: false });
     canvas.addEventListener("touchend", stopDraw);
 
+    // Color buttons
     document.querySelectorAll(".color-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".color-btn").forEach(b => b.classList.remove("active"));
@@ -929,6 +928,7 @@
       });
     });
 
+    // Tool switching
     penToolBtn.addEventListener("click", () => {
       currentTool = "pen";
       penToolBtn.classList.add("active");
@@ -950,6 +950,7 @@
       sprayToolBtn.classList.remove("active");
     });
 
+    // Brush Sizes
     document.querySelectorAll(".size-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".size-btn").forEach(b => b.classList.remove("active"));
@@ -1002,16 +1003,16 @@
     cancelModalBtn.addEventListener("click", () => uploadModal.style.display = "none");
 
     // ============================================================
-    // 3. SUPABASE DATA SYNC
+    // 3. DATA SYNC & VOTING
     // ============================================================
     async function loadGallery() {
-      if (!supabase) {
+      if (!supabaseClient) {
         renderGalleryAndLeaderboard();
         return;
       }
 
       try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
           .from("bark_gallery")
           .select("*")
           .order("created_at", { ascending: false });
@@ -1056,9 +1057,9 @@
       });
       renderGalleryAndLeaderboard();
 
-      if (supabase) {
+      if (supabaseClient) {
         try {
-          const { data, error } = await supabase
+          const { data, error } = await supabaseClient
             .from("bark_gallery")
             .insert([{
               dog_tag: cleanName,
@@ -1106,9 +1107,9 @@
 
       renderGalleryAndLeaderboard();
 
-      if (supabase && !idStr.startsWith("doodle-") && !idStr.startsWith("temp-")) {
+      if (supabaseClient && !idStr.startsWith("doodle-") && !idStr.startsWith("temp-")) {
         try {
-          await supabase
+          await supabaseClient
             .from("bark_gallery")
             .update({
               likes: item.likes,
@@ -1167,33 +1168,36 @@
     }
 
     // ============================================================
-    // 4. INITIALIZATION & REALTIME
+    // 4. BOOTSTRAP
     // ============================================================
     async function initSupabaseSync() {
+      // 1. Clear & setup canvas
+      clearCanvas();
+      
+      // 2. Render initial data & select first prompt immediately
       renderGalleryAndLeaderboard();
       nextPrompt();
 
-      if (!supabase) {
-        console.warn("Supabase not available — running in local-only mode.");
-        return;
-      }
+      // 3. Connect Supabase Realtime if active
+      if (supabaseClient) {
+        try {
+          supabaseClient
+            .channel("public:bark_gallery")
+            .on(
+              "postgres_changes",
+              { event: "*", schema: "public", table: "bark_gallery" },
+              () => loadGallery()
+            )
+            .subscribe();
+        } catch (err) {
+          console.warn("Realtime error:", err);
+        }
 
-      try {
-        supabase
-          .channel("public:bark_gallery")
-          .on(
-            "postgres_changes",
-            { event: "*", schema: "public", table: "bark_gallery" },
-            () => loadGallery()
-          )
-          .subscribe();
-      } catch (err) {
-        console.warn("Realtime subscription error:", err);
+        await loadGallery();
       }
-
-      await loadGallery();
     }
 
+    // Start immediately
     initSupabaseSync();
   </script>
 </body>
