@@ -80,7 +80,7 @@
 
   <main class="max-w-4xl mx-auto px-5 py-12 md:py-16 space-y-12">
 
-    <!-- 1. HEADER TITLE & JOURNAL BANNER -->
+    <!-- 1. HEADER TITLE & EXPANDED JOURNAL BANNER -->
     <section class="text-center space-y-6">
       <div class="inline-block space-y-2">
         <span class="text-xs font-mono tracking-[0.25em] uppercase text-brand-gold font-bold px-3.5 py-1 rounded-full border border-amber-500/20 bg-amber-500/5">
@@ -94,27 +94,27 @@
         </p>
       </div>
 
-      <!-- Journal Image Frame -->
-      <div class="relative max-w-lg mx-auto rounded-3xl overflow-hidden border-2 border-white/10 bg-black shadow-2xl p-2 group">
-        <div class="relative rounded-2xl overflow-hidden bg-brand-card/90 border border-white/5 flex items-center justify-center">
+      <!-- Journal Image Window (Full image visible with generous frame and dark background) -->
+      <div class="relative max-w-2xl mx-auto rounded-3xl overflow-hidden border-2 border-white/10 bg-black/80 shadow-2xl p-3 group">
+        <div class="relative rounded-2xl overflow-hidden bg-brand-card/90 border border-white/5 flex items-center justify-center p-2">
           <img 
             src="Image/Journal.png" 
             alt="Devlog Journal Art" 
-            class="w-full h-auto object-cover max-h-72 transition-transform duration-500 group-hover:scale-105"
+            class="w-full h-auto max-h-[500px] object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
       </div>
 
       <div class="flex justify-center items-center gap-3 text-xs font-mono">
         <a href="https://dev.to/asx" target="_blank" class="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition flex items-center gap-2">
-          <span>Follow @asx on DEV.to</span>
+          <span>View Author Profile on DEV.to</span>
           <span>↗</span>
         </a>
       </div>
     </section>
 
 
-    <!-- 2. CHRONOLOGICAL DEVLOG POSTS (LATEST -> OLDEST) -->
+    <!-- 2. FULL CHRONOLOGICAL DEVLOG POSTS (LATEST -> OLDEST) -->
     <section class="space-y-4">
       
       <!-- Entry 40 -->
@@ -728,6 +728,72 @@
         <div class="pt-2 border-t border-white/5 flex items-center justify-between">
           <span class="text-xs font-mono text-slate-500">#story #narrative #json</span>
           <a href="https://dev.to/asx/dev-log-14-zero-to-impostor-1nj2" target="_blank" class="text-xs font-mono font-bold text-purple-400 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 12 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-slate-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-white/10 text-slate-300 border border-white/10 font-bold">
+            Dev Log #12
+          </span>
+          <span class="text-slate-400">August 27, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-white transition">
+          <a href="https://dev.to/asx/dev-log-12-bootstrap-scene-fader-1c3h" target="_blank">Dev Log 12 - Bootstrap & Scene Fader</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          Banishing duplicate scene managers, eliminating phantom zombie kill trackers, and building a clean bootloader architecture.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#architecture #scenes #unity</span>
+          <a href="https://dev.to/asx/dev-log-12-bootstrap-scene-fader-1c3h" target="_blank" class="text-xs font-mono font-bold text-slate-300 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 04 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-slate-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-white/10 text-slate-300 border border-white/10 font-bold">
+            Dev Log #04
+          </span>
+          <span class="text-slate-400">August 13, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-white transition">
+          <a href="https://dev.to/asx/dev-log-04-smurf-wars-3g6h" target="_blank">Dev Log 04 - Smurf Wars</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          The Smurf Wars & Impact Refactor — conquering syntax warnings, script conflicts, and establishing clean build rituals.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#gamedev #devjournal #vibecoding</span>
+          <a href="https://dev.to/asx/dev-log-04-smurf-wars-3g6h" target="_blank" class="text-xs font-mono font-bold text-slate-300 hover:underline">
+            Read on DEV.to →
+          </a>
+        </div>
+      </article>
+
+      <!-- Entry 03 -->
+      <article class="bg-brand-card/80 border border-brand-border hover:border-slate-500/40 rounded-3xl p-6 backdrop-blur-xl transition-all duration-300 shadow-lg space-y-3 group">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-white/10 text-slate-300 border border-white/10 font-bold">
+            Dev Log #03
+          </span>
+          <span class="text-slate-400">August 12, 2025</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white group-hover:text-white transition">
+          <a href="https://dev.to/asx/dev-log-03-pantry-expansion-4j04" target="_blank">Dev Log 03 - Pantry Expansion</a>
+        </h3>
+        <p class="text-sm text-slate-300 leading-relaxed font-sans">
+          "The Day I Out-Scoped My Own Sanity" — days of edible chaos, finalizing liquid databases, and item schemas.
+        </p>
+        <div class="pt-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">#gamedev #database #survival</span>
+          <a href="https://dev.to/asx/dev-log-03-pantry-expansion-4j04" target="_blank" class="text-xs font-mono font-bold text-slate-300 hover:underline">
             Read on DEV.to →
           </a>
         </div>
