@@ -663,7 +663,7 @@
             <h2 style="font-family: 'Press Start 2P', monospace; font-size: 1.1rem; color: #fcd34d; margin: 0;">🖼️ Community Bark Gallery</h2>
             <p style="font-size: 0.8rem; color: #94a3b8; margin: 4px 0 0 0;">Live community submissions — vote for your favorites!</p>
           </div>
-          <span id="galleryCount" style="font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #38bdf8;">SYNCING...</span>
+          <span id="galleryCount" style="font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #38bdf8;">0 ARTWORKS</span>
         </div>
 
         <div id="galleryGrid" class="gallery-grid">
@@ -696,15 +696,46 @@
   <!-- ENGINE & SUPABASE SYNC SCRIPT -->
   <script>
     // ============================================================
-    // 1. SUPABASE CLIENT INITIALIZATION
+    // 1. SUPABASE CLIENT INITIALIZATION (WITHOUT VARIABLE COLLISION)
     // ============================================================
     const SUPABASE_URL = "https://ryhiswzhfivvagxztqqc.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5aGlzd3poZml2dmFneHp0dHFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MDIzNzUsImV4cCI6MjA4NTI3ODM3NX0.SHSVZ4GE_Eh_2CpqwNIXdOFz5_x7uapSU3ICM8HCqXk";
     
-    let supabase = null;
-    if (window.supabase && SUPABASE_URL.startsWith("http")) {
-      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    let supabaseClient = null;
+    try {
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
+    } catch (e) {
+      console.warn("Supabase init error:", e);
     }
+
+    const DEFAULT_GALLERY = [
+      {
+        id: "doodle-1",
+        name: "PUGGY",
+        prompt: "A wrinkly Pug wearing retro sunglasses 😎",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><circle cx='240' cy='240' r='105' fill='%23b45309' stroke='%23000' stroke-width='6'/><ellipse cx='240' cy='285' rx='48' ry='32' fill='%23451a03' stroke='%23000' stroke-width='4'/><rect x='165' y='200' width='65' height='38' rx='8' fill='%23000'/><rect x='250' y='200' width='65' height='38' rx='8' fill='%23000'/><line x1='230' y1='216' x2='250' y2='216' stroke='%23000' stroke-width='6'/><polygon points='140,175 125,115 180,155' fill='%2378350f' stroke='%23000' stroke-width='4'/><polygon points='340,175 355,115 300,155' fill='%2378350f' stroke='%23000' stroke-width='4'/></svg>"
+      },
+      {
+        id: "doodle-2",
+        name: "CHOPPER",
+        prompt: "A dog caught stealing a slice of pizza 🍕",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='190' cy='260' rx='85' ry='55' fill='%23f59e0b' stroke='%23000' stroke-width='6'/><circle cx='130' cy='210' r='45' fill='%23f59e0b' stroke='%23000' stroke-width='6'/><circle cx='120' cy='200' r='6' fill='%23000'/><polygon points='145,225 300,265 290,170' fill='%23fef08a' stroke='%23b45309' stroke-width='6'/><circle cx='215' cy='225' r='10' fill='%23ef4444'/><circle cx='255' cy='235' r='10' fill='%23ef4444'/></svg>"
+      },
+      {
+        id: "doodle-3",
+        name: "BARKY",
+        prompt: "A dog wearing a Santa hat at Christmas 🎅",
+        likes: 0,
+        superLikes: 0,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'><rect width='480' height='480' fill='%23ffffff'/><ellipse cx='240' cy='275' rx='85' ry='75' fill='%23fef08a' stroke='%23000' stroke-width='6'/><circle cx='210' cy='255' r='8' fill='%23000'/><circle cx='270' cy='255' r='8' fill='%23000'/><ellipse cx='240' cy='295' rx='14' ry='10' fill='%23000'/><polygon points='165,210 240,85 315,210' fill='%23ef4444' stroke='%23000' stroke-width='5'/><rect x='155' y='200' width='170' height='26' rx='13' fill='%23ffffff' stroke='%23000' stroke-width='4'/><circle cx='240' cy='75' r='20' fill='%23ffffff' stroke='%23000' stroke-width='4'/></svg>"
+      }
+    ];
 
     const PROMPTS = [
       "A dog and a duck playing on the beach 🏖️🦆",
@@ -741,7 +772,7 @@
     let timerInterval = null;
     let isRoundActive = false;
     let undoStack = [];
-    let gallery = [];
+    let gallery = [...DEFAULT_GALLERY];
 
     const canvas = document.getElementById("drawCanvas");
     const ctx = canvas.getContext("2d");
@@ -966,31 +997,34 @@
     cancelModalBtn.addEventListener("click", () => uploadModal.style.display = "none");
 
     // ============================================================
-    // 2. SUPABASE BACKEND SYNC (MAPPED TO `dog_tag` COLUMN)
+    // 2. SUPABASE DATA SYNC
     // ============================================================
     async function loadGallery() {
-      if (!supabase) {
-        console.warn("Supabase not ready — fallback render.");
+      if (!supabaseClient) {
         renderGalleryAndLeaderboard();
         return;
       }
 
       try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
           .from('bark_gallery')
           .select('*')
           .order('created_at', { ascending: false });
 
         if (error) throw error;
 
-        gallery = (data || []).map(row => ({
-          id: row.id,
-          name: row.dog_tag,
-          prompt: row.prompt,
-          likes: row.likes || 0,
-          superLikes: row.super_likes || 0,
-          img: row.image_data
-        }));
+        if (data && data.length > 0) {
+          gallery = data.map(row => ({
+            id: row.id,
+            name: row.dog_tag,
+            prompt: row.prompt,
+            likes: row.likes || 0,
+            superLikes: row.super_likes || 0,
+            img: row.image_data
+          }));
+        } else {
+          gallery = [...DEFAULT_GALLERY];
+        }
 
         renderGalleryAndLeaderboard();
       } catch (err) {
@@ -1008,10 +1042,20 @@
       const dataUrl = canvas.toDataURL("image/jpeg", 0.6);
       uploadModal.style.display = "none";
 
-      if (supabase) {
+      // Immediate Optimistic Render
+      gallery.unshift({
+        id: "temp-" + Date.now(),
+        name: cleanName,
+        prompt: currentPrompt,
+        likes: 0,
+        superLikes: 0,
+        img: dataUrl
+      });
+      renderGalleryAndLeaderboard();
+
+      if (supabaseClient) {
         try {
-          confirmUploadBtn.textContent = "Posting...";
-          const { error } = await supabase
+          const { error } = await supabaseClient
             .from('bark_gallery')
             .insert([{
               dog_tag: cleanName,
@@ -1025,8 +1069,6 @@
           await loadGallery();
         } catch (err) {
           console.error("Upload error:", err);
-        } finally {
-          confirmUploadBtn.textContent = "Post to Global Gallery 🚀";
         }
       }
 
@@ -1043,9 +1085,10 @@
 
       renderGalleryAndLeaderboard();
 
-      if (supabase) {
+      // Only sync valid database UUIDs (skip local starter doodles)
+      if (supabaseClient && typeof id === 'string' && id.length > 25 && !id.startsWith("doodle-") && !id.startsWith("temp-")) {
         try {
-          await supabase
+          await supabaseClient
             .from('bark_gallery')
             .update({
               likes: item.likes,
@@ -1104,29 +1147,34 @@
     }
 
     // ============================================================
-    // 3. INITIALIZATION & REALTIME SUBSCRIPTION
+    // 3. INITIALIZATION & REALTIME
     // ============================================================
     async function initSupabaseSync() {
-      if (!supabase) {
-        console.warn("Supabase not initialized — fallback only.");
-        renderGalleryAndLeaderboard();
-        nextPrompt();
+      // Immediate initial render so page is responsive instantly
+      renderGalleryAndLeaderboard();
+      nextPrompt();
+
+      if (!supabaseClient) {
+        console.warn("Supabase not available — running in fallback mode.");
         return;
       }
 
-      // Realtime subscription across all visitors
-      supabase
-        .channel('public:bark_gallery')
-        .on(
-          'postgres_changes',
-          { event: '*', schema: 'public', table: 'bark_gallery' },
-          () => loadGallery()
-        )
-        .subscribe();
+      // Realtime subscription
+      try {
+        supabaseClient
+          .channel('public:bark_gallery')
+          .on(
+            'postgres_changes',
+            { event: '*', schema: 'public', table: 'bark_gallery' },
+            () => loadGallery()
+          )
+          .subscribe();
+      } catch (err) {
+        console.warn("Realtime sub error:", err);
+      }
 
-      // Initial load
+      // Load live rows from database
       await loadGallery();
-      nextPrompt();
     }
 
     initSupabaseSync();
