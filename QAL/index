@@ -13,8 +13,9 @@
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Supabase JS Client via CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Pinned Supabase JS Client & DOMPurify Sanitizer -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,11 +129,11 @@
           Authorize Gateway →
         </button>
 
-        <div id="error-alert" class="hidden text-xs font-mono text-red-400 bg-red-500/10 border border-red-500/20 py-2 px-3 rounded-lg"></div>
+        <div id="error-alert" class="hidden text-xs font-mono text-red-400 bg-red-500/10 border border-red-500/20 py-2.5 px-3 rounded-lg"></div>
       </form>
     </section>
 
-    <!-- SECURE CONTENT CONTAINER (INJECTED DYNAMICALLY FROM DATABASE) -->
+    <!-- SECURE CONTENT CONTAINER (INJECTED DYNAMICALLY POST-AUTH) -->
     <div id="secure-content" class="hidden space-y-12 animate-fade-in">
       
       <!-- VIDEO CONTAINER -->
@@ -144,7 +145,12 @@
               <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
               AUTHORIZED: <span id="recipient-label" class="text-white"></span>
             </span>
-            <span id="video-duration" class="text-slate-500 font-mono text-xs"></span>
+            <div class="flex items-center gap-4">
+              <span id="video-duration" class="text-slate-500 font-mono text-xs"></span>
+              <button onclick="lockSession()" class="text-[11px] font-mono text-slate-400 hover:text-red-400 transition underline underline-offset-4">
+                Lock Session [✕]
+              </button>
+            </div>
           </div>
           <h2 id="video-title" class="text-xl md:text-2xl font-display font-bold text-white tracking-wide pt-1"></h2>
         </div>
@@ -212,6 +218,17 @@
       submitBtn.disabled = true;
       submitBtn.innerText = "AUTHENTICATING...";
 
+      // 10-Second Request Timeout Safeguard
+      let requestCompleted = false;
+      const timeoutTimer = setTimeout(() => {
+        if (!requestCompleted) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Authorize Gateway →";
+          errorAlert.innerText = "Connection timed out. Please verify network and try again.";
+          errorAlert.classList.remove("hidden");
+        }
+      }, 10000);
+
       const targetVideoSlug = optionalVideoSlug || getRequestedVideoSlug();
 
       try {
@@ -220,12 +237,16 @@
           requested_slug: targetVideoSlug
         });
 
+        requestCompleted = true;
+        clearTimeout(timeoutTimer);
+
         if (error) throw new Error(error.message);
 
         if (!data || !data.success) {
           throw new Error(data ? data.error : "Access Denied: Invalid passcode.");
         }
 
+        // Cache passcode in RAM for switching between authorized videos
         cachedPasscode = enteredCode;
 
         // 1. Hide lock screen
@@ -240,18 +261,20 @@
         const player = document.getElementById("video-player");
         player.src = `https://www.youtube-nocookie.com/embed/${data.video.youtube_id}?rel=0&modestbranding=1&autoplay=1`;
 
-        // 4. Inject technical documentation dynamically
-        document.getElementById("dynamic-technical-content").innerHTML = data.video.technical_html;
+        // 4. Sanitize dynamic HTML using DOMPurify (XSS Protection)
+        document.getElementById("dynamic-technical-content").innerHTML = DOMPurify.sanitize(data.video.technical_html);
 
         // 5. Render playlist tabs
         renderPlaylistTabs(data.playlist, data.video.id);
 
-        // 6. Reveal secure content
+        // 6. Reveal secure content container
         const secureContainer = document.getElementById("secure-content");
         secureContainer.classList.remove("hidden");
         secureContainer.scrollIntoView({ behavior: 'smooth' });
 
       } catch (err) {
+        requestCompleted = true;
+        clearTimeout(timeoutTimer);
         errorAlert.innerText = err.message || "Access Denied: Invalid passcode.";
         errorAlert.classList.remove("hidden");
         inputEl.value = "";
@@ -259,6 +282,16 @@
         submitBtn.disabled = false;
         submitBtn.innerText = "Authorize Gateway →";
       }
+    }
+
+    function lockSession() {
+      cachedPasscode = "";
+      const player = document.getElementById("video-player");
+      player.src = "";
+      document.getElementById("secure-content").classList.add("hidden");
+      document.getElementById("lock-section").classList.remove("hidden");
+      document.getElementById("passcode-input").value = "";
+      document.getElementById("passcode-input").focus();
     }
 
     function renderPlaylistTabs(playlist, activeId) {
