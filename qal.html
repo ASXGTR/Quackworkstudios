@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <title>QAL 2FA | Confidential Evaluation Gateway</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- STRICT SEARCH ENGINE BLACKOUT -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Pinned Supabase JS Client & DOMPurify Sanitizer -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              goldHover: '#D97706',
+              cyan: '#06B6D4',
+              purple: '#A855F7',
+              dark: '#0A0C10',
+              card: '#121620',
+              cardHover: '#181E2B',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-brand-dark text-slate-200 font-sans min-h-screen antialiased selection:bg-brand-gold selection:text-black">
+
+  <!-- Background Ambient Glows -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-amber-500/10 rounded-full blur-[140px]"></div>
+    <div class="absolute top-[35rem] right-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px]"></div>
+  </div>
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/85 border-b border-white/5">
+    <div class="bg-gradient-to-r from-red-500/10 via-brand-dark to-amber-500/10 border-b border-white/5 px-4 py-1.5 text-center text-xs font-mono">
+      <span class="text-red-400 font-bold">🔒 RESTRICTED EVALUATION PORTAL:</span>
+      <span class="text-slate-400 ml-1">STRICTLY PROPRIETARY & CONFIDENTIAL</span>
+    </div>
+
+    <nav class="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center font-mono font-bold text-amber-400">
+          🦆
+        </div>
+        <span class="font-display font-bold text-lg text-white tracking-tight">Quackwork Studios</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">Gateway Active</span>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-5 py-12 space-y-12">
+
+    <!-- TITLE BLOCK -->
+    <section class="text-center space-y-4">
+      <div class="inline-block space-y-2">
+        <span class="text-xs font-mono tracking-[0.25em] uppercase text-brand-gold font-bold px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/5">
+          Automotive Cybersecurity • Proof of Concept
+        </span>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-display font-black tracking-tight text-white uppercase drop-shadow-md">
+          QAL <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-cyan-400">2FA Demo</span>
+        </h1>
+      </div>
+      <p class="text-slate-400 font-mono text-xs md:text-sm max-w-xl mx-auto">
+        Vehicle Security & Acoustic Two-Factor Authentication System & Method <br>
+        <span class="text-slate-500">Patent Pending: UK Application No. <span class="text-amber-400 font-bold">GB2619997.6</span></span>
+      </p>
+    </section>
+
+    <!-- PASSWORD LOCK GATE CONTAINER (SHOWN BY DEFAULT) -->
+    <section id="lock-section" class="bg-brand-card/90 border border-brand-border rounded-3xl p-8 md:p-12 backdrop-blur-xl shadow-2xl text-center space-y-6">
+      <div class="w-16 h-16 rounded-2xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-3xl mx-auto text-amber-400">
+        🔐
+      </div>
+
+      <div class="space-y-2 max-w-md mx-auto">
+        <h2 class="text-2xl font-display font-bold text-white">Authorized Access Required</h2>
+        <p class="text-sm text-slate-400 leading-relaxed font-sans">
+          This technical demonstration contains proprietary physical-layer acoustic modulation and state-machine telemetry. Enter the security passcode provided in your technical dossier.
+        </p>
+      </div>
+
+      <form id="passcode-form" onsubmit="handleAuth(event)" class="max-w-sm mx-auto space-y-4">
+        <div>
+          <input 
+            type="password" 
+            id="passcode-input" 
+            required 
+            placeholder="Enter Evaluation Passcode" 
+            class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-mono text-center text-sm transition"
+          />
+        </div>
+
+        <button 
+          type="submit" 
+          id="submit-btn" 
+          class="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
+        >
+          Authorize Gateway →
+        </button>
+
+        <div id="error-alert" class="hidden text-xs font-mono text-red-400 bg-red-500/10 border border-red-500/20 py-2.5 px-3 rounded-lg"></div>
+      </form>
+    </section>
+
+    <!-- SECURE CONTENT CONTAINER (INJECTED DYNAMICALLY POST-AUTH) -->
+    <div id="secure-content" class="hidden space-y-12 animate-fade-in">
+      
+      <!-- VIDEO CONTAINER -->
+      <section class="bg-brand-card/90 border border-brand-border rounded-3xl p-4 md:p-6 backdrop-blur-xl shadow-2xl space-y-5">
+        
+        <div class="space-y-1 px-2">
+          <div class="flex items-center justify-between font-mono text-xs">
+            <span class="text-emerald-400 flex items-center gap-1.5 font-bold">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              AUTHORIZED: <span id="recipient-label" class="text-white"></span>
+            </span>
+            <div class="flex items-center gap-4">
+              <span id="video-duration" class="text-slate-500 font-mono text-xs"></span>
+              <button onclick="lockSession()" class="text-[11px] font-mono text-slate-400 hover:text-red-400 transition underline underline-offset-4">
+                Lock Session [✕]
+              </button>
+            </div>
+          </div>
+          <h2 id="video-title" class="text-xl md:text-2xl font-display font-bold text-white tracking-wide pt-1"></h2>
+        </div>
+
+        <!-- Multi-Video Navigation Tabs (Dynamic) -->
+        <div id="playlist-nav" class="flex flex-wrap gap-2 px-2 pt-1 border-t border-white/5"></div>
+
+        <!-- 16:9 Responsive Embed Wrapper -->
+        <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+          <iframe 
+            id="video-player"
+            class="absolute top-0 left-0 w-full h-full"
+            src="" 
+            title="QAL 2FA Verification Video" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+
+      <!-- DYNAMIC CONTAINER FOR TECHNICAL MATRIX & AUDIT LOGS -->
+      <section id="dynamic-technical-content" class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-6"></section>
+
+    </div>
+
+  </main>
+
+  <!-- MINIMAL FOOTER -->
+  <footer class="border-t border-white/5 bg-brand-dark/90 mt-20">
+    <div class="max-w-5xl mx-auto px-5 py-8 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-500">
+      <div class="flex items-center gap-2">
+        <span class="text-amber-400 font-bold">🦆</span>
+        <span>© 2026 Quackwork Studios • Confidential Evaluation Portal</span>
+      </div>
+      <div>UK Patent Pending • Application No. GB2619997.6</div>
+    </div>
+  </footer>
+
+  <script>
+    // Supabase Project Credentials
+    const SUPABASE_URL = "https://ryhiswzhfivvagxzttqc.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5aGlzd3poZml2dmFneHp0dHFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MDIzNzUsImV4cCI6MjA4NTI3ODM3NX0.SHSVZ4GE_Eh_2CpqwNIXdOFz5_x7uapSU3ICM8HCqXk";
+    
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let cachedPasscode = "";
+
+    function getRequestedVideoSlug() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("v") || "demo-1";
+    }
+
+    async function handleAuth(event, optionalVideoSlug = null) {
+      if (event) event.preventDefault();
+
+      const inputEl = document.getElementById("passcode-input");
+      const submitBtn = document.getElementById("submit-btn");
+      const errorAlert = document.getElementById("error-alert");
+      
+      const enteredCode = optionalVideoSlug ? cachedPasscode : inputEl.value.trim();
+      if (!enteredCode) return;
+
+      errorAlert.classList.add("hidden");
+      submitBtn.disabled = true;
+      submitBtn.innerText = "AUTHENTICATING...";
+
+      // 10-Second Request Timeout Safeguard
+      let requestCompleted = false;
+      const timeoutTimer = setTimeout(() => {
+        if (!requestCompleted) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Authorize Gateway →";
+          errorAlert.innerText = "Connection timed out. Please verify network and try again.";
+          errorAlert.classList.remove("hidden");
+        }
+      }, 10000);
+
+      const targetVideoSlug = optionalVideoSlug || getRequestedVideoSlug();
+
+      try {
+        const { data, error } = await supabaseClient.rpc('verify_and_get_demo', {
+          entered_passcode: enteredCode,
+          requested_slug: targetVideoSlug
+        });
+
+        requestCompleted = true;
+        clearTimeout(timeoutTimer);
+
+        if (error) throw new Error(error.message);
+
+        if (!data || !data.success) {
+          throw new Error(data ? data.error : "Access Denied: Invalid passcode.");
+        }
+
+        // Cache passcode in RAM for switching between authorized videos
+        cachedPasscode = enteredCode;
+
+        // 1. Hide lock screen
+        document.getElementById("lock-section").classList.add("hidden");
+
+        // 2. Set dynamic metadata
+        document.getElementById("recipient-label").innerText = data.recipient;
+        document.getElementById("video-title").innerText = data.video.title;
+        document.getElementById("video-duration").innerText = `Duration: ${data.video.duration} • 1080p60`;
+        
+        // 3. Load YouTube stream
+        const player = document.getElementById("video-player");
+        player.src = `https://www.youtube-nocookie.com/embed/${data.video.youtube_id}?rel=0&modestbranding=1&autoplay=1`;
+
+        // 4. Sanitize dynamic HTML using DOMPurify (XSS Protection)
+        document.getElementById("dynamic-technical-content").innerHTML = DOMPurify.sanitize(data.video.technical_html);
+
+        // 5. Render playlist tabs
+        renderPlaylistTabs(data.playlist, data.video.id);
+
+        // 6. Reveal secure content container
+        const secureContainer = document.getElementById("secure-content");
+        secureContainer.classList.remove("hidden");
+        secureContainer.scrollIntoView({ behavior: 'smooth' });
+
+      } catch (err) {
+        requestCompleted = true;
+        clearTimeout(timeoutTimer);
+        errorAlert.innerText = err.message || "Access Denied: Invalid passcode.";
+        errorAlert.classList.remove("hidden");
+        inputEl.value = "";
+        inputEl.focus();
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Authorize Gateway →";
+      }
+    }
+
+    function lockSession() {
+      cachedPasscode = "";
+      const player = document.getElementById("video-player");
+      player.src = "";
+      document.getElementById("secure-content").classList.add("hidden");
+      document.getElementById("lock-section").classList.remove("hidden");
+      document.getElementById("passcode-input").value = "";
+      document.getElementById("passcode-input").focus();
+    }
+
+    function renderPlaylistTabs(playlist, activeId) {
+      const nav = document.getElementById("playlist-nav");
+      nav.innerHTML = "";
+
+      if (!playlist || playlist.length <= 1) {
+        nav.classList.add("hidden");
+        return;
+      }
+
+      nav.classList.remove("hidden");
+
+      playlist.forEach(v => {
+        const btn = document.createElement("button");
+        const isActive = v.id === activeId;
+
+        btn.className = isActive 
+          ? "px-3 py-1.5 rounded-lg bg-amber-400 text-black font-mono font-bold text-xs uppercase tracking-wider transition"
+          : "px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 font-mono text-xs transition";
+
+        btn.innerText = `${v.id.toUpperCase()}: ${v.title.slice(0, 32)}...`;
+        btn.onclick = () => handleAuth(null, v.id);
+
+        nav.appendChild(btn);
+      });
+    }
+  </script>
+
+</body>
+</html>
