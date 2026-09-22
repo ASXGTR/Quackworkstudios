@@ -55,13 +55,14 @@
   <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
     <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-amber-500/10 rounded-full blur-[140px]"></div>
     <div class="absolute top-[35rem] right-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-[80rem] left-10 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[160px]"></div>
   </div>
 
   <!-- TOP NAVBAR -->
   <header class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/85 border-b border-white/5">
     <div class="bg-gradient-to-r from-red-500/10 via-brand-dark to-amber-500/10 border-b border-white/5 px-4 py-1.5 text-center text-xs font-mono">
       <span class="text-red-400 font-bold">🔒 RESTRICTED EVALUATION PORTAL:</span>
-      <span class="text-slate-400 ml-1">STRICTLY PROPRIETARY & CONFIDENTIAL</span>
+      <span class="text-slate-400 ml-1">STRICTLY PROPRIETARY & CONFIDENTIAL (NDA PROTECTED)</span>
     </div>
 
     <nav class="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between">
@@ -69,7 +70,7 @@
         <div class="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center font-mono font-bold text-amber-400">
           🦆
         </div>
-        <span class="font-display font-bold text-lg text-white tracking-tight">Quackwork Studios</span>
+        <span class="font-display font-bold text-lg text-white tracking-tight">Quackworks Audio IP</span>
       </div>
 
       <div class="flex items-center gap-2">
@@ -81,20 +82,44 @@
 
   <main class="max-w-4xl mx-auto px-5 py-12 space-y-12">
 
-    <!-- TITLE BLOCK -->
+    <!-- TITLE & PATENT STATUS BLOCK -->
     <section class="text-center space-y-4">
       <div class="inline-block space-y-2">
         <span class="text-xs font-mono tracking-[0.25em] uppercase text-brand-gold font-bold px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/5">
-          Automotive Cybersecurity • Proof of Concept
+          Automotive Cybersecurity • Technology Proof-of-Concept
         </span>
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-display font-black tracking-tight text-white uppercase drop-shadow-md">
-          QAL <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-cyan-400">2FA Demo</span>
+          Quackworks <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-cyan-400">Acoustic Lock</span>
         </h1>
       </div>
-      <p class="text-slate-400 font-mono text-xs md:text-sm max-w-xl mx-auto">
-        Vehicle Security & Acoustic Two-Factor Authentication System & Method <br>
-        <span class="text-slate-500">Patent Pending: UK Application No. <span class="text-amber-400 font-bold">GB2619997.6</span></span>
+      <p class="text-slate-400 font-mono text-xs md:text-sm max-w-2xl mx-auto leading-relaxed">
+        Out-of-Band Physical-Presence Vehicle Authentication & Propulsion Interlock Architecture <br>
+        <span class="text-slate-500">Patent Pending: UK IPO Application No. <strong class="text-amber-400">GB2619997.6</strong> • Assignee: John Murphy</span>
       </p>
+    </section>
+
+    <!-- HIGH-LEVEL SYSTEM OVERVIEW (NON-DISCLOSING TEASER) -->
+    <section class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-md space-y-4">
+      <div class="flex items-center gap-2 text-xs font-mono text-amber-400 font-bold uppercase tracking-widest">
+        <span>⚡ Executive Summary</span>
+      </div>
+      <h2 class="text-xl md:text-2xl font-display font-bold text-white">
+        Solving Keyless Theft at the Physical Layer (0 Added Vehicle BOM)
+      </h2>
+      <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+        Modern automotive keyless entry systems are inherently vulnerable to wireless Relay Station Attacks (RSA), OBD-II port key cloning, and simultaneous device theft. The <strong>Quackworks Acoustic Lock (QAL)</strong> solves this vulnerability by introducing an independent, out-of-band acoustic physical-presence layer:
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 font-mono text-xs">
+        <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1">
+          <span class="text-cyan-400 font-bold block">FACTOR 1: ACCESS & INGRESS</span>
+          <span class="text-slate-400">Existing RF key fob, BLE digital key, or UWB transceiver unlocks exterior vehicle doors and wakes the system.</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1">
+          <span class="text-amber-400 font-bold block">FACTOR 2: PROPULSION INTERLOCK</span>
+          <span class="text-slate-400">High-voltage battery contactors and starter circuits remain hard-isolated until acoustic physical presence is validated inside the cabin.</span>
+        </div>
+      </div>
     </section>
 
     <!-- PASSWORD LOCK GATE CONTAINER (SHOWN BY DEFAULT) -->
@@ -106,7 +131,7 @@
       <div class="space-y-2 max-w-md mx-auto">
         <h2 class="text-2xl font-display font-bold text-white">Authorized Access Required</h2>
         <p class="text-sm text-slate-400 leading-relaxed font-sans">
-          This technical demonstration contains proprietary physical-layer acoustic modulation and state-machine telemetry. Enter the security passcode provided in your technical dossier.
+          This evaluation portal hosts interactive Software-in-the-Loop (SIL) video demonstrations, diagnostic fault telemetry, and system walkthroughs. Please enter the security passcode provided for your evaluation session.
         </p>
       </div>
 
@@ -170,10 +195,107 @@
             allowfullscreen>
           </iframe>
         </div>
+
+        <!-- ENGINEERING RECORDING NOTICE -->
+        <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 text-xs font-mono text-slate-400 space-y-1">
+          <span class="text-amber-400 font-bold block">💡 Testbench Observability Note:</span>
+          <span>In-cabin demonstration clips focus on the vehicle HMI and Electronic Control Unit (ECU) state machine, while dedicated companion recordings demonstrate the multi-tenant mobile applications (Master Owner, Guest Driver, and Dealership APKs) and live physical over-the-air acoustic coupling.</span>
+        </div>
       </section>
 
-      <!-- DYNAMIC CONTAINER FOR TECHNICAL MATRIX & AUDIT LOGS -->
+      <!-- DEMONSTRATION SUITE DIRECTORY (HIGH-LEVEL OVERVIEW) -->
+      <section class="space-y-4">
+        <h3 class="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold px-1">
+          Video Demonstration Index
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <div class="p-5 rounded-2xl bg-brand-card/60 border border-white/5 space-y-2">
+            <span class="text-xs font-mono text-amber-400 font-bold block">Demo 01 • Core Interlocks</span>
+            <h4 class="text-base font-display font-bold text-white">Primary Ingress, Ignition Gating & Fallback Flow</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Demonstrates preliminary key linking, the safety interlock explicitly inhibiting propulsion until secondary verification is provided, in-cabin manual PIN override, and automatic re-arming upon shutdown.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-brand-card/60 border border-white/5 space-y-2">
+            <span class="text-xs font-mono text-cyan-400 font-bold block">Demo 02 • Institutional Gateways</span>
+            <h4 class="text-base font-display font-bold text-white">Workshop Maintenance & Statutory Forensic Terminals</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Demonstrates the hidden 3-empty-entry service trigger, workshop diagnostic bypass (ISO 14229 UDS), police warrant authentication, Shift-by-Wire neutral winch recovery, and SHA-256 blackbox log export.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-brand-card/60 border border-white/5 space-y-2">
+            <span class="text-xs font-mono text-purple-400 font-bold block">Demo 03 • Statutory De-Provisioning</span>
+            <h4 class="text-base font-display font-bold text-white">GDPR Article 17 Reset & Memory Zeroization</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Demonstrates the multi-stage ownership transfer workflow, complete cryptographic key and PII zeroization, and a clean warm reboot back to uncommissioned Factory Mode.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-brand-card/60 border border-white/5 space-y-2">
+            <span class="text-xs font-mono text-emerald-400 font-bold block">Demo 04 • Vehicle Logistics</span>
+            <h4 class="text-base font-display font-bold text-white">Dealership Showroom Mode & PDI Staging</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Demonstrates vehicle logistics and showroom test-drive staging using ephemeral dealership credentials without customer master vault creation, followed by a one-touch demo reset.
+            </p>
+          </div>
+
+          <div class="md:col-span-2 p-5 rounded-2xl bg-brand-card/60 border border-white/5 space-y-2">
+            <span class="text-xs font-mono text-amber-300 font-bold block">Demo 05 • Full Mobile Enclave Ecosystem</span>
+            <h4 class="text-base font-display font-bold text-white">Mobile Companion Apps, P2P Sharing & Live Over-The-Air Start</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Side-by-side demonstration of the vehicle dashboard alongside the Master Owner App (Vault PIN/FaceID gating, guest key issuance & BLE beaming), Guest App (zero-knowledge PIN login), in-car duration extensions (+1h to +30d), and live acoustic vehicle starting.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- DYNAMIC CONTAINER FOR TECHNICAL MATRIX & AUDIT LOGS (INJECTED VIA SUPABASE) -->
       <section id="dynamic-technical-content" class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-6"></section>
+
+      <!-- SUMMARY & DUE-DILIGENCE TRANSFER SECTION -->
+      <section class="bg-brand-card/90 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-6">
+        <div class="space-y-2">
+          <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-widest">Technology Transfer & Licensing</span>
+          <h3 class="text-2xl font-display font-bold text-white">Full Technical Diligence Package (Under NDA)</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            For automotive vehicle manufacturers (OEMs), Tier-1 electronics suppliers, and technology partners evaluating the Quackworks Acoustic Lock architecture for production integration or IP licensing, a complete engineering due-diligence package is available upon execution of a Mutual Non-Disclosure Agreement:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+          <div class="p-3.5 rounded-xl bg-black/40 border border-white/5 space-y-1">
+            <span class="text-white font-bold block">📑 Patent Application Portfolio</span>
+            <span class="text-slate-400">Complete UK IPO patent specification and Claim Matrix (Claims 1–25, Application No. GB2619997.6).</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-black/40 border border-white/5 space-y-1">
+            <span class="text-white font-bold block">📘 350+ Page Engineering Dossier</span>
+            <span class="text-slate-400">Architectural Dossier QAL-DEMO-WALKTHROUGH-2026-v1.0 covering state machines, DSP filters, and fail-safes.</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-black/40 border border-white/5 space-y-1">
+            <span class="text-white font-bold block">💻 Complete Reference Codebase</span>
+            <span class="text-slate-400">27 C# / embedded architecture modules (DSP decoders, CP-FSK modulators, PBKDF2/AES-256 vaults, and ECU controllers).</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-black/40 border border-white/5 space-y-1">
+            <span class="text-white font-bold block">🚗 AUTOSAR & EVITA Roadmap</span>
+            <span class="text-slate-400">Direct integration blueprint for AUTOSAR Classic/Adaptive (DCM, CSM, SecOC) and hardware EVITA Full HSMs.</span>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-mono text-slate-400 block">Lead Inventor & Commercial Licensing:</span>
+            <span class="text-sm font-display font-bold text-white">John Murphy — Quackworks Audio IP</span>
+          </div>
+          <a href="mailto:mail@quackworkstudios.com" class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-amber-400/20 hover:scale-105">
+            Request Technical Dossier (mail@quackworkstudios.com) →
+          </a>
+        </div>
+      </section>
 
     </div>
 
@@ -184,9 +306,9 @@
     <div class="max-w-5xl mx-auto px-5 py-8 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-500">
       <div class="flex items-center gap-2">
         <span class="text-amber-400 font-bold">🦆</span>
-        <span>© 2026 Quackwork Studios • Confidential Evaluation Portal</span>
+        <span>© 2026 Quackworks Audio IP • Confidential Evaluation Portal</span>
       </div>
-      <div>UK Patent Pending • Application No. GB2619997.6</div>
+      <div>Patent Pending • UK IPO Application No. GB2619997.6</div>
     </div>
   </footer>
 
