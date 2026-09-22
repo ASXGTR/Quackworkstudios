@@ -22,6 +22,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
 
+  <style>
+    /* ANTI-PRINT SHIELD: Renders page totally blank if Print or Print-to-PDF is attempted */
+    @media print {
+      html, body {
+        display: none !important;
+        visibility: hidden !important;
+      }
+    }
+
+    /* ANTI-SELECT: Prevents dragging, text highlighting, and ripping */
+    .no-select {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* PRIVACY BLUR: Smooth transition when window loses focus */
+    .privacy-screen {
+      transition: filter 0.2s ease-in-out;
+    }
+    .privacy-blurred {
+      filter: blur(20px) grayscale(100%);
+    }
+  </style>
+
   <script>
     tailwind.config = {
       theme: {
@@ -49,7 +76,7 @@
   </script>
 </head>
 
-<body class="bg-brand-dark text-slate-200 font-sans min-h-screen antialiased selection:bg-brand-gold selection:text-black">
+<body id="portal-body" class="bg-brand-dark text-slate-200 font-sans min-h-screen antialiased selection:bg-brand-gold selection:text-black privacy-screen no-select">
 
   <!-- Background Ambient Glows -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -62,7 +89,7 @@
   <header class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/85 border-b border-white/5">
     <div class="bg-gradient-to-r from-red-500/10 via-brand-dark to-amber-500/10 border-b border-white/5 px-4 py-1.5 text-center text-xs font-mono">
       <span class="text-red-400 font-bold">🔒 RESTRICTED EVALUATION PORTAL:</span>
-      <span class="text-slate-400 ml-1">STRICTLY PROPRIETARY & CONFIDENTIAL</span>
+      <span class="text-slate-400 ml-1">STRICTLY PROPRIETARY & CONFIDENTIAL (NDA PROTECTED)</span>
     </div>
 
     <nav class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
@@ -150,6 +177,11 @@
             placeholder="Enter Evaluation Passcode" 
             class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-mono text-center text-sm transition"
           />
+        </div>
+
+        <!-- PRE-AUTHORIZATION ACKNOWLEDGMENT NOTICE -->
+        <div class="text-[11px] font-mono text-slate-500 text-left leading-relaxed px-1">
+          By entering the evaluation passcode, you confirm you are an authorized representative and agree to treat all demonstrated materials, state-machine logic, and video telemetry as strictly confidential under proprietary common law and statutory patent protections.
         </div>
 
         <button 
@@ -437,7 +469,51 @@
       <!-- DYNAMIC CONTAINER FOR TECHNICAL MATRIX & AUDIT LOGS (INJECTED VIA SUPABASE) -->
       <section id="dynamic-technical-content" class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-6"></section>
 
-      <!-- SUMMARY & DUE-DILIGENCE TRANSFER SECTION (UNDER NDA) -->
+      <!-- ========================================================================= -->
+      <!-- SECTION 04: STATUTORY NOTICE & TERMS OF ACCESS / EVALUATION AGREEMENT     -->
+      <!-- ========================================================================= -->
+      <section class="bg-black/50 border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-md space-y-4 text-xs font-mono text-slate-400">
+        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+          <div class="flex items-center gap-2 text-amber-400 font-bold uppercase tracking-wider">
+            <span>⚖️ Evaluation Terms of Access & Intellectual Property Notice</span>
+          </div>
+          <span class="text-[10px] text-slate-500 uppercase">Strict Confidentiality</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 leading-relaxed">
+          <div class="space-y-1.5">
+            <strong class="text-white block">1. Statutory Patent Pending Notice</strong>
+            <p>
+              The systems, state machines, acoustic modulation methods, and diagnostic architectures demonstrated herein are subject to formal intellectual property protection under UK Intellectual Property Office (UK IPO) Patent Application No. <strong class="text-amber-400">GB2619997.6</strong> (Claims 1–25). All statutory rights and international priority claims under the Paris Convention are reserved.
+            </p>
+          </div>
+
+          <div class="space-y-1.5">
+            <strong class="text-white block">2. Limited Evaluation Purpose & No License</strong>
+            <p>
+              Access to this evaluation portal and accompanying recordings is granted solely for internal technical evaluation and preliminary due diligence by verified recipients. Access does not constitute or imply any license, assignment, transfer, or covenant not to sue under any patent, trademark, or trade secret rights owned by Quackworks Audio IP or John Murphy.
+            </p>
+          </div>
+
+          <div class="space-y-1.5">
+            <strong class="text-white block">3. Prohibition of Redistribution & Recording</strong>
+            <p>
+              Evaluators agree not to copy, screen-record, rip, download, publish, distribute, or reverse-engineer any portion of the video demonstrations or proprietary telemetry. Passcodes are unique to authorized individuals and must not be shared or transferred.
+            </p>
+          </div>
+
+          <div class="space-y-1.5">
+            <strong class="text-white block">4. Engineering Simulation Disclaimer</strong>
+            <p>
+              Demonstrated software represents a Software-in-the-Loop (SIL) verification testbench and architectural reference design. Series automotive deployment is non-prescriptive and subject to vehicle-specific AUTOSAR Classic/Adaptive target porting, transducer qualification, and OEM functional safety homologation under ISO 26262.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SECTION 05: DUE DILIGENCE & NDA TRANSFER SECTION                          -->
+      <!-- ========================================================================= -->
       <section class="bg-brand-card/90 border border-brand-border rounded-3xl p-6 md:p-10 backdrop-blur-xl space-y-6">
         <div class="space-y-2">
           <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-widest">Technology Transfer & Licensing</span>
@@ -493,6 +569,50 @@
   </footer>
 
   <script>
+    // =========================================================================
+    // CLIENT-SIDE PRIVACY & ANTI-RIPPING GUARDS
+    // =========================================================================
+
+    // 1. Disable Right-Click Context Menu
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // 2. Block Common DevTools, Inspect & Save Shortcuts
+    document.addEventListener('keydown', function (e) {
+      // F12
+      if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl + U (View Source), Ctrl + S (Save Page), Ctrl + P (Print Page)
+      if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P')) {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl + Shift + I / J / C (DevTools & Element Inspect)
+      if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // 3. Privacy Screen: Blur content when window loses focus (e.g., third-party capture/snipping overlays)
+    window.addEventListener('blur', function () {
+      const body = document.getElementById('portal-body');
+      if (body) body.classList.add('privacy-blurred');
+    });
+
+    window.addEventListener('focus', function () {
+      const body = document.getElementById('portal-body');
+      if (body) body.classList.remove('privacy-blurred');
+    });
+
+    // =========================================================================
+    // SUPABASE AUTHENTICATION GATEWAY
+    // =========================================================================
+
     // Supabase Project Credentials
     const SUPABASE_URL = "https://ryhiswzhfivvagxzttqc.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5aGlzd3poZml2dmFneHp0dHFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MDIzNzUsImV4cCI6MjA4NTI3ODM3NX0.SHSVZ4GE_Eh_2CpqwNIXdOFz5_x7uapSU3ICM8HCqXk";
