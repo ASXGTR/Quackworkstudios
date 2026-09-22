@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
-  <title>QAL 2FA | Technology Demonstration Suite</title>
+  <title>QAL 2FA | Confidential Evaluation Gateway</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
@@ -12,6 +12,10 @@
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Pinned Supabase JS Client & DOMPurify Sanitizer -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,8 +54,8 @@
   <!-- Background Ambient Glows -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
     <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-amber-500/10 rounded-full blur-[140px]"></div>
-    <div class="absolute top-[50rem] right-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px]"></div>
-    <div class="absolute top-[110rem] left-10 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-[35rem] right-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-[80rem] left-10 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[160px]"></div>
   </div>
 
   <!-- TOP NAVBAR -->
@@ -71,12 +75,12 @@
 
       <div class="flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">12 Demonstrations Loaded</span>
+        <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">Gateway Active</span>
       </div>
     </nav>
   </header>
 
-  <main class="max-w-6xl mx-auto px-5 py-12 space-y-16">
+  <main class="max-w-6xl mx-auto px-5 py-12 space-y-12">
 
     <!-- TITLE & PATENT STATUS BLOCK -->
     <section class="text-center space-y-4">
@@ -94,7 +98,7 @@
       </p>
     </section>
 
-    <!-- TECHNOLOGY OVERVIEW (NON-DISCLOSING) -->
+    <!-- HIGH-LEVEL SYSTEM OVERVIEW (NON-DISCLOSING TEASER) -->
     <section class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-md space-y-4">
       <div class="flex items-center gap-2 text-xs font-mono text-amber-400 font-bold uppercase tracking-widest">
         <span>⚡ Technology Overview</span>
@@ -117,305 +121,363 @@
         </div>
       </div>
 
-      <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 text-xs font-mono text-slate-400 space-y-1">
-        <span class="text-amber-400 font-bold block">💡 Demonstration Observability Note:</span>
-        <span>In-cabin demonstration recordings showcase the vehicle interface and control logic within the simulation engine, while companion recordings demonstrate the multi-tenant mobile applications (Master Owner, Guest Driver, and Dealership apps) and live over-the-air verification.</span>
-      </div>
+      <p class="text-xs font-mono text-slate-400 pt-2">
+        💡 <strong>Zero Added Vehicle Hardware:</strong> Engineered as a software-defined security layer designed to integrate into existing vehicle architectures and factory microphone infrastructure.
+      </p>
     </section>
 
     <!-- ========================================================================= -->
-    <!-- SECTION 1: DRIVER INGRESS, IGNITION GATING & USER ONBOARDING              -->
+    <!-- PASSWORD LOCK GATE CONTAINER (SHOWN BY DEFAULT)                           -->
     <!-- ========================================================================= -->
-    <section class="space-y-6">
-      <div class="border-b border-white/10 pb-3 flex items-center justify-between">
-        <h2 class="text-xl font-display font-bold text-white flex items-center gap-2">
-          <span class="text-amber-400 font-mono text-sm">01.</span> Ingress, Interlocks & User Experience
-        </h2>
-        <span class="text-xs font-mono text-slate-500">Core 2FA Architecture</span>
+    <section id="lock-section" class="bg-brand-card/90 border border-brand-border rounded-3xl p-8 md:p-12 backdrop-blur-xl shadow-2xl text-center space-y-6">
+      <div class="w-16 h-16 rounded-2xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-3xl mx-auto text-amber-400">
+        🔐
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <!-- Video 1 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-amber-400 font-bold">DEMO 01</span>
-              <span class="text-slate-500">Primary Ingress</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Wireless Key Ingress & Linking Flow</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates preliminary wireless key detection, challenge-response linking, and transition from quiescent State 0 into Stage 1 listening.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/PASTE_DEMO_1_ID_HERE?rel=0&modestbranding=1" title="Demo 01" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-        <!-- Video 2 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-amber-400 font-bold">DEMO 02</span>
-              <span class="text-slate-500">Password & Override</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Consumer Password Set & Manual Override</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates initial master password creation, safety interlock inhibition, manual in-cabin PIN fallback, and automatic re-arming upon engine shutdown.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/Jg532Kppb58?rel=0&modestbranding=1" title="Demo 02" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-        <!-- Video 3 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-amber-400 font-bold">DEMO 03</span>
-              <span class="text-slate-500">Synthesis & Pairing</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Audio Key Generation & Mobile Enclave Link</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates in-cabin acoustic key synthesis, out-of-band ephemeral pairing handshake PIN dispatch, and linking with the mobile application.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/1jjkfSn_Lm4?rel=0&modestbranding=1" title="Demo 03" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-        <!-- Video 4 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-amber-400 font-bold">DEMO 04</span>
-              <span class="text-slate-500">App Enclave</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Mobile Application Enclave Interaction</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates the standalone mobile application UI: 4-digit Vault PIN/FaceID lock, privacy masking toggle, delegated pass management, and contact directory.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/LGVrC5cjfZ8?rel=0&modestbranding=1" title="Demo 04" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- SECTION 2: CREDENTIAL ROTATION, DELEGATION & LIVE VERIFICATION            -->
-    <!-- ========================================================================= -->
-    <section class="space-y-6">
-      <div class="border-b border-white/10 pb-3 flex items-center justify-between">
-        <h2 class="text-xl font-display font-bold text-white flex items-center gap-2">
-          <span class="text-cyan-400 font-mono text-sm">02.</span> Credential Rotation & Live Acoustic Drive
-        </h2>
-        <span class="text-xs font-mono text-slate-500">Fleet Sharing & Verification</span>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <!-- Video 5 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-cyan-400 font-bold">DEMO 05</span>
-              <span class="text-slate-500">Key Rotation</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">In-Cabin Master Password Rotation</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates root credential rotation, input length policy enforcement, re-sealing the master vault, and automatic re-synthesis of acoustic tokens.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/5Gy6ME-LK0A?rel=0&modestbranding=1" title="Demo 05" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-        <!-- Video 6 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-cyan-400 font-bold">DEMO 06</span>
-              <span class="text-slate-500">Guest Delegation</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Multi-Tenant Delegated Guest Access</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates creating time-decayed guest passes, zero-knowledge guest driver PIN login, duration extension chips (+1h to +30d), and access revocation.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/tNpm-Z70LPA?rel=0&modestbranding=1" title="Demo 06" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-        <!-- Video 7 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-cyan-400 font-bold">DEMO 07</span>
-              <span class="text-slate-500">Live Acoustic Start</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Live Over-The-Air Acoustic Verification</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates physical acoustic token transmission into the cabin microphone, instantaneous verification, contactor closure, and engine start.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/KQ-PdiGHQbs?rel=0&modestbranding=1" title="Demo 07" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-        <!-- Video 8 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-cyan-400 font-bold">DEMO 08</span>
-              <span class="text-slate-500">Bypass & Re-Arm</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Acoustic Entry & System Bypass Toggle</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates acoustic access to Owner Mode, toggling maintenance bypass for track/service use, and verifying strict re-lock invariants upon re-enabling.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/jmSwIUaO7W4?rel=0&modestbranding=1" title="Demo 08" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- SECTION 3: INSTITUTIONAL GATEWAYS & LIFECYCLE DE-PROVISIONING             -->
-    <!-- ========================================================================= -->
-    <section class="space-y-6">
-      <div class="border-b border-white/10 pb-3 flex items-center justify-between">
-        <h2 class="text-xl font-display font-bold text-white flex items-center gap-2">
-          <span class="text-purple-400 font-mono text-sm">03.</span> Institutional Gateways & Factory Reset
-        </h2>
-        <span class="text-xs font-mono text-slate-500">Service, Forensics & Reset</span>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <!-- Video 9 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-purple-400 font-bold">DEMO 09</span>
-              <span class="text-slate-500">Workshop Terminal</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Technician Access & Maintenance Gateway</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates the hidden 3-empty-entry trigger, dealership station code accreditation, clearing lockouts, and engaging diagnostic maintenance bypass.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/AqWiUhnWOj4?rel=0&modestbranding=1" title="Demo 09" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-        <!-- Video 10 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-purple-400 font-bold">DEMO 10</span>
-              <span class="text-slate-500">Forensics & Towing</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Forensic Terminal, Shift-by-Wire & Blackbox</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates statutory warrant gating, Shift-by-Wire neutral winch release for emergency flatbed recovery, and scrollable hash-chained blackbox log export.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/KrKIKpCeoqs?rel=0&modestbranding=1" title="Demo 10" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-        <!-- Video 11 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-purple-400 font-bold">DEMO 11</span>
-              <span class="text-slate-500">In-Cabin Reset</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Factory Reset & Ownership Wipe (In-Cabin)</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates the 4-stage intent verification barrier, complete memory zeroization for vehicle resale, and clean reboot to uncommissioned Factory Mode.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/26hqE6nIqII?rel=0&modestbranding=1" title="Demo 11" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-        <!-- Video 12 -->
-        <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-purple-400 font-bold">DEMO 12</span>
-              <span class="text-slate-500">Remote Reset</span>
-            </div>
-            <h3 class="text-base font-display font-bold text-white">Remote Telematics Reset & Mobile Decoupling</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Demonstrates triggering a remote factory reset from the mobile app, wiping vehicle memory over telematics, and decoupling all paired devices.
-            </p>
-          </div>
-          <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
-            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/ctjqb40Dung?rel=0&modestbranding=1" title="Demo 12" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- DUE DILIGENCE & NDA TRANSFER SECTION                                      -->
-    <!-- ========================================================================= -->
-    <section class="bg-brand-card/90 border border-brand-border rounded-3xl p-6 md:p-10 backdrop-blur-xl space-y-6">
-      <div class="space-y-2">
-        <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-widest">Technology Transfer & Licensing</span>
-        <h3 class="text-2xl md:text-3xl font-display font-bold text-white">Complete Technical Documentation (Available Under NDA)</h3>
-        <p class="text-slate-300 text-sm md:text-base leading-relaxed">
-          To protect proprietary intellectual property, deep architectural mechanisms, mathematical formulations, and raw source code are withheld from public web display. For automotive vehicle manufacturers (OEMs), Tier-1 suppliers, and commercial partners evaluating the technology, a complete due-diligence package is available upon request under a standard <strong>Confidentiality Agreement / Mutual Non-Disclosure Agreement (NDA)</strong>:
+      <div class="space-y-2 max-w-md mx-auto">
+        <h2 class="text-2xl font-display font-bold text-white">Authorized Access Required</h2>
+        <p class="text-sm text-slate-400 leading-relaxed font-sans">
+          This evaluation gateway hosts interactive Software-in-the-Loop (SIL) video demonstrations of the system state machine, fail-safes, and mobile companion tools. Please enter the evaluation passcode provided.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
-        <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
-          <span class="text-white font-bold block text-sm">📑 Official Patent Documentation</span>
-          <span class="text-slate-400 leading-relaxed">Complete UK IPO patent specification, figures, and full Claims Matrix (Claims 1–25, Application No. GB2619997.6).</span>
+      <form id="passcode-form" onsubmit="handleAuth(event)" class="max-w-sm mx-auto space-y-4">
+        <div>
+          <input 
+            type="password" 
+            id="passcode-input" 
+            required 
+            placeholder="Enter Evaluation Passcode" 
+            class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-mono text-center text-sm transition"
+          />
         </div>
-        <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
-          <span class="text-white font-bold block text-sm">📘 350+ Page Technical Specification</span>
-          <span class="text-slate-400 leading-relaxed">Comprehensive architectural dossier (QAL-DEMO-WALKTHROUGH-2026-v1.0) detailing state machines, fail-safes, and threat models.</span>
+
+        <button 
+          type="submit" 
+          id="submit-btn" 
+          class="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
+        >
+          Authorize Gateway →
+        </button>
+
+        <div id="error-alert" class="hidden text-xs font-mono text-red-400 bg-red-500/10 border border-red-500/20 py-2.5 px-3 rounded-lg"></div>
+      </form>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECURE CONTENT CONTAINER (LOCKED BY DEFAULT — UNLOCKED POST-AUTH)         -->
+    <!-- ========================================================================= -->
+    <div id="secure-content" class="hidden space-y-16 animate-fade-in">
+      
+      <!-- EVALUATOR STATUS & LOCK SESSION BAR -->
+      <section class="bg-brand-card/90 border border-brand-border rounded-2xl px-6 py-4 backdrop-blur-xl flex items-center justify-between font-mono text-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          <span class="text-slate-400 uppercase">EVALUATION ACCESS:</span>
+          <span id="recipient-label" class="text-white font-bold">AUTHORIZED RECIPIENT</span>
         </div>
-        <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
-          <span class="text-white font-bold block text-sm">💻 Complete Reference Source Code</span>
-          <span class="text-slate-400 leading-relaxed">Full source code across 27 modules (signal processing, modulators, demodulators, key vaults, and ECU controllers).</span>
-        </div>
-        <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
-          <span class="text-white font-bold block text-sm">🖼️ Step-by-Step Walkthrough Guide</span>
-          <span class="text-slate-400 leading-relaxed">Complete illustrated guide with high-resolution screenshots, testbench setups, and AUTOSAR/HSM porting blueprints.</span>
-        </div>
+
+        <button onclick="lockSession()" class="text-xs text-slate-400 hover:text-red-400 transition underline underline-offset-4">
+          Lock Session [✕]
+        </button>
+      </section>
+
+      <!-- OBSERVABILITY NOTICE -->
+      <div class="p-4 rounded-2xl bg-black/40 border border-white/5 text-xs font-mono text-slate-400 space-y-1">
+        <span class="text-amber-400 font-bold block">💡 Demonstration Observability Note:</span>
+        <span>In-cabin demonstration clips showcase the vehicle interface and control logic within the simulation engine, while companion recordings demonstrate the multi-tenant mobile applications (Master Owner, Guest Driver, and Dealership apps) and live over-the-air verification.</span>
       </div>
 
-      <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <span class="text-xs font-mono text-slate-400 block">Lead Inventor & Assignee:</span>
-          <span class="text-sm font-display font-bold text-white">John Murphy — Quackworks Audio IP</span>
+      <!-- SECTION 1: DRIVER INGRESS, IGNITION GATING & USER ONBOARDING -->
+      <section class="space-y-6">
+        <div class="border-b border-white/10 pb-3 flex items-center justify-between">
+          <h2 class="text-xl font-display font-bold text-white flex items-center gap-2">
+            <span class="text-amber-400 font-mono text-sm">01.</span> Ingress, Interlocks & User Experience
+          </h2>
+          <span class="text-xs font-mono text-slate-500">Core 2FA Architecture</span>
         </div>
-        <a href="mailto:mail@quackworkstudios.com" class="px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-amber-400/20 hover:scale-105">
-          Request NDA & Full Technical Dossier →
-        </a>
-      </div>
-    </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Video 1 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-amber-400 font-bold">DEMO 01</span>
+                <span class="text-slate-500">Primary Ingress</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Wireless Key Ingress & Linking Flow</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates preliminary wireless key detection, challenge-response linking, and transition from quiescent State 0 into Stage 1 listening.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/PASTE_DEMO_1_ID_HERE?rel=0&modestbranding=1" title="Demo 01" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+          <!-- Video 2 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-amber-400 font-bold">DEMO 02</span>
+                <span class="text-slate-500">Password & Override</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Consumer Password Set & Manual Override</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates initial master password creation, safety interlock inhibition, manual in-cabin PIN fallback, and automatic re-arming upon engine shutdown.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/Jg532Kppb58?rel=0&modestbranding=1" title="Demo 02" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+          <!-- Video 3 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-amber-400 font-bold">DEMO 03</span>
+                <span class="text-slate-500">Synthesis & Pairing</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Audio Key Generation & Mobile Enclave Link</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates in-cabin acoustic key synthesis, out-of-band ephemeral pairing handshake PIN dispatch, and linking with the mobile application.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/1jjkfSn_Lm4?rel=0&modestbranding=1" title="Demo 03" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+          <!-- Video 4 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-amber-400 font-bold">DEMO 04</span>
+                <span class="text-slate-500">App Enclave</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Mobile Application Enclave Interaction</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates the standalone mobile application UI: 4-digit Vault PIN/FaceID lock, privacy masking toggle, delegated pass management, and contact directory.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/LGVrC5cjfZ8?rel=0&modestbranding=1" title="Demo 04" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- SECTION 2: CREDENTIAL ROTATION, DELEGATION & LIVE VERIFICATION -->
+      <section class="space-y-6">
+        <div class="border-b border-white/10 pb-3 flex items-center justify-between">
+          <h2 class="text-xl font-display font-bold text-white flex items-center gap-2">
+            <span class="text-cyan-400 font-mono text-sm">02.</span> Credential Rotation & Live Acoustic Drive
+          </h2>
+          <span class="text-xs font-mono text-slate-500">Fleet Sharing & Verification</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Video 5 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-cyan-400 font-bold">DEMO 05</span>
+                <span class="text-slate-500">Key Rotation</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">In-Cabin Master Password Rotation</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates root credential rotation, input length policy enforcement, re-sealing the master vault, and automatic re-synthesis of acoustic tokens.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/5Gy6ME-LK0A?rel=0&modestbranding=1" title="Demo 05" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+          <!-- Video 6 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-cyan-400 font-bold">DEMO 06</span>
+                <span class="text-slate-500">Guest Delegation</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Multi-Tenant Delegated Guest Access</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates creating time-decayed guest passes, zero-knowledge guest driver PIN login, duration extension chips (+1h to +30d), and access revocation.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/tNpm-Z70LPA?rel=0&modestbranding=1" title="Demo 06" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+          <!-- Video 7 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-cyan-400 font-bold">DEMO 07</span>
+                <span class="text-slate-500">Live Acoustic Start</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Live Over-The-Air Acoustic Verification</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates physical acoustic token transmission into the cabin microphone, instantaneous verification, contactor closure, and engine start.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/KQ-PdiGHQbs?rel=0&modestbranding=1" title="Demo 07" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+          <!-- Video 8 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-cyan-400 font-bold">DEMO 08</span>
+                <span class="text-slate-500">Bypass & Re-Arm</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Acoustic Entry & System Bypass Toggle</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates acoustic access to Owner Mode, toggling maintenance bypass for track/service use, and verifying strict re-lock invariants upon re-enabling.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/jmSwIUaO7W4?rel=0&modestbranding=1" title="Demo 08" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- SECTION 3: INSTITUTIONAL GATEWAYS & LIFECYCLE DE-PROVISIONING -->
+      <section class="space-y-6">
+        <div class="border-b border-white/10 pb-3 flex items-center justify-between">
+          <h2 class="text-xl font-display font-bold text-white flex items-center gap-2">
+            <span class="text-purple-400 font-mono text-sm">03.</span> Institutional Gateways & Factory Reset
+          </h2>
+          <span class="text-xs font-mono text-slate-500">Service, Forensics & Reset</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Video 9 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-purple-400 font-bold">DEMO 09</span>
+                <span class="text-slate-500">Workshop Terminal</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Technician Access & Maintenance Gateway</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates the hidden 3-empty-entry trigger, dealership station code accreditation, clearing lockouts, and engaging diagnostic maintenance bypass.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/AqWiUhnWOj4?rel=0&modestbranding=1" title="Demo 09" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+          <!-- Video 10 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-purple-400 font-bold">DEMO 10</span>
+                <span class="text-slate-500">Forensics & Towing</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Forensic Terminal, Shift-by-Wire & Blackbox</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates statutory warrant gating, Shift-by-Wire neutral winch release for emergency flatbed recovery, and scrollable hash-chained blackbox log export.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/KrKIKpCeoqs?rel=0&modestbranding=1" title="Demo 10" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+          <!-- Video 11 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-purple-400 font-bold">DEMO 11</span>
+                <span class="text-slate-500">In-Cabin Reset</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Factory Reset & Ownership Wipe (In-Cabin)</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates the 4-stage intent verification barrier, complete memory zeroization for vehicle resale, and clean reboot to uncommissioned Factory Mode.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/26hqE6nIqII?rel=0&modestbranding=1" title="Demo 11" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+          <!-- Video 12 -->
+          <article class="bg-brand-card/80 border border-brand-border rounded-3xl p-5 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-purple-400 font-bold">DEMO 12</span>
+                <span class="text-slate-500">Remote Reset</span>
+              </div>
+              <h3 class="text-base font-display font-bold text-white">Remote Telematics Reset & Mobile Decoupling</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Demonstrates triggering a remote factory reset from the mobile app, wiping vehicle memory over telematics, and decoupling all paired devices.
+              </p>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black aspect-video border border-white/10 shadow-inner">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/ctjqb40Dung?rel=0&modestbranding=1" title="Demo 12" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- DYNAMIC CONTAINER FOR TECHNICAL MATRIX & AUDIT LOGS (INJECTED VIA SUPABASE) -->
+      <section id="dynamic-technical-content" class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-6"></section>
+
+      <!-- SUMMARY & DUE-DILIGENCE TRANSFER SECTION (UNDER NDA) -->
+      <section class="bg-brand-card/90 border border-brand-border rounded-3xl p-6 md:p-10 backdrop-blur-xl space-y-6">
+        <div class="space-y-2">
+          <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-widest">Technology Transfer & Licensing</span>
+          <h3 class="text-2xl md:text-3xl font-display font-bold text-white">Complete Technical Documentation (Available Under NDA)</h3>
+          <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+            To protect proprietary intellectual property, deep architectural mechanisms, mathematical formulations, and raw source code are withheld from public web display. For automotive vehicle manufacturers (OEMs), Tier-1 suppliers, and commercial partners evaluating the technology, a complete due-diligence package is available upon request under a standard <strong>Confidentiality Agreement / Mutual Non-Disclosure Agreement (NDA)</strong>:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+          <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
+            <span class="text-white font-bold block text-sm">📑 Official Patent Documentation</span>
+            <span class="text-slate-400 leading-relaxed">Complete UK IPO patent specification, figures, and full Claims Matrix (Claims 1–25, Application No. GB2619997.6).</span>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
+            <span class="text-white font-bold block text-sm">📘 350+ Page Technical Specification</span>
+            <span class="text-slate-400 leading-relaxed">Comprehensive architectural dossier (QAL-DEMO-WALKTHROUGH-2026-v1.0) detailing state machines, fail-safes, and threat models.</span>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
+            <span class="text-white font-bold block text-sm">💻 Complete Reference Source Code</span>
+            <span class="text-slate-400 leading-relaxed">Full source code across 27 modules (signal processing, modulators, demodulators, key vaults, and ECU controllers).</span>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
+            <span class="text-white font-bold block text-sm">🖼️ Step-by-Step Walkthrough Guide</span>
+            <span class="text-slate-400 leading-relaxed">Complete illustrated guide with high-resolution screenshots, testbench setups, and AUTOSAR/HSM porting blueprints.</span>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-mono text-slate-400 block">Lead Inventor & Assignee:</span>
+            <span class="text-sm font-display font-bold text-white">John Murphy — Quackworks Audio IP</span>
+          </div>
+          <a href="mailto:mail@quackworkstudios.com" class="px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-amber-400/20 hover:scale-105">
+            Request NDA & Full Technical Dossier →
+          </a>
+        </div>
+      </section>
+
+    </div>
 
   </main>
 
@@ -429,6 +491,106 @@
       <div>Patent Pending • UK IPO Application No. GB2619997.6</div>
     </div>
   </footer>
+
+  <script>
+    // Supabase Project Credentials
+    const SUPABASE_URL = "https://ryhiswzhfivvagxzttqc.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5aGlzd3poZml2dmFneHp0dHFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MDIzNzUsImV4cCI6MjA4NTI3ODM3NX0.SHSVZ4GE_Eh_2CpqwNIXdOFz5_x7uapSU3ICM8HCqXk";
+    
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let cachedPasscode = "";
+
+    function getRequestedVideoSlug() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("v") || "demo-1";
+    }
+
+    async function handleAuth(event, optionalVideoSlug = null) {
+      if (event) event.preventDefault();
+
+      const inputEl = document.getElementById("passcode-input");
+      const submitBtn = document.getElementById("submit-btn");
+      const errorAlert = document.getElementById("error-alert");
+      
+      const enteredCode = optionalVideoSlug ? cachedPasscode : inputEl.value.trim();
+      if (!enteredCode) return;
+
+      errorAlert.classList.add("hidden");
+      submitBtn.disabled = true;
+      submitBtn.innerText = "AUTHENTICATING...";
+
+      // 10-Second Request Timeout Safeguard
+      let requestCompleted = false;
+      const timeoutTimer = setTimeout(() => {
+        if (!requestCompleted) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Authorize Gateway →";
+          errorAlert.innerText = "Connection timed out. Please verify network and try again.";
+          errorAlert.classList.remove("hidden");
+        }
+      }, 10000);
+
+      const targetVideoSlug = optionalVideoSlug || getRequestedVideoSlug();
+
+      try {
+        const { data, error } = await supabaseClient.rpc('verify_and_get_demo', {
+          entered_passcode: enteredCode,
+          requested_slug: targetVideoSlug
+        });
+
+        requestCompleted = true;
+        clearTimeout(timeoutTimer);
+
+        if (error) throw new Error(error.message);
+
+        if (!data || !data.success) {
+          throw new Error(data ? data.error : "Access Denied: Invalid passcode.");
+        }
+
+        // Cache passcode in RAM for session
+        cachedPasscode = enteredCode;
+
+        // 1. Hide lock screen
+        document.getElementById("lock-section").classList.add("hidden");
+
+        // 2. Set dynamic metadata
+        if (data.recipient) {
+          document.getElementById("recipient-label").innerText = data.recipient;
+        }
+
+        // 3. Sanitize and inject optional dynamic technical content if returned
+        if (data.video && data.video.technical_html) {
+          const techContainer = document.getElementById("dynamic-technical-content");
+          techContainer.innerHTML = DOMPurify.sanitize(data.video.technical_html);
+          techContainer.classList.remove("hidden");
+        }
+
+        // 4. Reveal secure content container with all 12 video embeds
+        const secureContainer = document.getElementById("secure-content");
+        secureContainer.classList.remove("hidden");
+        secureContainer.scrollIntoView({ behavior: 'smooth' });
+
+      } catch (err) {
+        requestCompleted = true;
+        clearTimeout(timeoutTimer);
+        errorAlert.innerText = err.message || "Access Denied: Invalid passcode.";
+        errorAlert.classList.remove("hidden");
+        inputEl.value = "";
+        inputEl.focus();
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Authorize Gateway →";
+      }
+    }
+
+    function lockSession() {
+      cachedPasscode = "";
+      document.getElementById("secure-content").classList.add("hidden");
+      document.getElementById("lock-section").classList.remove("hidden");
+      document.getElementById("passcode-input").value = "";
+      document.getElementById("passcode-input").focus();
+    }
+  </script>
 
 </body>
 </html>
