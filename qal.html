@@ -2,52 +2,18 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
-  <title>QAL 2FA | Confidential Evaluation Gateway</title>
+  <title>QAL | Open-Source Acoustic Authentication Architecture</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <!-- STRICT SEARCH ENGINE BLACKOUT -->
-  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="description" content="Quackworks Acoustic Lock (QAL) - Open-Source, Software-Defined Acoustic Authentication & Physical-Presence Verification Protocol." />
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Pinned Supabase JS Client & DOMPurify Sanitizer -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ANTI-PRINT SHIELD: Renders page totally blank if Print or Print-to-PDF is attempted */
-    @media print {
-      html, body {
-        display: none !important;
-        visibility: hidden !important;
-      }
-    }
-
-    /* ANTI-SELECT: Prevents dragging, text highlighting, and ripping */
-    .no-select {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    /* PRIVACY BLUR: Smooth transition when window loses focus */
-    .privacy-screen {
-      transition: filter 0.2s ease-in-out;
-    }
-    .privacy-blurred {
-      filter: blur(20px) grayscale(100%);
-    }
-  </style>
 
   <script>
     tailwind.config = {
@@ -76,7 +42,7 @@
   </script>
 </head>
 
-<body id="portal-body" class="bg-brand-dark text-slate-200 font-sans min-h-screen antialiased selection:bg-brand-gold selection:text-black privacy-screen no-select">
+<body id="portal-body" class="bg-brand-dark text-slate-200 font-sans min-h-screen antialiased selection:bg-brand-gold selection:text-black">
 
   <!-- Background Ambient Glows -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -87,9 +53,9 @@
 
   <!-- TOP NAVBAR -->
   <header class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/85 border-b border-white/5">
-    <div class="bg-gradient-to-r from-red-500/10 via-brand-dark to-amber-500/10 border-b border-white/5 px-4 py-1.5 text-center text-xs font-mono">
-      <span class="text-red-400 font-bold">🔒 RESTRICTED EVALUATION PORTAL:</span>
-      <span class="text-slate-400 ml-1">STRICTLY PROPRIETARY & CONFIDENTIAL (NDA PROTECTED)</span>
+    <div class="bg-gradient-to-r from-emerald-500/10 via-brand-dark to-cyan-500/10 border-b border-white/5 px-4 py-1.5 text-center text-xs font-mono">
+      <span class="text-emerald-400 font-bold">🌐 PUBLIC OPEN-SOURCE RELEASE:</span>
+      <span class="text-slate-400 ml-1">APACHE 2.0 LICENSED DEFENSIVE PRIOR ART</span>
     </div>
 
     <nav class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
@@ -100,124 +66,128 @@
         <span class="font-display font-bold text-lg text-white tracking-tight">Quackworks Audio IP</span>
       </div>
 
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">Gateway Active</span>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/ASXGTR/Qal" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 text-xs font-mono text-slate-300 hover:text-white transition px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+          <span>GitHub Repo ↗</span>
+        </a>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">Open Access</span>
+        </div>
       </div>
     </nav>
   </header>
 
   <main class="max-w-6xl mx-auto px-5 py-12 space-y-12">
 
-    <!-- TITLE & PATENT STATUS BLOCK -->
+    <!-- TITLE & STATUS BLOCK -->
     <section class="text-center space-y-4">
       <div class="inline-block space-y-2">
         <span class="text-xs font-mono tracking-[0.25em] uppercase text-brand-gold font-bold px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/5">
-          Automotive Cybersecurity • Technology Proof-of-Concept
+          Open-Source Protocol • Software-in-the-Loop Simulation
         </span>
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-display font-black tracking-tight text-white uppercase drop-shadow-md">
           Quackworks <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-cyan-400">Acoustic Lock</span>
         </h1>
       </div>
       <p class="text-slate-400 font-mono text-xs md:text-sm max-w-2xl mx-auto leading-relaxed">
-        Next-Generation Physical-Presence Vehicle Authentication & Propulsion Interlock Architecture <br>
-        <span class="text-slate-500">Patent Pending: UK IPO Application No. <strong class="text-amber-400">GB2619997.6</strong> • Assignee: John Murphy</span>
+        Software-Defined Physical-Presence Verification & Acoustic Air-Gap Architecture <br>
+        <span class="text-slate-500">Originally filed under UK IPO Application No. <strong class="text-amber-400">GB2619997.6</strong> (Allowed to lapse) • Released under <strong class="text-emerald-400">Apache License 2.0</strong></span>
       </p>
+
+      <!-- BADGES BAR -->
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2 font-mono text-xs">
+        <a href="https://github.com/ASXGTR/Qal" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white transition flex items-center gap-2">
+          <span>⭐ Star on GitHub</span>
+        </a>
+        <a href="https://www.youtube.com/@Quackworkstudio" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 transition flex items-center gap-2">
+          <span>▶️ Watch on YouTube</span>
+        </a>
+        <a href="https://ko-fi.com/quackworkstudios" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 transition flex items-center gap-2">
+          <span>☕ Support on Ko-fi</span>
+        </a>
+      </div>
     </section>
 
-    <!-- HIGH-LEVEL SYSTEM OVERVIEW (NON-DISCLOSING TEASER) -->
+    <!-- HIGH-LEVEL SYSTEM OVERVIEW -->
     <section class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-md space-y-4">
       <div class="flex items-center gap-2 text-xs font-mono text-amber-400 font-bold uppercase tracking-widest">
         <span>⚡ Technology Overview</span>
       </div>
       <h2 class="text-xl md:text-2xl font-display font-bold text-white">
-        Multi-Factor Vehicle Immobilization & Physical-Presence Gating
+        Multi-Factor Physical-Presence Gating Across an Acoustic Air-Gap
       </h2>
       <p class="text-slate-300 text-sm md:text-base leading-relaxed">
-        Modern automotive keyless entry systems are vulnerable to wireless Relay Station Attacks (RSA), key cloning, and unauthorized drive-away theft. The <strong>Quackworks Acoustic Lock (QAL)</strong> solves keyless vulnerability by decoupling vehicle entry from engine start, establishing an independent <strong>Two-Factor Authentication (2FA)</strong> physical barrier:
+        Radio-frequency keyless systems are vulnerable to wireless relay attacks (RSA), signal amplification, and remote bus injection. The <strong>Quackworks Acoustic Lock (QAL)</strong> solves this vulnerability by using the physical containment of sound pressure waves inside an enclosed space (such as a vehicle cabin, secure room, or elevator) to enforce local physical presence:
       </p>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 font-mono text-xs">
         <div class="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1">
-          <span class="text-cyan-400 font-bold block">FACTOR 1: ACCESS & INGRESS</span>
-          <span class="text-slate-400 leading-relaxed">Existing primary wireless keys (RF, BLE, or UWB) handle exterior door unlocking and wake the vehicle systems.</span>
+          <span class="text-cyan-400 font-bold block">FACTOR 1: PRIMARY INGRESS</span>
+          <span class="text-slate-400 leading-relaxed">Standard wireless credentials (RF, BLE, or UWB) wake the system and handle initial door unlocking.</span>
         </div>
         <div class="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1">
-          <span class="text-amber-400 font-bold block">FACTOR 2: PROPULSION INTERLOCK</span>
-          <span class="text-slate-400 leading-relaxed">Powertrain circuits remain hard-isolated until an encrypted physical-presence token is verified inside the cabin.</span>
+          <span class="text-amber-400 font-bold block">FACTOR 2: ACOUSTIC INTERLOCK</span>
+          <span class="text-slate-400 leading-relaxed">Powertrain or electronic contactors remain disabled until an in-cabin, near-ultrasonic acoustic token is authenticated by interior microphones.</span>
         </div>
       </div>
 
       <p class="text-xs font-mono text-slate-400 pt-2">
-        💡 <strong>Zero Added Vehicle Hardware:</strong> Engineered as a software-defined security layer designed to integrate into existing vehicle architectures and factory microphone infrastructure.
+        💡 <strong>Zero Added Hardware BOM:</strong> Purely software-defined. Reuses pre-existing hands-free cabin microphones and audio DSP processing operating at standard 44.1 kHz or 48.0 kHz sampling rates.
       </p>
     </section>
 
     <!-- ========================================================================= -->
-    <!-- PASSWORD LOCK GATE CONTAINER (SHOWN BY DEFAULT)                           -->
+    <!-- GATEWAY LANDING CONTAINER (CLICK TO OPEN SHOWCASE)                        -->
     <!-- ========================================================================= -->
     <section id="lock-section" class="bg-brand-card/90 border border-brand-border rounded-3xl p-8 md:p-12 backdrop-blur-xl shadow-2xl text-center space-y-6">
       <div class="w-16 h-16 rounded-2xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-3xl mx-auto text-amber-400">
-        🔐
+        🎬
       </div>
 
       <div class="space-y-2 max-w-md mx-auto">
-        <h2 class="text-2xl font-display font-bold text-white">Authorized Access Required</h2>
+        <h2 class="text-2xl font-display font-bold text-white">Interactive Simulation Showcase</h2>
         <p class="text-sm text-slate-400 leading-relaxed font-sans">
-          This evaluation gateway hosts interactive Software-in-the-Loop (SIL) video demonstrations of the system state machine, fail-safes, and mobile companion tools. Please enter the evaluation passcode provided.
+          Explore the complete 12-part technical video walkthrough of the Software-in-the-Loop (SIL) simulation, covering real-time state machines, acoustic demodulation, and fail-safe logic.
         </p>
       </div>
 
-      <form id="passcode-form" onsubmit="handleAuth(event)" class="max-w-sm mx-auto space-y-4">
-        <div>
-          <input 
-            type="password" 
-            id="passcode-input" 
-            required 
-            placeholder="Enter Evaluation Passcode" 
-            class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-mono text-center text-sm transition"
-          />
-        </div>
-
-        <!-- PRE-AUTHORIZATION ACKNOWLEDGMENT NOTICE -->
-        <div class="text-[11px] font-mono text-slate-500 text-left leading-relaxed px-1">
-          By entering the evaluation passcode, you confirm you are an authorized representative and agree to treat all demonstrated materials, state-machine logic, and video telemetry as strictly confidential under proprietary common law and statutory patent protections.
-        </div>
-
+      <div class="max-w-sm mx-auto space-y-3">
         <button 
-          type="submit" 
-          id="submit-btn" 
-          class="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
+          type="button" 
+          onclick="unlockShowcase()" 
+          class="w-full py-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-amber-400/20 hover:scale-[1.02] flex items-center justify-center gap-2"
         >
-          Authorize Gateway →
+          <span>Enter Demonstration Showcase →</span>
         </button>
-
-        <div id="error-alert" class="hidden text-xs font-mono text-red-400 bg-red-500/10 border border-red-500/20 py-2.5 px-3 rounded-lg"></div>
-      </form>
+        <span class="text-[11px] font-mono text-slate-500 block">No registration or passwords required. 100% open public access.</span>
+      </div>
     </section>
 
     <!-- ========================================================================= -->
-    <!-- SECURE CONTENT CONTAINER (LOCKED BY DEFAULT — UNLOCKED POST-AUTH)         -->
+    <!-- SECURE CONTENT CONTAINER (REVEALED ON BUTTON CLICK)                       -->
     <!-- ========================================================================= -->
-    <div id="secure-content" class="hidden space-y-16 animate-fade-in">
+    <div id="secure-content" class="hidden space-y-16">
       
-      <!-- EVALUATOR STATUS & LOCK SESSION BAR -->
-      <section class="bg-brand-card/90 border border-brand-border rounded-2xl px-6 py-4 backdrop-blur-xl flex items-center justify-between font-mono text-xs">
+      <!-- EVALUATOR STATUS BAR -->
+      <section class="bg-brand-card/90 border border-brand-border rounded-2xl px-6 py-4 backdrop-blur-xl flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-          <span class="text-slate-400 uppercase">EVALUATION ACCESS:</span>
-          <span id="recipient-label" class="text-white font-bold">AUTHORIZED RECIPIENT</span>
+          <span class="text-slate-400 uppercase">ACCESS STATUS:</span>
+          <span class="text-white font-bold">PUBLIC OPEN SOURCE (APACHE 2.0)</span>
         </div>
 
-        <button onclick="lockSession()" class="text-xs text-slate-400 hover:text-red-400 transition underline underline-offset-4">
-          Lock Session [✕]
-        </button>
+        <div class="flex items-center gap-4">
+          <a href="https://github.com/ASXGTR/Qal" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline">
+            Download Source on GitHub →
+          </a>
+        </div>
       </section>
 
       <!-- OBSERVABILITY NOTICE -->
       <div class="p-4 rounded-2xl bg-black/40 border border-white/5 text-xs font-mono text-slate-400 space-y-1">
         <span class="text-amber-400 font-bold block">💡 Demonstration Observability Note:</span>
-        <span>In-cabin demonstration clips showcase the vehicle interface and control logic within the simulation engine, while companion recordings demonstrate the multi-tenant mobile applications (Master Owner, Guest Driver, and Dealership apps) and live over-the-air verification.</span>
+        <span>The videos below demonstrate the vehicle control logic and state machine running inside the Unity simulation engine, alongside companion recordings of the virtual mobile apps (Master Owner, Guest Driver, and Dealership apps) and live acoustic verification.</span>
       </div>
 
       <!-- SECTION 1: DRIVER INGRESS, IGNITION GATING & USER ONBOARDING -->
@@ -466,90 +436,92 @@
         </div>
       </section>
 
-      <!-- DYNAMIC CONTAINER FOR TECHNICAL MATRIX & AUDIT LOGS (INJECTED VIA SUPABASE) -->
-      <section id="dynamic-technical-content" class="bg-brand-card/70 border border-brand-border rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-6"></section>
-
       <!-- ========================================================================= -->
-      <!-- SECTION 04: STATUTORY NOTICE & TERMS OF ACCESS / EVALUATION AGREEMENT     -->
+      <!-- SECTION 04: OPEN SOURCE & DEFENSIVE PRIOR ART NOTICE                      -->
       <!-- ========================================================================= -->
       <section class="bg-black/50 border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-md space-y-4 text-xs font-mono text-slate-400">
         <div class="flex items-center justify-between border-b border-white/10 pb-3">
-          <div class="flex items-center gap-2 text-amber-400 font-bold uppercase tracking-wider">
-            <span>⚖️ Evaluation Terms of Access & Intellectual Property Notice</span>
+          <div class="flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-wider">
+            <span>⚖️ Open-Source Licensing & Defensive Prior Art Notice</span>
           </div>
-          <span class="text-[10px] text-slate-500 uppercase">Strict Confidentiality</span>
+          <span class="text-[10px] text-slate-500 uppercase">Apache License 2.0</span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 leading-relaxed">
           <div class="space-y-1.5">
-            <strong class="text-white block">1. Statutory Patent Pending Notice</strong>
+            <strong class="text-white block">1. Defensive Prior Art Status</strong>
             <p>
-              The systems, state machines, acoustic modulation methods, and diagnostic architectures demonstrated herein are subject to formal intellectual property protection under UK Intellectual Property Office (UK IPO) Patent Application No. <strong class="text-amber-400">GB2619997.6</strong> (Claims 1–25). All statutory rights and international priority claims under the Paris Convention are reserved.
+              An initial UK Patent Application (No. GB2619997.6, Claims 1 to 25) was lodged to establish an official priority timestamp. The application was deliberately left unprosecuted and allowed to lapse. All technical specifications, state machines, and modulation schemes are published openly as perpetual, defensive prior art.
             </p>
           </div>
 
           <div class="space-y-1.5">
-            <strong class="text-white block">2. Limited Evaluation Purpose & No License</strong>
+            <strong class="text-white block">2. Apache 2.0 Permissive License</strong>
             <p>
-              Access to this evaluation portal and accompanying recordings is granted solely for internal technical evaluation and preliminary due diligence by verified recipients. Access does not constitute or imply any license, assignment, transfer, or covenant not to sue under any patent, trademark, or trade secret rights owned by Quackworks Audio IP or John Murphy.
+              All code and documentation are released under the Apache License, Version 2.0. Developers, researchers, and companies are free to study, modify, adapt, or integrate this architecture into automotive, smart-building, elevator, or workstation security projects.
             </p>
           </div>
 
           <div class="space-y-1.5">
-            <strong class="text-white block">3. Prohibition of Redistribution & Recording</strong>
+            <strong class="text-white block">3. Beyond Automotive Applications</strong>
             <p>
-              Evaluators agree not to copy, screen-record, rip, download, publish, distribute, or reverse-engineer any portion of the video demonstrations or proprietary telemetry. Passcodes are unique to authorized individuals and must not be shared or transferred.
+              While originally prototyped as an automotive vehicle immobilizer, the core continuous-phase acoustic air-gap protocol is completely portable to elevator floor gating, apartment intercoms, server rooms, and RAT-proof computer logins.
             </p>
           </div>
 
           <div class="space-y-1.5">
             <strong class="text-white block">4. Engineering Simulation Disclaimer</strong>
             <p>
-              Demonstrated software represents a Software-in-the-Loop (SIL) verification testbench and architectural reference design. Series automotive deployment is non-prescriptive and subject to vehicle-specific AUTOSAR Classic/Adaptive target porting, transducer qualification, and OEM functional safety homologation under ISO 26262.
+              The code and videos represent a Software-in-the-Loop (SIL) simulation environment and architectural reference design. Series production deployment is subject to target ECU porting, transducer calibration, and vehicle-specific homologation.
             </p>
           </div>
         </div>
       </section>
 
       <!-- ========================================================================= -->
-      <!-- SECTION 05: DUE DILIGENCE & NDA TRANSFER SECTION                          -->
+      <!-- SECTION 05: GITHUB CODEBASE & DOCUMENTATION REPOSITORY                    -->
       <!-- ========================================================================= -->
       <section class="bg-brand-card/90 border border-brand-border rounded-3xl p-6 md:p-10 backdrop-blur-xl space-y-6">
         <div class="space-y-2">
-          <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-widest">Technology Transfer & Licensing</span>
-          <h3 class="text-2xl md:text-3xl font-display font-bold text-white">Complete Technical Documentation (Available Under NDA)</h3>
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-widest">Complete Open-Source Repository</span>
+          <h3 class="text-2xl md:text-3xl font-display font-bold text-white">Full Source Code & 360-Page Technical Dossier</h3>
           <p class="text-slate-300 text-sm md:text-base leading-relaxed">
-            To protect proprietary intellectual property, deep architectural mechanisms, mathematical formulations, and raw source code are withheld from public web display. For automotive vehicle manufacturers (OEMs), Tier-1 suppliers, and commercial partners evaluating the technology, a complete due-diligence package is available upon request under a standard <strong>Confidentiality Agreement / Mutual Non-Disclosure Agreement (NDA)</strong>:
+            The complete Unity project, 27 C# scripts, empirical modulation benchmark logs, patent claim specifications, and our comprehensive 360-page engineering dossier are hosted openly on GitHub under the <strong>Apache 2.0 License</strong>:
           </p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
           <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
-            <span class="text-white font-bold block text-sm">📑 Official Patent Documentation</span>
-            <span class="text-slate-400 leading-relaxed">Complete UK IPO patent specification, figures, and full Claims Matrix (Claims 1–25, Application No. GB2619997.6).</span>
+            <span class="text-white font-bold block text-sm">📑 Patent Claims & Specification</span>
+            <span class="text-slate-400 leading-relaxed">Complete 29-page specification, diagrams, and full Claims Matrix (Claims 1 to 25).</span>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
-            <span class="text-white font-bold block text-sm">📘 350+ Page Technical Specification</span>
-            <span class="text-slate-400 leading-relaxed">Comprehensive architectural dossier (QAL-DEMO-WALKTHROUGH-2026-v1.0) detailing state machines, fail-safes, and threat models.</span>
+            <span class="text-white font-bold block text-sm">📘 360-Page Technical Dossier</span>
+            <span class="text-slate-400 leading-relaxed">Exhaustive engineering implementation dossier covering state machines, fail-safes, and threat models.</span>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
-            <span class="text-white font-bold block text-sm">💻 Complete Reference Source Code</span>
-            <span class="text-slate-400 leading-relaxed">Full source code across 27 modules (signal processing, modulators, demodulators, key vaults, and ECU controllers).</span>
+            <span class="text-white font-bold block text-sm">💻 Complete Unity Project</span>
+            <span class="text-slate-400 leading-relaxed">Full C# reference codebase ready to open in Unity Editor Play Mode with virtual mobile tools.</span>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1.5">
-            <span class="text-white font-bold block text-sm">🖼️ Step-by-Step Walkthrough Guide</span>
-            <span class="text-slate-400 leading-relaxed">Complete illustrated guide with high-resolution screenshots, testbench setups, and AUTOSAR/HSM porting blueprints.</span>
+            <span class="text-white font-bold block text-sm">📊 Benchmark Validation Logs</span>
+            <span class="text-slate-400 leading-relaxed">Empirical 50-burst physical-layer demodulation reports and acoustic attenuation benchmarks.</span>
           </div>
         </div>
 
         <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
           <div>
-            <span class="text-xs font-mono text-slate-400 block">Lead Inventor & Assignee:</span>
-            <span class="text-sm font-display font-bold text-white">John Murphy — Quackworks Audio IP</span>
+            <span class="text-xs font-mono text-slate-400 block">Lead Developer:</span>
+            <span class="text-sm font-display font-bold text-white">John Murphy (Quackworks Audio IP)</span>
           </div>
-          <a href="mailto:mail@quackworkstudios.com" class="px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-amber-400/20 hover:scale-105">
-            Request NDA & Full Technical Dossier →
-          </a>
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="https://ko-fi.com/quackworkstudios" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono font-bold text-xs uppercase tracking-wider transition">
+              ☕ Support on Ko-fi
+            </a>
+            <a href="https://github.com/ASXGTR/Qal" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-black font-mono font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-emerald-400/20 hover:scale-105">
+              View Repository on GitHub →
+            </a>
+          </div>
         </div>
       </section>
 
@@ -562,153 +534,23 @@
     <div class="max-w-6xl mx-auto px-5 py-8 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-500">
       <div class="flex items-center gap-2">
         <span class="text-amber-400 font-bold">🦆</span>
-        <span>© 2026 Quackworks Audio IP • Confidential Evaluation Portal</span>
+        <span>© 2026 Quackworks Audio IP • Open-Source Demonstration Archive</span>
       </div>
-      <div>Patent Pending • UK IPO Application No. GB2619997.6</div>
+      <div>Released under Apache License 2.0 • Hosted on GitHub</div>
     </div>
   </footer>
 
   <script>
-    // =========================================================================
-    // CLIENT-SIDE PRIVACY & ANTI-RIPPING GUARDS
-    // =========================================================================
+    // Smooth reveal of demonstration showcase
+    function unlockShowcase() {
+      const lockSection = document.getElementById("lock-section");
+      const secureContent = document.getElementById("secure-content");
 
-    // 1. Disable Right-Click Context Menu
-    document.addEventListener('contextmenu', function (e) {
-      e.preventDefault();
-      return false;
-    });
-
-    // 2. Block Common DevTools, Inspect & Save Shortcuts
-    document.addEventListener('keydown', function (e) {
-      // F12
-      if (e.key === 'F12') {
-        e.preventDefault();
-        return false;
+      if (lockSection) lockSection.classList.add("hidden");
+      if (secureContent) {
+        secureContent.classList.remove("hidden");
+        secureContent.scrollIntoView({ behavior: 'smooth' });
       }
-      // Ctrl + U (View Source), Ctrl + S (Save Page), Ctrl + P (Print Page)
-      if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P')) {
-        e.preventDefault();
-        return false;
-      }
-      // Ctrl + Shift + I / J / C (DevTools & Element Inspect)
-      if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
-        e.preventDefault();
-        return false;
-      }
-    });
-
-    // 3. Privacy Screen: Blur content when window loses focus (e.g., third-party capture/snipping overlays)
-    window.addEventListener('blur', function () {
-      const body = document.getElementById('portal-body');
-      if (body) body.classList.add('privacy-blurred');
-    });
-
-    window.addEventListener('focus', function () {
-      const body = document.getElementById('portal-body');
-      if (body) body.classList.remove('privacy-blurred');
-    });
-
-    // =========================================================================
-    // SUPABASE AUTHENTICATION GATEWAY
-    // =========================================================================
-
-    // Supabase Project Credentials
-    const SUPABASE_URL = "https://ryhiswzhfivvagxzttqc.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5aGlzd3poZml2dmFneHp0dHFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MDIzNzUsImV4cCI6MjA4NTI3ODM3NX0.SHSVZ4GE_Eh_2CpqwNIXdOFz5_x7uapSU3ICM8HCqXk";
-    
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    let cachedPasscode = "";
-
-    function getRequestedVideoSlug() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get("v") || "demo-1";
-    }
-
-    async function handleAuth(event, optionalVideoSlug = null) {
-      if (event) event.preventDefault();
-
-      const inputEl = document.getElementById("passcode-input");
-      const submitBtn = document.getElementById("submit-btn");
-      const errorAlert = document.getElementById("error-alert");
-      
-      const enteredCode = optionalVideoSlug ? cachedPasscode : inputEl.value.trim();
-      if (!enteredCode) return;
-
-      errorAlert.classList.add("hidden");
-      submitBtn.disabled = true;
-      submitBtn.innerText = "AUTHENTICATING...";
-
-      // 10-Second Request Timeout Safeguard
-      let requestCompleted = false;
-      const timeoutTimer = setTimeout(() => {
-        if (!requestCompleted) {
-          submitBtn.disabled = false;
-          submitBtn.innerText = "Authorize Gateway →";
-          errorAlert.innerText = "Connection timed out. Please verify network and try again.";
-          errorAlert.classList.remove("hidden");
-        }
-      }, 10000);
-
-      const targetVideoSlug = optionalVideoSlug || getRequestedVideoSlug();
-
-      try {
-        const { data, error } = await supabaseClient.rpc('verify_and_get_demo', {
-          entered_passcode: enteredCode,
-          requested_slug: targetVideoSlug
-        });
-
-        requestCompleted = true;
-        clearTimeout(timeoutTimer);
-
-        if (error) throw new Error(error.message);
-
-        if (!data || !data.success) {
-          throw new Error(data ? data.error : "Access Denied: Invalid passcode.");
-        }
-
-        // Cache passcode in RAM for session
-        cachedPasscode = enteredCode;
-
-        // 1. Hide lock screen
-        document.getElementById("lock-section").classList.add("hidden");
-
-        // 2. Set dynamic metadata
-        if (data.recipient) {
-          document.getElementById("recipient-label").innerText = data.recipient;
-        }
-
-        // 3. Sanitize and inject optional dynamic technical content if returned
-        if (data.video && data.video.technical_html) {
-          const techContainer = document.getElementById("dynamic-technical-content");
-          techContainer.innerHTML = DOMPurify.sanitize(data.video.technical_html);
-          techContainer.classList.remove("hidden");
-        }
-
-        // 4. Reveal secure content container with all 12 video embeds
-        const secureContainer = document.getElementById("secure-content");
-        secureContainer.classList.remove("hidden");
-        secureContainer.scrollIntoView({ behavior: 'smooth' });
-
-      } catch (err) {
-        requestCompleted = true;
-        clearTimeout(timeoutTimer);
-        errorAlert.innerText = err.message || "Access Denied: Invalid passcode.";
-        errorAlert.classList.remove("hidden");
-        inputEl.value = "";
-        inputEl.focus();
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Authorize Gateway →";
-      }
-    }
-
-    function lockSession() {
-      cachedPasscode = "";
-      document.getElementById("secure-content").classList.add("hidden");
-      document.getElementById("lock-section").classList.remove("hidden");
-      document.getElementById("passcode-input").value = "";
-      document.getElementById("passcode-input").focus();
     }
   </script>
 
